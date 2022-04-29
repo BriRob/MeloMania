@@ -1,10 +1,11 @@
 .navigation {
-    background-color: deepskyblue;
+    padding: 20px 7px;
+    margin: 0 7%;
 }
 
 .navigation > li {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .profile-nav-div {
@@ -15,4 +16,8 @@
 
 .profile-nav-div > button {
     width: 50px;
+}
+
+.profile-dropdown li {
+    list-style: none;
 }

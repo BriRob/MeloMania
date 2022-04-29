@@ -1,0 +1,14 @@
+body {
+    background-color: #2D2D34;
+}
+
+.navLink {
+    font-weight: bold;
+    color: #E2DCDE;
+    text-decoration: none;
+}
+
+.title {
+    text-align: center;
+    color: #E2DCDE;
+}

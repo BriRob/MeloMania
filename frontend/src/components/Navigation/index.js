@@ -15,8 +15,8 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className="navLink" to="/login">Log In</NavLink>
+        <NavLink className="navLink" to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
   return (
     <ul className='navigation'>
       <li>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/" className="navLink">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
