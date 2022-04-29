@@ -1,0 +1,18 @@
+form {
+
+}
+
+.signup-form {
+    margin: 0px auto;
+    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.signup-form label {
+    display: flex;
+    flex-direction: column;
+}

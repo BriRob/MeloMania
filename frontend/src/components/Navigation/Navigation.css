@@ -1,0 +1,18 @@
+.navigation {
+    background-color: deepskyblue;
+}
+
+.navigation > li {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-nav-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-nav-div > button {
+    width: 50px;
+}
