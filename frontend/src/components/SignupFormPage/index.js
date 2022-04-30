@@ -34,12 +34,14 @@ function SignupFormPage() {
   return (
     <div>
       <h2 className="title">Sign Up</h2>
-      <form onSubmit={handleSubmit} className="signup-form">
+      {errors && (
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+      )}
+      <form onSubmit={handleSubmit} className="signup-form">
         <label>
           Email
           <input

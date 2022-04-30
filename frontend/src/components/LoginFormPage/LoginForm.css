@@ -4,9 +4,11 @@
     background-color: #CEB1BE;
     display: flex;
     flex-direction: column;
-    width: 75%;
     align-items: center;
     border-radius: 5px;
+    width: 75%;
+    max-width: 500px;
+    padding: 15px 0;
 }
 
 .login-form label {

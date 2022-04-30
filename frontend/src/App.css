@@ -1,5 +1,6 @@
 body {
     background-color: #2D2D34;
+    font-family: 'Nunito', sans-serif;
 }
 
 .navLink {
@@ -11,4 +12,5 @@ body {
 .title {
     text-align: center;
     color: #E2DCDE;
+    font-size: 35px;
 }
