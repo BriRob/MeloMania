@@ -5,6 +5,7 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import HomePage from './components/HomePage';
 import './App.css';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
