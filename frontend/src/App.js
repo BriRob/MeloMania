@@ -6,8 +6,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
-import './App.css';
 import UploadSong from './components/Song/UploadSong';
+import SongDetailPage from './components/Song/SongDetailPage';
+import './App.css';
 
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/songs/:id">
+            <SongDetailPage />
           </Route>
           <Route path="/new-song">
             <UploadSong />

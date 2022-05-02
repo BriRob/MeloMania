@@ -36,11 +36,7 @@ function HomePage() {
             </div>
           ))}
         </ul>
-        <Switch>
-          <Route path="/songs/:id">
-            <SongDetailPage />
-          </Route>
-        </Switch>
+
       </div>
     </div>
   );

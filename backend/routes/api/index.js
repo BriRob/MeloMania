@@ -3,7 +3,8 @@ const asyncHandler = require("express-async-handler");
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 
-const { User, Song } = require("../../db/models")
+const { User, Song } = require("../../db/models");
+const { check } = require("express-validator");
 
 
 router.use('/session', sessionRouter);
@@ -29,6 +30,18 @@ router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
     // const songId = parseInt(req.params.id, 10)
     // const song = await Song.findByPk()
 }))
+
+
+// const songFormValidation = [
+//     check('title')
+//         .notEmpty()
+//         .withMessage('cannot be empty'),
+//     check('description')
+//         .withMessage(''),
+//     check('url')
+//         .notEmpty()
+//         .withMessage('URL cannot be empty'),
+// ]
 
 router.post("/new-song", asyncHandler(async(req, res) => {
 
