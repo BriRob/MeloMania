@@ -10,7 +10,7 @@ function HomePage() {
 
   return (
     <div>
-      <h2 className="title">Welcome!</h2>
+      <h2 className="title">Welcome to MeloMania!</h2>
       {/* <p>The perfect place to upload and share your music with the world</p> */}
       {/* <div className="songsContainer">
         <ReactAudioPlayer src="/Users/brirobin/Desktop/aA/Module-5/melomania-solo-project/frontend/public/songs/tadow-fkj-masego.mp3" controls/>

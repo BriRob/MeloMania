@@ -79,7 +79,7 @@ function SignupFormPage() {
           />
         </label>
         <button type="submit">Sign Up</button>
-        <Link to="/login">Already a member?</Link>
+        <Link to="/login">Already a melomaniac?</Link>
       </form>
     </div>
   );

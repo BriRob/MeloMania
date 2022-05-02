@@ -54,7 +54,7 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
-        <Link to="/signup">Create account</Link>
+        <Link to="/signup">Become a melomaniac!</Link>
       </form>
     </div>
   );
