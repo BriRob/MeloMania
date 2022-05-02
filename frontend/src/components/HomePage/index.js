@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+// import song from "../../res/tadow-fkj-masego.mp3"
 
 
 function HomePage() {
@@ -16,9 +17,9 @@ function HomePage() {
       <p>The perfect place to upload and share your music with the world</p>
       <div className="songsContainer">
         <ReactAudioPlayer
-          src="tadow-fkj-masego.mp3"
+        //   src={song}
+        src=""
           controls
-          autoPlay
         />
         <div>
           <div className="songTitle">Tadow</div>

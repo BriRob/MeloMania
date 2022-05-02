@@ -2,15 +2,13 @@ const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-const song = require("../../public/songs/tadow-fkj-masego")
 
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
 router.get("/", asyncHandler(async(_eq, res) => {
-    // const src = song
-    // return song
+
 }))
 
 router.get("/songs/:id", asyncHandler(async(req, res) => {
@@ -22,6 +20,10 @@ router.put("/songs/:id", asyncHandler(async(req, res) => {
 }))
 
 router.post("/new-song", asyncHandler(async(req, res) => {
+
+}))
+
+router.delete("/new-song", asyncHandler(async(req, res) => {
 
 }))
 
