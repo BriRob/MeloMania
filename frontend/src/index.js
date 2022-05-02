@@ -7,7 +7,7 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
-import { getAllSongs } from './store/songs';
+// import { getAllSongs } from './store/songs';
 
 const store = configureStore();
 

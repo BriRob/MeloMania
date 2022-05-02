@@ -2,8 +2,9 @@ import ReactAudioPlayer from "react-audio-player";
 import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 import { getAllSongs } from "../../store/songs";
+import SongDetailPage from "../Song/SongDetailPage";
 // import song from "../../res/tadow-fkj-masego.mp3"
 
 function HomePage() {
@@ -25,15 +26,21 @@ function HomePage() {
       <div className="songsContainer">
         <ul>
           {Object.values(songs).map((song) => (
-            <div>
-              <div className="songTitle">{song.title}</div>
+            <div key={song.id}>
+              <Link to={`/songs/${song.id}`} className="songTitle">
+                {song.title}
+              </Link>
               <div className="uploadedUser">{song.User.username}</div>
               <div className="detail-date">{song.createdAt}</div>
               <ReactAudioPlayer src={song.url} controls />
             </div>
           ))}
         </ul>
-
+        <Switch>
+          <Route path="/songs/:id">
+            <SongDetailPage />
+          </Route>
+        </Switch>
       </div>
     </div>
   );

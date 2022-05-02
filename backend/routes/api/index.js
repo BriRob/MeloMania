@@ -9,6 +9,8 @@ const { User, Song } = require("../../db/models")
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
+
+// getting all songs
 router.get("/", asyncHandler(async(req, res) => {
     const songs = await Song.findAll({
         include: [
@@ -22,7 +24,13 @@ router.get("/", asyncHandler(async(req, res) => {
     return res.json(songs)
 }))
 
-router.get("/songs/:id", asyncHandler(async(req, res) => {
+// getting one song
+router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
+    // const songId = parseInt(req.params.id, 10)
+    // const song = await Song.findByPk()
+}))
+
+router.post("/new-song", asyncHandler(async(req, res) => {
 
 }))
 
@@ -30,9 +38,6 @@ router.put("/songs/:id", asyncHandler(async(req, res) => {
 
 }))
 
-router.post("/new-song", asyncHandler(async(req, res) => {
-
-}))
 
 router.delete("/new-song", asyncHandler(async(req, res) => {
 

@@ -7,6 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
 import './App.css';
+import UploadSong from './components/Song/UploadSong';
+
 
 function App() {
 
@@ -29,6 +31,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/new-song">
+            <UploadSong />
           </Route>
         </Switch>
       )}
