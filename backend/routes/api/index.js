@@ -3,15 +3,34 @@ const asyncHandler = require("express-async-handler");
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 
+const { User, Song } = require("../../db/models")
+
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
-router.get("/", asyncHandler(async(_eq, res) => {
 
+// getting all songs
+router.get("/", asyncHandler(async(req, res) => {
+    const songs = await Song.findAll({
+        include: [
+            {model: User}
+        ],
+        order: [['createdAt', 'DESC']]
+    })
+    // console.log("songs", songs)
+    // console.log("username", songs[0].User.username)
+    // console.log("hello")
+    return res.json(songs)
 }))
 
-router.get("/songs/:id", asyncHandler(async(req, res) => {
+// getting one song
+router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
+    // const songId = parseInt(req.params.id, 10)
+    // const song = await Song.findByPk()
+}))
+
+router.post("/new-song", asyncHandler(async(req, res) => {
 
 }))
 
@@ -19,9 +38,6 @@ router.put("/songs/:id", asyncHandler(async(req, res) => {
 
 }))
 
-router.post("/new-song", asyncHandler(async(req, res) => {
-
-}))
 
 router.delete("/new-song", asyncHandler(async(req, res) => {
 
