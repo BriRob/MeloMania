@@ -3,12 +3,23 @@ const asyncHandler = require("express-async-handler");
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 
+const { User, Song } = require("../../db/models")
+
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
-router.get("/", asyncHandler(async(_eq, res) => {
-
+router.get("/", asyncHandler(async(req, res) => {
+    const songs = await Song.findAll({
+        include: [
+            {model: User}
+        ],
+        order: [['createdAt', 'DESC']]
+    })
+    // console.log("songs", songs)
+    // console.log("username", songs[0].User.username)
+    // console.log("hello")
+    return res.json(songs)
 }))
 
 router.get("/songs/:id", asyncHandler(async(req, res) => {
