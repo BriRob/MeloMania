@@ -56,7 +56,7 @@ export const createNewSong = (payload) => async (dispatch) => {
 };
 
 export const editOneSong = (payload) => async (dispatch) => {
-  const response = await fetch(`/api/pokemon/${payload.id}`, {
+  const response = await csrfFetch(`/api/songs/${payload.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

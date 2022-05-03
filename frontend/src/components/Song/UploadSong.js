@@ -31,16 +31,6 @@ const UploadSong = () => {
       }
     }
 
-    // return await dispatch(createNewSong({ title, url, description })).catch(
-    //   async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) {
-    //       console.log(data.errors);
-    //       setErrors(data.errors);
-    //     }
-    //   }
-    // );
-
     if (newSong) {
       setErrors([]);
       history.push(`/songs/${newSong.id}`);
