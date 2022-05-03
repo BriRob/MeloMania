@@ -36,7 +36,6 @@ function HomePage() {
             </div>
           ))}
         </ul>
-
       </div>
     </div>
   );

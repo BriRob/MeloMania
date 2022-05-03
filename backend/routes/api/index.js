@@ -27,8 +27,12 @@ router.get("/", asyncHandler(async(req, res) => {
 
 // getting one song
 router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
-    // const songId = parseInt(req.params.id, 10)
-    // const song = await Song.findByPk()
+    const songId = parseInt(req.params.id, 10)
+    const song = await Song.findByPk(songId, {
+        include: { model: User}
+    })
+
+    return res.json(song)
 }))
 
 
