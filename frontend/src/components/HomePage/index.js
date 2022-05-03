@@ -6,6 +6,7 @@ import { Link, Redirect, Route, Switch } from "react-router-dom";
 import { getAllSongs } from "../../store/songs";
 import SongDetailPage from "../Song/SongDetailPage";
 // import song from "../../res/tadow-fkj-masego.mp3"
+import './HomePage.css';
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function HomePage() {
 //   },[songs])
 
   return (
-    <div>
+    <div className="home-page">
       <h2 className="title">Welcome to MeloMania!</h2>
       <p>The perfect place to upload and share your music with the world</p>
       <div className="songsContainer">

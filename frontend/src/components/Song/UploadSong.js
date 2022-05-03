@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 // import * as songActions from "../../store/songs";
 import { createNewSong } from "../../store/songs";
+import "./UploadSong.css";
 
 const UploadSong = () => {
-    const sessionUser = useSelector((state => state.session.user))
-    const dispatch = useDispatch();
-    const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState([]);
 
-    const [title, setTitle] = useState("");
-    const [url, setUrl] = useState("");
-    const [description, setDescription] = useState("");
-    const [errors, setErrors] = useState([]);
-
-    if (!sessionUser) return <Redirect to="/login"/>
+  if (!sessionUser) return <Redirect to="/login" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,12 +38,13 @@ const UploadSong = () => {
   };
 
   const handleCancelClick = (e) => {
-      e.preventDefault();
-      history.push(`/`);
+    e.preventDefault();
+    history.push(`/`);
   };
 
   return (
-    <div>
+    <div className="upload-song">
+      <h2>Upload Your Song</h2>
       <form onSubmit={handleSubmit} className="create-song-form">
         {errors && (
           <ul>
