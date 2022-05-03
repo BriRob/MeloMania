@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 // import * as songActions from "../../store/songs";
 import { createNewSong } from "../../store/songs";
 
 const UploadSong = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  
+    const sessionUser = useSelector((state => state.session.user))
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState([]);
+
+    const [title, setTitle] = useState("");
+    const [url, setUrl] = useState("");
+    const [description, setDescription] = useState("");
+    const [errors, setErrors] = useState([]);
+
+    if (!sessionUser) return <Redirect to="/login"/>
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,6 +65,7 @@ const UploadSong = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            accept=".mp3, .wav"
             // required
           />
         </label>

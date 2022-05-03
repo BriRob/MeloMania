@@ -37,7 +37,7 @@ router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
 }))
 
 
-const songFormValidation = [
+const songFormValidation = [ //^(\w).*\.wav|.mp3$
     check('title')
         .notEmpty()
         .withMessage('Title cannot be empty')
@@ -47,7 +47,11 @@ const songFormValidation = [
         .withMessage("Title must contain characters"),
     check('url')
         .notEmpty()
-        .withMessage('URL cannot be empty'),
+        .withMessage('URL cannot be empty')
+        .custom((value) => /(\.wav$|\.mp3$)/.test(value))
+        .withMessage('Url end in .mp3 or .wav')
+        .isURL()
+        .withMessage('Must be valid url'),
     handleValidationErrors
 ];
 
