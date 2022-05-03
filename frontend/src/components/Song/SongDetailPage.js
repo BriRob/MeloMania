@@ -33,7 +33,7 @@ const SongDetailPage = () => {
           <div>User: {song.User.username}</div>
           <div> Added {song.createdAt}</div>
           <div>Description: {song.description}</div>
-          {(!showEditSong && sessionUser) && (
+          {(!showEditSong && sessionUser.id === song.userId) && (
               <button onClick={() => (setShowEditSong(true))}>Edit</button>
           )}
           {form}
