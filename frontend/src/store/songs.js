@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 const GET_SONGS = "songs/GET_SONGS";
 const ONE_SONG = "songs/ONE_SONG";
 const CREATE_SONG = "songs/CREATE_SONG";
-
+const REMOVE_SONG = "songs/REMOVE_SONG";
 
 const getSongs = (songs) => ({
   type: GET_SONGS,
@@ -17,6 +17,12 @@ const oneSong = (song) => ({
 const createSong = (song) => ({
   type: CREATE_SONG,
   song,
+});
+
+const removeSong = (songId, userId) => ({
+  type: REMOVE_SONG,
+  songId,
+  userId,
 });
 
 export const getAllSongs = () => async (dispatch) => {
@@ -56,6 +62,31 @@ export const createNewSong = (payload) => async (dispatch) => {
   }
 };
 
+export const editOneSong = (payload) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songs/${payload.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const editedSong = await response.json();
+    dispatch(oneSong(editedSong));
+    return editedSong;
+  }
+};
+
+export const deleteSong = (songId, userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songs/${songId}`, {
+    method: "delete",
+  });
+  console.log("RESPONSE", response)
+  if (response.ok) {
+    const { id: deletedSongId } = await response.json();
+    dispatch(removeSong(deletedSongId, userId));
+    return deletedSongId;
+  }
+};
+
 const initialState = {
   songs: {},
 };
@@ -77,10 +108,14 @@ const songReducer = (state = initialState, action) => {
       return oneSongState;
     case CREATE_SONG:
       const newSongState = {
-          ...state,
-          songs: {...state.songs, [action.song.id]: action.song }
-      }
+        ...state,
+        songs: { ...state.songs, [action.song.id]: action.song },
+      };
       return newSongState;
+    case REMOVE_SONG:
+        const deletedSongState = {...state};
+        delete deletedSongState[action.songId]
+        return deletedSongState
     default:
       return state;
   }

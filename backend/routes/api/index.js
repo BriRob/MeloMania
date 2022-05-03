@@ -1,82 +1,119 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
-const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js');
+const sessionRouter = require("./session.js");
+const usersRouter = require("./users.js");
 
 const { User, Song } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
-const {requireAuth } = require("../../utils/auth.js")
+const { requireAuth } = require("../../utils/auth.js");
 
-router.use('/session', sessionRouter);
-router.use('/users', usersRouter);
-
+router.use("/session", sessionRouter);
+router.use("/users", usersRouter);
 
 // getting all songs
-router.get("/", asyncHandler(async(req, res) => {
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
     const songs = await Song.findAll({
-        include: [
-            {model: User}
-        ],
-        order: [['createdAt', 'DESC']]
-    })
+      include: [{ model: User }],
+      order: [["createdAt", "DESC"]],
+    });
     // console.log("songs", songs)
     // console.log("username", songs[0].User.username)
     // console.log("hello")
-    return res.json(songs)
-}))
+    return res.json(songs);
+  })
+);
 
 // getting one song
-router.get("/songs/:id(\\d+)", asyncHandler(async(req, res) => {
-    const songId = parseInt(req.params.id, 10)
+router.get(
+  "/songs/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const songId = parseInt(req.params.id, 10);
     const song = await Song.findByPk(songId, {
-        include: { model: User}
-    })
+      include: { model: User },
+    });
 
-    return res.json(song)
-}))
+    return res.json(song);
+  })
+);
 
-
-const songFormValidation = [ //^(\w).*\.wav|.mp3$
-    check('title')
-        .notEmpty()
-        .withMessage('Title cannot be empty')
-        .isLength({ max: 100 })
-        .withMessage('Title must be less than 100 characters')
-        .custom((value) => !/^ *$/.test(value))
-        .withMessage("Title must contain characters"),
-    check('url')
-        .notEmpty()
-        .withMessage('URL cannot be empty')
-        .custom((value) => /(\.wav$|\.mp3$)/.test(value))
-        .withMessage('Url end in .mp3 or .wav')
-        .isURL()
-        .withMessage('Must be valid url'),
-    handleValidationErrors
+const songFormValidation = [
+  //^(\w).*\.wav|.mp3$
+  check("title")
+    .notEmpty()
+    .withMessage("Title cannot be empty")
+    .isLength({ max: 100 })
+    .withMessage("Title must be less than 100 characters")
+    .custom((value) => !/^ *$/.test(value))
+    .withMessage("Title must contain characters"),
+  check("url")
+    .notEmpty()
+    .withMessage("URL cannot be empty")
+    .custom((value) => /(\.wav$|\.mp3$)/.test(value))
+    .withMessage("Url end in .mp3 or .wav")
+    .isURL()
+    .withMessage("Must be valid url"),
+  handleValidationErrors,
 ];
 
-router.post("/new-song", requireAuth, songFormValidation, asyncHandler(async(req, res) => {
+router.post(
+  "/new-song",
+  requireAuth,
+  songFormValidation,
+  asyncHandler(async (req, res) => {
     // console.log("REQ USER ID", req.user.id)
     // console.log("REQ BODY", req.body)
-    const userId = req.user.id
-    const { title, url, description } = req.body
+    const userId = req.user.id;
+    const { title, url, description } = req.body;
     const newSong = await Song.create({
-        userId, title, url, description
+      userId,
+      title,
+      url,
+      description,
     });
-    console.log("NEW SONG", newSong)
-    console.log("BASEURL", req.baseUrl)
-    return res.redirect(`${req.baseUrl}/songs/${newSong.id}`)
+    // console.log("NEW SONG", newSong)
+    // console.log("BASEURL", req.baseUrl)
+    return res.redirect(`${req.baseUrl}/songs/${newSong.id}`);
+  })
+);
 
-}))
+router.put(
+  "/songs/:id(\\d+)",
+  requireAuth,
+  songFormValidation,
+  asyncHandler(async (req, res) => {
+    // const userId = req.user.id
+    // console.log("REQ BODY ID", req.body.id);
+    const songId = req.body.id;
+    delete req.body.id;
+    // const songId = parseInt(req.params.id, 10)
+    await Song.update(req.body, {
+      where: { id: songId },
+      returning: true,
+      plain: true,
+    });
 
-router.put("/songs/:id", asyncHandler(async(req, res) => {
+    const updatedSong = await Song.findByPk(songId, {
+      include: { model: User },
+    });
+    console.log("UPDATED SONG", updatedSong);
+    return res.json(updatedSong);
+  })
+);
 
-}))
-
-
-router.delete("/new-song", asyncHandler(async(req, res) => {
-
-}))
+router.delete(
+  "/songs/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const song = await Song.findByPk(req.params.id);
+    const songId = song.id
+    console.log("SONG ID", songId)
+    await Song.destroy({where: {id: song.id}});
+    // res.redirect(`/`)
+    return res.json({ songId })
+  })
+);
 
 module.exports = router;
 

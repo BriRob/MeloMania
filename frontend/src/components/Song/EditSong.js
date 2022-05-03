@@ -1,28 +1,29 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-// import * as songActions from "../../store/songs";
-import { createNewSong } from "../../store/songs";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { editOneSong } from "../../store/songs";
 
-const UploadSong = () => {
-    const sessionUser = useSelector((state => state.session.user))
-    const dispatch = useDispatch();
-    const history = useHistory();
-
-
-    const [title, setTitle] = useState("");
-    const [url, setUrl] = useState("");
-    const [description, setDescription] = useState("");
-    const [errors, setErrors] = useState([]);
-
-    if (!sessionUser) return <Redirect to="/login"/>
+const EditSong = ({ song, hideForm }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [title, setTitle] = useState(song.title);
+  const [url, setUrl] = useState(song.url);
+  const [description, setDescription] = useState(song.description);
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let newSong;
+    const payload = {
+      ...song,
+      title,
+      url,
+      description,
+    };
+
+    let editedSong;
     try {
-      newSong = await dispatch(createNewSong({ title, url, description }));
+      editedSong = await dispatch(editOneSong(payload));
     } catch (res) {
       const data = await res.json();
       if (data && data.errors) {
@@ -31,20 +32,21 @@ const UploadSong = () => {
       }
     }
 
-    if (newSong) {
+    if (editedSong) {
       setErrors([]);
-      history.push(`/songs/${newSong.id}`);
+      hideForm();
     }
   };
 
   const handleCancelClick = (e) => {
-      e.preventDefault();
-      history.push(`/`);
+    e.preventDefault();
+    hideForm();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="create-song-form">
+      {/* HELLO?!?!? */}
+      <form onSubmit={handleSubmit} className="edit-song-form">
         {errors && (
           <ul>
             {errors.map((error, idx) => (
@@ -59,7 +61,6 @@ const UploadSong = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             accept=".mp3, .wav"
-            // required
           />
         </label>
         <label>
@@ -68,7 +69,6 @@ const UploadSong = () => {
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            // required
           />
         </label>
         <label>
@@ -87,4 +87,4 @@ const UploadSong = () => {
   );
 };
 
-export default UploadSong;
+export default EditSong;
