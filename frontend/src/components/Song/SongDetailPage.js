@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getOneSong } from "../../store/songs";
+import { useHistory, useParams } from "react-router-dom";
+import { deleteSong, getOneSong } from "../../store/songs";
 import ReactAudioPlayer from "react-audio-player";
 import EditSong from "./EditSong";
 
@@ -12,6 +12,7 @@ const SongDetailPage = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
+  const history = useHistory()
 
   const [showEditSong, setShowEditSong] = useState(false);
 
@@ -21,7 +22,7 @@ const SongDetailPage = () => {
 
   let form = null;
   if (sessionUser && showEditSong) {
-    form = <EditSong song={song} hideForm={() => setShowEditSong(false)}/>;
+    form = <EditSong song={song} hideForm={() => setShowEditSong(false)} />;
   }
 
   return (
@@ -33,10 +34,20 @@ const SongDetailPage = () => {
           <div>User: {song.User.username}</div>
           <div> Added {song.createdAt}</div>
           <div>Description: {song.description}</div>
-          {(!showEditSong && sessionUser.id === song.userId) && (
-              <button onClick={() => (setShowEditSong(true))}>Edit</button>
+          {!showEditSong && sessionUser.id === song.userId && (
+            <button onClick={() => setShowEditSong(true)}>Edit</button>
           )}
           {form}
+          {sessionUser.id === song.userId && (
+            <button
+              onClick={() => {
+                dispatch(deleteSong(song.id, sessionUser.id));
+                return history.push("/");
+              }}
+            >
+              Delete
+            </button>
+          )}
         </div>
       )}
     </>

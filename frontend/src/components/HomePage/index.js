@@ -17,7 +17,14 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllSongs());
+    // return () => {
+    //     dispatch(getAllSongs());
+    // }
   }, [dispatch]);
+
+//   useEffect(() => {
+//       console.log("rendering")
+//   },[songs])
 
   return (
     <div>

@@ -85,7 +85,7 @@ router.put(
   songFormValidation,
   asyncHandler(async (req, res) => {
     // const userId = req.user.id
-    console.log("REQ BODY", req.body.id);
+    // console.log("REQ BODY ID", req.body.id);
     const songId = req.body.id;
     delete req.body.id;
     // const songId = parseInt(req.params.id, 10)
@@ -104,8 +104,15 @@ router.put(
 );
 
 router.delete(
-  "/new-song",
-  asyncHandler(async (req, res) => {})
+  "/songs/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const song = await Song.findByPk(req.params.id);
+    const songId = song.id
+    console.log("SONG ID", songId)
+    await Song.destroy({where: {id: song.id}});
+    // res.redirect(`/`)
+    return res.json({ songId })
+  })
 );
 
 module.exports = router;
