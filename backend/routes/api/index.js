@@ -63,13 +63,27 @@ router.post("/new-song", requireAuth, songFormValidation, asyncHandler(async(req
     const newSong = await Song.create({
         userId, title, url, description
     });
-    console.log("NEW SONG", newSong)
-    console.log("BASEURL", req.baseUrl)
+    // console.log("NEW SONG", newSong)
+    // console.log("BASEURL", req.baseUrl)
     return res.redirect(`${req.baseUrl}/songs/${newSong.id}`)
 
 }))
 
-router.put("/songs/:id", asyncHandler(async(req, res) => {
+router.put("/songs/:id(\\d+)", requireAuth, songFormValidation, asyncHandler(async(req, res) => {
+    // const userId = req.user.id
+    console.log("REQ BODY", req.body.id)
+    const songId = (req.body.id)
+    delete req.body.id
+    // const songId = parseInt(req.params.id, 10)
+    await Song.update(req.body, {
+        where: { id },
+        returning: true,
+        plain: true
+    })
+
+    const updatedSong = await Song.findByPk(songId)
+    console.log("UPDATED SONG", updatedSong)
+    return res.json(updatedSong)
 
 }))
 

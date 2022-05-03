@@ -3,7 +3,6 @@ const GET_SONGS = "songs/GET_SONGS";
 const ONE_SONG = "songs/ONE_SONG";
 const CREATE_SONG = "songs/CREATE_SONG";
 
-
 const getSongs = (songs) => ({
   type: GET_SONGS,
   songs,
@@ -56,6 +55,19 @@ export const createNewSong = (payload) => async (dispatch) => {
   }
 };
 
+export const editOneSong = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/pokemon/${payload.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const editedSong = await response.json();
+    dispatch(oneSong(editedSong));
+    return editedSong;
+  }
+};
+
 const initialState = {
   songs: {},
 };
@@ -77,9 +89,9 @@ const songReducer = (state = initialState, action) => {
       return oneSongState;
     case CREATE_SONG:
       const newSongState = {
-          ...state,
-          songs: {...state.songs, [action.song.id]: action.song }
-      }
+        ...state,
+        songs: { ...state.songs, [action.song.id]: action.song },
+      };
       return newSongState;
     default:
       return state;
