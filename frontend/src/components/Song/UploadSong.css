@@ -1,0 +1,10 @@
+.upload-song {
+    /* padding-top: 100px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-song form{
+    display: flex;
+    flex-direction: column;
+}

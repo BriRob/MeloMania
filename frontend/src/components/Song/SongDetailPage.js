@@ -12,7 +12,7 @@ const SongDetailPage = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
-  const history = useHistory()
+  const history = useHistory();
 
   const [showEditSong, setShowEditSong] = useState(false);
 
@@ -31,14 +31,18 @@ const SongDetailPage = () => {
         <div>
           <h2 className="">{song.title}</h2>
           <ReactAudioPlayer src={song.url} controls />
-          <div>User: {song.User.username}</div>
-          <div> Added {song.createdAt}</div>
-          <div>Description: {song.description}</div>
+          {!showEditSong &&
+            <div>
+              <div>User: {song.User.username}</div>
+              <div> Added {song.createdAt}</div>
+              <div>Description: {song.description}</div>
+            </div>
+          }
           {!showEditSong && sessionUser.id === song.userId && (
             <button onClick={() => setShowEditSong(true)}>Edit</button>
           )}
           {form}
-          {sessionUser.id === song.userId && (
+          {!showEditSong && sessionUser.id === song.userId && (
             <button
               onClick={() => {
                 dispatch(deleteSong(song.id, sessionUser.id));

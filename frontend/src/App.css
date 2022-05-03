@@ -1,6 +1,24 @@
+* {
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
 body {
     background-color: #2D2D34;
     font-family: 'Nunito', sans-serif;
+    height: 100%;
+    width: 100%;
+    border: white 1px solid;
+    margin-top: 0px;
+    /* padding-top: 50px; */
+}
+
+.underNav {
+    padding-top: 100px;
 }
 
 .navLink {

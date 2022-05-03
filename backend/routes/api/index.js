@@ -108,7 +108,7 @@ router.delete(
   asyncHandler(async (req, res) => {
     const song = await Song.findByPk(req.params.id);
     const songId = song.id
-    console.log("SONG ID", songId)
+    // console.log("SONG ID", songId)
     await Song.destroy({where: {id: song.id}});
     // res.redirect(`/`)
     return res.json({ songId })
