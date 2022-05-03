@@ -26,6 +26,7 @@ function Navigation({ isLoaded }){
       <li>
         <NavLink exact to="/" className="navLink">MeloMania</NavLink>
         <NavLink to="/playlists" className="navLink">Playlists</NavLink>
+        <NavLink to="/new-song" className="navLink">Upload</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
