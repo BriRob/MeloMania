@@ -47,7 +47,10 @@ const UploadSong = () => {
     }
   };
 
-  const handleCancelClick = () => {};
+  const handleCancelClick = (e) => {
+      e.preventDefault();
+      history.push(`/`);
+  };
 
   return (
     <div>
