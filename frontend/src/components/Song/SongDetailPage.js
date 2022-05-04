@@ -56,7 +56,7 @@ const SongDetailPage = () => {
               <button
                 className="delete-btn"
                 onClick={() => {
-                  dispatch(deleteSong(song.id, sessionUser.id));
+                  dispatch(deleteSong(song.id));
                   return history.push("/");
                 }}
               >
