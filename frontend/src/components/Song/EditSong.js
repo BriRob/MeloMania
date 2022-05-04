@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editOneSong } from "../../store/songs";
-import "./EditSong.css"
+import "./EditSong.css";
 
 const EditSong = ({ song, hideForm }) => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const EditSong = ({ song, hideForm }) => {
   };
 
   return (
-    <div>
+    <div className="edit-big-div">
       {/* HELLO?!?!? */}
       <form onSubmit={handleSubmit} className="edit-song-form">
         {errors && (
@@ -75,14 +75,18 @@ const EditSong = ({ song, hideForm }) => {
         <label>
           Description
           <textarea
+            className="upload-textarea edit-textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={handleCancelClick}>
+        <div className="upload-button-div">
+        <button type="submit" className="form-btn">Submit</button>
+        <button type="button" onClick={handleCancelClick} className="cancel-btn">
           Cancel
         </button>
+
+        </div>
       </form>
     </div>
   );

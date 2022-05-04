@@ -34,19 +34,27 @@ const SongDetailPage = () => {
           <div className="song-detail-container">
             <ReactAudioPlayer src={song.url} controls />
             {!showEditSong && (
-              <div>
+              <div className="song-details">
                 <div>User: {song.User.username}</div>
-                <div> Added {song.createdAt}</div>
-                <div>Description: {song.description}</div>
+                <div>Added: {song.createdAt}</div>
+                <div>
+                  <div>Description:</div>
+                  <div>{song.description}</div>
+                </div>
               </div>
             )}
             {!showEditSong && sessionUser.id === song.userId && (
-              <button className="form-btn" onClick={() => setShowEditSong(true)}>Edit</button>
+              <button
+                className="form-btn"
+                onClick={() => setShowEditSong(true)}
+              >
+                Edit
+              </button>
             )}
             {form}
             {!showEditSong && sessionUser.id === song.userId && (
               <button
-              className="delete-btn"
+                className="delete-btn"
                 onClick={() => {
                   dispatch(deleteSong(song.id, sessionUser.id));
                   return history.push("/");

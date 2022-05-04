@@ -34,7 +34,7 @@
     width: 80%;
 }
 
-#upload-textarea {
+.upload-textarea {
    height: 100px;
    resize: none;
 }

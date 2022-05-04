@@ -75,7 +75,7 @@ const UploadSong = () => {
         <label>
           Description
           <textarea
-            id="upload-textarea"
+            className="upload-textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>

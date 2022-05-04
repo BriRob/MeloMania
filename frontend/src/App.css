@@ -40,13 +40,13 @@ body {
 }
 
 .cancel-btn {
-    color: blue
+    color: #2D2D34;
+    /* color: blue; */
 }
 
 .form-links {
-    color:#6e2123
+    color:#6e2123;
 }
-
 
 .fa-user-circle:before {
     color: #2D2D34;
