@@ -44,7 +44,7 @@ const UploadSong = () => {
 
   return (
     <div className="upload-song">
-      <h2>Upload Your Song</h2>
+      <h2 className="title">Upload Your Song</h2>
       <form onSubmit={handleSubmit} className="create-song-form">
         {errors && (
           <ul>
@@ -75,14 +75,23 @@ const UploadSong = () => {
         <label>
           Description
           <textarea
+            id="upload-textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <div className="upload-button-div">
+          <button type="submit" className="form-btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={handleCancelClick}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

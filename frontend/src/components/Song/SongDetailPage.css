@@ -1,0 +1,16 @@
+.song-detail-container {
+    margin: 0 auto;
+    padding: 0;
+    width: 70%;
+    max-width: 700px;
+    /* background-color: #545491; */
+    background-color: #682f48;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.delete-btn {
+    color: #2D2D34;
+}

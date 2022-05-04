@@ -1,10 +1,9 @@
 import ReactAudioPlayer from "react-audio-player";
 import React, { useEffect, useState } from "react";
-import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { getAllSongs } from "../../store/songs";
-import SongDetailPage from "../Song/SongDetailPage";
+import moment from "moment"
 // import song from "../../res/tadow-fkj-masego.mp3"
 import './HomePage.css';
 
@@ -18,23 +17,17 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllSongs());
-    // return () => {
-    //     dispatch(getAllSongs());
-    // }
   }, [dispatch]);
 
-//   useEffect(() => {
-//       console.log("rendering")
-//   },[songs])
 
   return (
     <div className="home-page">
       <h2 className="title">Welcome to MeloMania!</h2>
       <p>The perfect place to upload and share your music with the world</p>
-      <div className="songsContainer">
-        <ul>
+      <div >
+        <ul className="songsContainer">
           {Object.values(songs).map((song) => (
-            <div key={song.id}>
+            <div key={song.id} className="each-song-div">
               <Link to={`/songs/${song.id}`} className="songTitle">
                 {song.title}
               </Link>

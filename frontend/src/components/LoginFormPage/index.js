@@ -53,8 +53,8 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
-        <Link to="/signup">Become a melomaniac!</Link>
+        <button type="submit" className="form-btn">Log In</button>
+        <Link to="/signup" className="form-links">Become a melomaniac!</Link>
       </form>
     </div>
   );

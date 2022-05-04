@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editOneSong } from "../../store/songs";
+import "./EditSong.css"
 
 const EditSong = ({ song, hideForm }) => {
   const dispatch = useDispatch();

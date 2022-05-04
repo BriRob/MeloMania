@@ -1,6 +1,7 @@
 * {
     margin: 0 auto;
     box-sizing: border-box;
+    color:#E2DCDE;
 }
 
 html {
@@ -12,7 +13,7 @@ body {
     font-family: 'Nunito', sans-serif;
     height: 100%;
     width: 100%;
-    border: white 1px solid;
+    /* border: white 1px solid; */
     margin-top: 0px;
     /* padding-top: 50px; */
 }
@@ -31,4 +32,22 @@ body {
     text-align: center;
     color: #E2DCDE;
     font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.form-btn {
+    color: #2D2D34;
+}
+
+.cancel-btn {
+    color: blue
+}
+
+.form-links {
+    color:#6e2123
+}
+
+
+.fa-user-circle:before {
+    color: #2D2D34;
 }
