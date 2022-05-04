@@ -43,7 +43,10 @@ const SongDetailPage = () => {
                 </div>
               </div>
             )}
-            {!showEditSong && sessionUser.id === song.userId && (
+            {/* {!sessionUser && (
+              <div>HELLO</div>
+            )} */}
+            {sessionUser !== undefined && sessionUser !== null && !showEditSong && sessionUser.id === song.userId && (
               <button
                 className="form-btn"
                 onClick={() => setShowEditSong(true)}
@@ -52,7 +55,7 @@ const SongDetailPage = () => {
               </button>
             )}
             {form}
-            {!showEditSong && sessionUser.id === song.userId && (
+            {sessionUser !== undefined && sessionUser !== null && !showEditSong && sessionUser.id === song.userId && (
               <button
                 className="delete-btn"
                 onClick={() => {
