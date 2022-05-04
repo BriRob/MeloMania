@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import UploadSong from "./components/Song/UploadSong";
 import SongDetailPage from "./components/Song/SongDetailPage";
+import Playlists from "./components/Playlist";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <HomePage />
+            </Route>
+            <Route path={["/playlists", "/playlists/:id"]} exact>
+              <Playlists />
             </Route>
             <Route path="/login">
               <LoginFormPage />

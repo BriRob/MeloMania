@@ -2,6 +2,7 @@ const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
+const playlistsRouter = require("./playlists.js")
 
 const { User, Song } = require("../../db/models");
 const { check } = require("express-validator");
@@ -10,6 +11,7 @@ const { requireAuth } = require("../../utils/auth.js");
 
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
+router.use("/playlists", playlistsRouter);
 
 // getting all songs
 router.get(
@@ -98,7 +100,7 @@ router.put(
     const updatedSong = await Song.findByPk(songId, {
       include: { model: User },
     });
-    console.log("UPDATED SONG", updatedSong);
+    // console.log("UPDATED SONG", updatedSong);
     return res.json(updatedSong);
   })
 );

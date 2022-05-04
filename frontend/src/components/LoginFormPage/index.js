@@ -24,6 +24,19 @@ function LoginFormPage() {
     );
   };
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    // setErrors([]);
+    const credential = "Demo-Melomaniac"
+    const password = 'password'
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+    );
+  };
+
   return (
     <div>
       <h2 className="title">Log In</h2>
@@ -55,6 +68,9 @@ function LoginFormPage() {
         </label>
         <button type="submit" className="form-btn">Log In</button>
         <Link to="/signup" className="form-links">Become a melomaniac!</Link>
+      </form>
+      <form onSubmit={handleDemo}>
+        <button type="submit">Demo User</button>
       </form>
     </div>
   );
