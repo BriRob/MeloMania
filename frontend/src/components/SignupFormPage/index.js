@@ -78,8 +78,8 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
-        <Link to="/login">Already a melomaniac?</Link>
+        <button type="submit" className="form-btn">Sign Up</button>
+        <Link to="/login" className="form-links">Already a melomaniac?</Link>
       </form>
     </div>
   );

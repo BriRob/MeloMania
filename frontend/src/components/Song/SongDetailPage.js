@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { deleteSong, getOneSong } from "../../store/songs";
 import ReactAudioPlayer from "react-audio-player";
 import EditSong from "./EditSong";
+import "./SongDetailPage.css";
 
 const SongDetailPage = () => {
   const { id } = useParams();
@@ -28,30 +29,41 @@ const SongDetailPage = () => {
   return (
     <>
       {song && (
-        <div>
-          <h2 className="">{song.title}</h2>
-          <ReactAudioPlayer src={song.url} controls />
-          {!showEditSong &&
-            <div>
-              <div>User: {song.User.username}</div>
-              <div> Added {song.createdAt}</div>
-              <div>Description: {song.description}</div>
-            </div>
-          }
-          {!showEditSong && sessionUser.id === song.userId && (
-            <button onClick={() => setShowEditSong(true)}>Edit</button>
-          )}
-          {form}
-          {!showEditSong && sessionUser.id === song.userId && (
-            <button
-              onClick={() => {
-                dispatch(deleteSong(song.id, sessionUser.id));
-                return history.push("/");
-              }}
-            >
-              Delete
-            </button>
-          )}
+        <div className="song-detail-page">
+          <h2 className="title">{song.title}</h2>
+          <div className="song-detail-container">
+            <ReactAudioPlayer src={song.url} controls />
+            {!showEditSong && (
+              <div className="song-details">
+                <div>User: {song.User.username}</div>
+                <div>Added: {song.createdAt}</div>
+                <div>
+                  <div>Description:</div>
+                  <div>{song.description}</div>
+                </div>
+              </div>
+            )}
+            {!showEditSong && sessionUser.id === song.userId && (
+              <button
+                className="form-btn"
+                onClick={() => setShowEditSong(true)}
+              >
+                Edit
+              </button>
+            )}
+            {form}
+            {!showEditSong && sessionUser.id === song.userId && (
+              <button
+                className="delete-btn"
+                onClick={() => {
+                  dispatch(deleteSong(song.id, sessionUser.id));
+                  return history.push("/");
+                }}
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </div>
       )}
     </>
