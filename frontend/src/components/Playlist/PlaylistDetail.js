@@ -11,7 +11,7 @@ function PlaylistDetail() {
   const playlist = useSelector((state) => state.playlistState[id]);
   // console.log("playlist ===>", playlist)
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   //   useEffect(() => {
   //     dispatch(getOnePlaylist(id));
@@ -20,31 +20,37 @@ function PlaylistDetail() {
   return (
     <>
       {playlist && (
-        <div>
+        <div className="playlist-detail">
           {/* HELLO?!?! {id} */}
-          <h3>Playlist by {playlist.User.username}</h3>
-          <h2>{playlist.title}</h2>
-          {sessionUser !== undefined &&
-              sessionUser !== null && <button
-            className="delete-btn"
-            onClick={() => {
-              dispatch(deletePlaylist(playlist.id));
-              return history.push("/playlists");
-            }}
-          >
-            Delete
-          </button>}
-          <ul>
-            {playlist.Songs?.map((song) => (
-              <div key={song.id}>
-                <Link to={`/songs/${song.id}`} className="">
-                  {song.title}
-                </Link>
-                <div>User: {song.User.username}</div>
-                <ReactAudioPlayer src={song.url} controls />
-              </div>
-            ))}
-          </ul>
+          {/* <div className="playlist-positioning"> */}
+            <h3>Playlist by {playlist.User.username}</h3>
+            <h2>{playlist.title}</h2>
+            {sessionUser !== undefined && sessionUser !== null && sessionUser.id === playlist.userId &&(
+              <button
+                className="delete-btn"
+                onClick={() => {
+                  dispatch(deletePlaylist(playlist.id));
+                  return history.push("/playlists");
+                }}
+              >
+                Delete
+              </button>
+            )}
+            <div className="playlist-songs">
+              {playlist.Songs?.map((song) => (
+                <div key={song.id} className="each-playlist-song-div">
+                  <Link
+                    to={`/songs/${song.id}`}
+                    className="playlist-song-title"
+                  >
+                    {song.title}
+                  </Link>
+                  <div>User: {song.User.username}</div>
+                  <ReactAudioPlayer src={song.url} controls />
+                </div>
+              ))}
+            {/* </div> */}
+          </div>
         </div>
       )}
     </>

@@ -5,7 +5,7 @@ const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 // const USER_PLAYLISTS = "playlists/USER_PLAYLISTS";
 // const NEW_RELATION = "playlists/NEW_PLAYLISTS"
 const REMOVE_PLAYLIST = "playlist/REMOVE_PLAYLIST";
-const CLEAR_PLAYLIST = "playlist/CLEAR_PLAYLIST";
+
 
 const getPlaylists = (playlists) => ({
   type: GET_PLAYLISTS,
@@ -32,9 +32,7 @@ const removePlaylist = (playlistId) => ({
   playlistId,
 });
 
-export const clearPlaylist = () => ({
-  type: CLEAR_PLAYLIST
-})
+
 
 export const getAllPlaylists = () => async (dispatch) => {
   const response = await fetch("/api/playlists/");
@@ -71,16 +69,16 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
 };
 
 // for playlist select dropdown on songDetailPage
-export const getAllUserPlaylists = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/playlists/user-playlists/${userId}`);
+// export const getAllUserPlaylists = (userId) => async (dispatch) => {
+//   const response = await fetch(`/api/playlists/user-playlists/${userId}`);
 
-  if (response.ok) {
-    const playlists = await response.json();
-    console.log(`all user ${userId} playlists`, playlists)
-    dispatch(getPlaylists(playlists));
-    return playlists;
-  }
-};
+//   if (response.ok) {
+//     const playlists = await response.json();
+//     console.log(`all user ${userId} playlists`, playlists)
+//     dispatch(getPlaylists(playlists));
+//     return playlists;
+//   }
+// };
 
 export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
   const response = await csrfFetch(
@@ -133,17 +131,11 @@ const playlistReducer = (state = {}, action) => {
       return newFullList;
     case REMOVE_PLAYLIST:
         const newRemovePlaylistState = Object.assign({}, state)
-        console.log("state deleting from", newRemovePlaylistState)
-        console.log("playlistId", action.playlistId)
-        console.log("deleting ====>", newRemovePlaylistState[action.playlistId])
+        // console.log("state deleting from", newRemovePlaylistState)
+        // console.log("playlistId", action.playlistId)
+        // console.log("deleting ====>", newRemovePlaylistState[action.playlistId])
         delete newRemovePlaylistState[action.playlistId]
         return newRemovePlaylistState;
-      case CLEAR_PLAYLIST:
-        const clearingPlaylistState = Object.assign({}, state);
-        console.log(clearingPlaylistState[state.playlistState])
-        if (clearingPlaylistState[state.playlistState]) {
-          console.log("have values")
-        }
 
     default:
       return state;

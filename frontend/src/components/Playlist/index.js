@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
-import { clearPlaylist, getAllPlaylists } from "../../store/playlists";
+import { getAllPlaylists } from "../../store/playlists";
 import CreatePlaylist from "./CreatePlaylist";
 import PlaylistDetail from "./PlaylistDetail";
 import moment from "moment";
+
+import "./Playlist.css";
 
 function Playlists() {
   const dispatch = useDispatch();
@@ -21,45 +23,56 @@ function Playlists() {
 
   useEffect(() => {
     dispatch(getAllPlaylists());
-    // return () => dispatch(clearPlaylist()) // COME BACK
   }, [dispatch]);
 
   return (
-      <>
-    {playlists && <main>
-      {/* <div>HELLO?!?!?</div> */}
-      <h2>Playlists by Melomaniacs</h2>
-      <div>Discover and create your favorite playlists!</div>
-      {!showCreatePlaylist && (
-        <button
-          onClick={() => setShowCreatePlaylist(true)}
-          className="form-btn"
-        >
-          Create a Playlist
-        </button>
-      )}
-
-      {showCreatePlaylist && createPlaylist}
-      <div>
-        <ul className="playlistContainer">
-          {Object.values(playlists)?.map((playlist) => (
-            <div key={playlist.id} className="each-playlist-div">
-              <Link to={`/playlists/${playlist.id}`} className="playlistTitle">
-                {playlist.title}
-              </Link>
-              <div>
-                <div>{playlist.User.username}</div>
-                <div>{moment(playlist.createdAt).format("ddd MMM D YYYY")}</div>
-              </div>
+    <>
+      {playlists && (
+        <main className="playlistList">
+          {/* <div>HELLO?!?!?</div> */}
+          <h2 className="title">Playlists by Melomaniacs</h2>
+          <div className="playlist-div-submain">
+            <div className="subTitle">
+              Discover and create your favorite playlists!
             </div>
-          ))}
-        </ul>
-      </div>
-      <Route path="/playlists/:id">
-        <PlaylistDetail />
-      </Route>
-    </main>}
-      </>
+            {!showCreatePlaylist && (
+              <button
+                onClick={() => setShowCreatePlaylist(true)}
+                className="form-btn"
+              >
+                Create a Playlist
+              </button>
+            )}
+
+            {showCreatePlaylist && createPlaylist}
+          </div>
+          {/* <br></br> want break line*/}
+          <div className="playlists-and-details">
+            <div className="playlistContainer">
+              {Object.values(playlists)?.map((playlist) => (
+                <div key={playlist.id} className="each-playlist-div">
+                  <Link
+                    to={`/playlists/${playlist.id}`}
+                    className="playlistTitle"
+                  >
+                    {playlist.title}
+                  </Link>
+                  <div>
+                    <div>{playlist.User.username}</div>
+                    <div>
+                      {moment(playlist.createdAt).format("ddd MMM D YYYY")}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Route path="/playlists/:id">
+              <PlaylistDetail />
+            </Route>
+          </div>
+        </main>
+      )}
+    </>
   );
 }
 
