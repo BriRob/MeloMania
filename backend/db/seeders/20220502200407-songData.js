@@ -14,8 +14,8 @@ module.exports = {
         {
           userId: 1,
           title: "Sample1",
-          url: "https://samplelib.com/lib/preview/mp3/sample-12s.mp3",
-          description: "I got this from sample lib!",
+          url: "https://cdn.pixabay.com/download/audio/2022/02/10/audio_fc48af67b2.mp3?filename=slow-trap-18565.mp3",
+          description: "I got this from pixabay!",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

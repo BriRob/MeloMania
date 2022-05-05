@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
-import { getAllPlaylists } from "../../store/playlists";
+import { clearPlaylist, getAllPlaylists } from "../../store/playlists";
 import CreatePlaylist from "./CreatePlaylist";
 import PlaylistDetail from "./PlaylistDetail";
 import moment from "moment";
@@ -21,6 +21,7 @@ function Playlists() {
 
   useEffect(() => {
     dispatch(getAllPlaylists());
+    return () => dispatch(clearPlaylist())
   }, [dispatch]);
 
   return (

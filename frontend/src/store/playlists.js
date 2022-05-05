@@ -4,6 +4,8 @@ const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 // const USER_PLAYLISTS = "playlists/USER_PLAYLISTS";
 // const NEW_RELATION = "playlists/NEW_PLAYLISTS"
+const REMOVE_PLAYLIST = "playlist/REMOVE_PLAYLIST";
+const CLEAR_PLAYLIST = "playlist/CLEAR_PLAYLIST";
 
 const getPlaylists = (playlists) => ({
   type: GET_PLAYLISTS,
@@ -24,6 +26,15 @@ const createPlaylist = (playlist) => ({
 //   type: USER_PLAYLISTS,
 //   playlists,
 // });
+
+const removePlaylist = (playlistId) => ({
+  type: REMOVE_PLAYLIST,
+  playlistId,
+});
+
+export const clearPlaylist = () => ({
+  type: CLEAR_PLAYLIST
+})
 
 export const getAllPlaylists = () => async (dispatch) => {
   const response = await fetch("/api/playlists/");
@@ -59,28 +70,45 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
   }
 };
 
+// for playlist select dropdown on songDetailPage
 export const getAllUserPlaylists = (userId) => async (dispatch) => {
   const response = await fetch(`/api/playlists/user-playlists/${userId}`);
 
   if (response.ok) {
     const playlists = await response.json();
+    console.log(`all user ${userId} playlists`, playlists)
     dispatch(getPlaylists(playlists));
     return playlists;
   }
 };
 
 export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/playlists/new-playlist-song-relation`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  const response = await csrfFetch(
+    `/api/playlists/new-playlist-song-relation`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }
+  );
 
   if (response.ok) {
     const newRelation = await response.json();
     // dispatch(getPlaylists(playlists));
-    dispatch(getAllPlaylists())
+    dispatch(getAllPlaylists());
     return newRelation;
+  }
+};
+
+export const deletePlaylist = (playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`, {
+    method: "delete",
+  });
+  //   console.log("RESPONSE", response);
+  if (response.ok) {
+    const { playlistId } = await response.json();
+    dispatch(removePlaylist(playlistId));
+    // dispatch(getAllPlaylists());
   }
 };
 
@@ -103,6 +131,20 @@ const playlistReducer = (state = {}, action) => {
       const newFullList = Object.assign({}, state);
       newFullList[action.playlist.id] = action.playlist;
       return newFullList;
+    case REMOVE_PLAYLIST:
+        const newRemovePlaylistState = Object.assign({}, state)
+        console.log("state deleting from", newRemovePlaylistState)
+        console.log("playlistId", action.playlistId)
+        console.log("deleting ====>", newRemovePlaylistState[action.playlistId])
+        delete newRemovePlaylistState[action.playlistId]
+        return newRemovePlaylistState;
+      case CLEAR_PLAYLIST:
+        const clearingPlaylistState = Object.assign({}, state);
+        console.log(clearingPlaylistState[state.playlistState])
+        if (clearingPlaylistState[state.playlistState]) {
+          console.log("have values")
+        }
+
     default:
       return state;
   }

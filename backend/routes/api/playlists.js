@@ -70,7 +70,6 @@ router.get("/user-playlists/:id(\\d+)", requireAuth, asyncHandler(async (req, re
 
 // make new association between playlist and song
 router.post("/new-playlist-song-relation", asyncHandler(async (req, res) => {
-
     const {songId, playlistId} = req.body
     const newRelation = await SongsPlaylist.create({ songId, playlistId})
     return res.json(newRelation)
@@ -78,7 +77,15 @@ router.post("/new-playlist-song-relation", asyncHandler(async (req, res) => {
 
 router.delete(
   "/:id(\\d+)",
-  asyncHandler(async (req, res) => {})
-);
+  asyncHandler(async (req, res) => {
+      const playlist = await Playlist.findByPk(req.params.id)
+      const playlistId = playlist.id
+
+      const songsPlaylistRelation = await SongsPlaylist.findByPk(playlistId)
+      if (songsPlaylistRelation) await SongsPlaylist.destroy({where: {playlistId}})
+      await Playlist.destroy({where: {id: playlist.id}})
+
+      return res.json({playlistId})
+  }));
 
 module.exports = router;
