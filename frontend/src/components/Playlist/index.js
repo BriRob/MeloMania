@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { getAllPlaylists } from "../../store/playlists";
+import CreatePlaylist from "./CreatePlaylist";
 import PlaylistDetail from "./PlaylistDetail";
 
 function Playlists() {
@@ -10,6 +11,13 @@ function Playlists() {
     return state.playlistState;
   });
   //   console.log(playlists)
+
+  const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
+
+  let createPlaylist = (
+    <CreatePlaylist hidePlaylist={() => setShowCreatePlaylist(false)} />
+  );
+
   useEffect(() => {
     dispatch(getAllPlaylists());
   }, []);
@@ -19,6 +27,18 @@ function Playlists() {
       {/* <div>HELLO?!?!?</div> */}
       <h2>Playlists by Melomaniacs</h2>
       <div>Discover and create your favorite playlists!</div>
+      {!showCreatePlaylist && (
+        <button
+          onClick={() => setShowCreatePlaylist(true)}
+          className="form-btn"
+        >
+          Create a Playlist
+        </button>
+      )}
+      {/* <Route path="/playlists/new-playlist" exact>
+              <CreatePlaylist />
+            </Route> */}
+      {showCreatePlaylist && createPlaylist}
       <div>
         <ul className="playlistContainer">
           {Object.values(playlists).map((playlist) => (
@@ -35,7 +55,7 @@ function Playlists() {
         </ul>
       </div>
       <Route path="/playlists/:id">
-          <PlaylistDetail />
+        <PlaylistDetail />
       </Route>
     </main>
   );

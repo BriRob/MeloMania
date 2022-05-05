@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
 // const ONE_PLAYLIST = "songs/ONE_PLAYLIST";
+const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST"
 
 const getPlaylists = (playlists) => ({
   type: GET_PLAYLISTS,
@@ -11,6 +12,11 @@ const getPlaylists = (playlists) => ({
 //   type: ONE_PLAYLIST,
 //   playlist,
 // });
+
+const createPlaylist = (playlist) => ({
+    type: CREATE_PLAYLIST,
+    playlist
+})
 
 export const getAllPlaylists = () => async (dispatch) => {
   const response = await fetch("/api/playlists/");
@@ -33,6 +39,19 @@ export const getAllPlaylists = () => async (dispatch) => {
 //     }
 //   };
 
+export const createNewPlaylist = (payload) => async (dispatch) => {
+    const response = await csrfFetch("/api/playlists/new-playlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        const newPlaylist = await response.json();
+        dispatch(createPlaylist(newPlaylist));
+        return newPlaylist;
+    }
+}
+
 const playlistReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_PLAYLISTS:
@@ -48,6 +67,10 @@ const playlistReducer = (state = {}, action) => {
     //     console.log("this is the action", action)
     //     console.log("this is onePlaylistState", onePlaylistState)
     //     return onePlaylistState;
+    case CREATE_PLAYLIST:
+        const newFullList = Object.assign({}, state)
+        newFullList[action.playlist.id] = action.playlist;
+        return newFullList;
     default:
       return state;
   }
