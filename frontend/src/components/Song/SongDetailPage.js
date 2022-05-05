@@ -4,7 +4,9 @@ import { useHistory, useParams } from "react-router-dom";
 import { deleteSong, getOneSong } from "../../store/songs";
 import ReactAudioPlayer from "react-audio-player";
 import EditSong from "./EditSong";
+import moment from "moment";
 import "./SongDetailPage.css";
+import AddToPlaylist from "../Playlist/AddToPlaylist";
 
 const SongDetailPage = () => {
   const { id } = useParams();
@@ -16,6 +18,7 @@ const SongDetailPage = () => {
   const history = useHistory();
 
   const [showEditSong, setShowEditSong] = useState(false);
+  const [showPlaylistsList, setShowPlaylistsList] = useState(false);
 
   useEffect(() => {
     dispatch(getOneSong(id));
@@ -35,8 +38,19 @@ const SongDetailPage = () => {
             <ReactAudioPlayer src={song.url} controls />
             {!showEditSong && (
               <div className="song-details">
+                {sessionUser !== undefined && sessionUser !== null && !showPlaylistsList && (
+                  <button
+                    onClick={() => setShowPlaylistsList(true)}
+                    className="form-btn"
+                  >
+                    Add to Playlist
+                  </button>
+                )}
+                {showPlaylistsList && <AddToPlaylist hidePlaylist={() => setShowPlaylistsList(false)} song={song}/>}
                 <div>User: {song.User.username}</div>
-                <div>Added: {song.createdAt}</div>
+                <div>
+                  Added: {moment(song.createdAt).format("ddd MMM D YYYY")}
+                </div>
                 <div>
                   <div>Description:</div>
                   <div>{song.description}</div>
@@ -46,26 +60,32 @@ const SongDetailPage = () => {
             {/* {!sessionUser && (
               <div>HELLO</div>
             )} */}
-            {sessionUser !== undefined && sessionUser !== null && !showEditSong && sessionUser.id === song.userId && (
-              <button
-                className="form-btn"
-                onClick={() => setShowEditSong(true)}
-              >
-                Edit
-              </button>
-            )}
+            {sessionUser !== undefined &&
+              sessionUser !== null &&
+              !showEditSong &&
+              sessionUser.id === song.userId && (
+                <button
+                  className="form-btn"
+                  onClick={() => setShowEditSong(true)}
+                >
+                  Edit
+                </button>
+              )}
             {form}
-            {sessionUser !== undefined && sessionUser !== null && !showEditSong && sessionUser.id === song.userId && (
-              <button
-                className="delete-btn"
-                onClick={() => {
-                  dispatch(deleteSong(song.id));
-                  return history.push("/");
-                }}
-              >
-                Delete
-              </button>
-            )}
+            {sessionUser !== undefined &&
+              sessionUser !== null &&
+              !showEditSong &&
+              sessionUser.id === song.userId && (
+                <button
+                  className="delete-btn"
+                  onClick={() => {
+                    dispatch(deleteSong(song.id));
+                    return history.push("/");
+                  }}
+                >
+                  Delete
+                </button>
+              )}
           </div>
         </div>
       )}

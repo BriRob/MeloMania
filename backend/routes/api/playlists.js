@@ -58,6 +58,24 @@ router.post(
   })
 );
 
+// route to get user playlists
+router.get("/user-playlists/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+    // const userId = req.user.id;
+    const { id } = req.params
+    const playlists = await Playlist.findAll({where: {userId: id}, order: [["createdAt"]]})
+
+    return res.json(playlists)
+    // res.send("hello")
+}))
+
+// make new association between playlist and song
+router.post("/new-playlist-song-relation", asyncHandler(async (req, res) => {
+
+    const {songId, playlistId} = req.body
+    const newRelation = await SongsPlaylist.create({ songId, playlistId})
+    return res.json(newRelation)
+}))
+
 router.delete(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {})

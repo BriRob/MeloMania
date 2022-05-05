@@ -6,7 +6,7 @@ import { createNewPlaylist } from "../../store/playlists";
 function CreatePlaylist({ hidePlaylist }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
+//   const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState([]);
