@@ -61,6 +61,31 @@ export const createNewSong = (payload) => async (dispatch) => {
   }
 };
 
+export const createNewSong1 = (payload) => async (dispatch) => {
+
+  const {title, song, description } = payload;
+  const formData = new FormData();
+  formData.append("title", title)
+  formData.append("description", description)
+
+  //single song
+  if (song) formData.append("song", song)
+
+  const response = await csrfFetch(`/api/new-song`, {
+    method: "POST",
+    headers: { "Content-Type": "multipart/form-data" },
+    body: formData,
+  });
+
+  if (response.ok) {
+    const newSong = await response.json();
+    dispatch(createSong(newSong));
+    return newSong;
+  } else {
+    return undefined;
+  }
+};
+
 export const editOneSong = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/songs/${payload.id}`, {
     method: "PUT",
