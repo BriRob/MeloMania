@@ -41,7 +41,7 @@ function CreatePlaylist({ hidePlaylist }) {
   return (
     <div>
       {/* HELLO?!?! */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="create-playlist-form">
         {errors && (
           <ul>
             {errors.map((error, idx) => (

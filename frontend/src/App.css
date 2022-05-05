@@ -51,3 +51,7 @@ body {
 .fa-user-circle:before {
     color: #2D2D34;
 }
+
+.create-playlist-form label input {
+    color: #2D2D34;
+}

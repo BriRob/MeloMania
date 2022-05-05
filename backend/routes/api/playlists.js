@@ -81,7 +81,8 @@ router.delete(
       const playlist = await Playlist.findByPk(req.params.id)
       const playlistId = playlist.id
 
-      const songsPlaylistRelation = await SongsPlaylist.findByPk(playlistId)
+      const songsPlaylistRelation = await SongsPlaylist.findOne({where: {playlistId}})
+      // console.log("songsPlaylistRelation", songsPlaylistRelation)
       if (songsPlaylistRelation) await SongsPlaylist.destroy({where: {playlistId}})
       await Playlist.destroy({where: {id: playlist.id}})
 
