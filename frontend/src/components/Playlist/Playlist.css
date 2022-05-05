@@ -1,0 +1,62 @@
+.playlistContainer {
+    position: absolute;
+    left: 50px;
+}
+.playlist-positioning {
+    position: relative;
+    right: 0;
+}
+
+.playlist-div-submain {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    font-size: 25px
+}
+.playlist-div-submain button {
+    margin-top: 10px;
+}
+
+.each-playlist-div {
+margin: 15px 0;
+}
+
+.playlistTitle {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.playlists-and-details {
+        /* bottom: 0; */
+    display: flex;
+    /* left: 0; */
+    position: absolute;
+    /* right: 0; */
+    /* top: 0; */
+    width: 90%;
+    margin-top: 15px;
+}
+
+.playlist-detail {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+}
+
+.playlist-detail h2{
+    font-size: 40px;
+}
+
+.each-playlist-song-div {
+    margin: 10px auto;
+}
+
+.playlist-song-title {
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.playlist-songs {
+    width: 100%;
+}

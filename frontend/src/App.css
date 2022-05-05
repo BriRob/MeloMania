@@ -55,3 +55,7 @@ body {
 .create-playlist-form label input {
     color: #2D2D34;
 }
+
+.subTitle {
+    text-align: center;
+}
