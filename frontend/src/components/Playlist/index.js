@@ -12,7 +12,7 @@ function Playlists() {
   //   console.log(playlists)
   useEffect(() => {
     dispatch(getAllPlaylists());
-  }, [dispatch]);
+  }, []);
 
   return (
     <main>
