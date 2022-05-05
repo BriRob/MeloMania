@@ -24,7 +24,8 @@ function PlaylistDetail() {
           {/* HELLO?!?! {id} */}
           <h3>Playlist by {playlist.User.username}</h3>
           <h2>{playlist.title}</h2>
-          <button
+          {sessionUser !== undefined &&
+              sessionUser !== null && <button
             className="delete-btn"
             onClick={() => {
               dispatch(deletePlaylist(playlist.id));
@@ -32,7 +33,7 @@ function PlaylistDetail() {
             }}
           >
             Delete
-          </button>
+          </button>}
           <ul>
             {playlist.Songs?.map((song) => (
               <div key={song.id}>

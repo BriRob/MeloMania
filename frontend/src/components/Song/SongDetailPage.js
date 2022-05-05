@@ -7,7 +7,8 @@ import EditSong from "./EditSong";
 import moment from "moment";
 import "./SongDetailPage.css";
 import AddToPlaylist from "../Playlist/AddToPlaylist";
-import { getAllUserPlaylists } from "../../store/playlists";
+import { getAllPlaylists } from "../../store/playlists";
+// import { getAllUserPlaylists } from "../../store/playlists";
 
 const SongDetailPage = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const SongDetailPage = () => {
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
   const playlists = useSelector((state) => state.playlistState)
-  console.log("playlists on song detail page", playlists)
+  // console.log("playlists on song detail page", playlists)
   const history = useHistory();
 
   const [showEditSong, setShowEditSong] = useState(false);
@@ -25,14 +26,9 @@ const SongDetailPage = () => {
 
   useEffect(() => {
     dispatch(getOneSong(id));
-    // if (sessionUser) dispatch(getAllUserPlaylists(sessionUser.id))
-    // dispatch(getAllUserPlaylists(sessionUser.id))
+    dispatch(getAllPlaylists());
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (Object.values(playlists).length !== 0) console.log("I have values")
-    else console.log("I have no values")
-  }, [dispatch, playlists])
 
   // console.log(Object.values(playlists).length === 0)
 

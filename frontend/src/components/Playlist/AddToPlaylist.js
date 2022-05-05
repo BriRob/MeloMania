@@ -10,11 +10,13 @@ function AddToPlaylist({ hidePlaylist, song }) {
     return state.playlistState;
   });
   const [selectPlaylistId, setSelectPlaylistId] = useState()
+  const playlistArr = Object.values(playlists).filter((playlist) => playlist.userId === sessionUser.id)
+  console.log("playlistArr", playlistArr)
 
 //   console.log("AddToPlaylist", playlists)
-  useEffect(() => {
-    dispatch(getAllUserPlaylists(sessionUser.id));
-  }, [dispatch, sessionUser]);
+  // useEffect(() => {
+  //   dispatch(getAllUserPlaylists(sessionUser.id));
+  // }, [dispatch, sessionUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +58,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
           <option disabled placeholder="choose playlist">
             choose a playlist
           </option>
-          {Object.values(playlists).map((playlist) => (
+          {playlistArr.map((playlist) => (
             <option key={playlist.id} value={playlist.id}>{playlist.title}</option>
           ))}
         </select>

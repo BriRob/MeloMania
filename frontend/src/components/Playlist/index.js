@@ -21,7 +21,7 @@ function Playlists() {
 
   useEffect(() => {
     dispatch(getAllPlaylists());
-    return () => dispatch(clearPlaylist())
+    // return () => dispatch(clearPlaylist()) // COME BACK
   }, [dispatch]);
 
   return (
