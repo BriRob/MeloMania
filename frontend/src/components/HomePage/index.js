@@ -6,7 +6,7 @@ import { getAllSongs } from "../../store/songs";
 import moment from "moment";
 // import song from "../../res/tadow-fkj-masego.mp3"
 import "./HomePage.css";
-import AddToPlaylist from "../Playlist/AddToPlaylist";
+// import AddToPlaylist from "../Playlist/AddToPlaylist";
 
 function HomePage() {
   const dispatch = useDispatch();

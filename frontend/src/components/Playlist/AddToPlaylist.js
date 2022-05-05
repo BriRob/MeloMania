@@ -11,6 +11,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
   });
   const [selectPlaylistId, setSelectPlaylistId] = useState()
 
+//   console.log("AddToPlaylist", playlists)
   useEffect(() => {
     dispatch(getAllUserPlaylists(sessionUser.id));
   }, [dispatch, sessionUser]);
