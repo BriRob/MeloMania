@@ -1,16 +1,16 @@
 import { csrfFetch } from "./csrf";
 const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
-const ONE_PLAYLIST = "songs/ONE_PLAYLIST";
+// const ONE_PLAYLIST = "songs/ONE_PLAYLIST";
 
 const getPlaylists = (playlists) => ({
   type: GET_PLAYLISTS,
   playlists,
 });
 
-const onePlaylist = (playlist) => ({
-  type: ONE_PLAYLIST,
-  playlist,
-});
+// const onePlaylist = (playlist) => ({
+//   type: ONE_PLAYLIST,
+//   playlist,
+// });
 
 export const getAllPlaylists = () => async (dispatch) => {
   const response = await fetch("/api/playlists/");
@@ -22,16 +22,16 @@ export const getAllPlaylists = () => async (dispatch) => {
   }
 };
 
-export const getOnePlaylist = (id) => async (dispatch) => {
-    const response = await fetch(`/api/playlists/${id}`);
-    // console.log("RESPONSE", response)
-    if (response.ok) {
-      const playlist = await response.json();
-      console.log(playlist.Songs[0].User.username)
-      dispatch(onePlaylist(playlist));
-      return playlist;
-    }
-  };
+// export const getOnePlaylist = (id) => async (dispatch) => {
+//     const response = await fetch(`/api/playlists/${id}`);
+//     // console.log("RESPONSE", response)
+//     if (response.ok) {
+//       const playlist = await response.json();
+//       console.log(playlist.Songs[0].User.username)
+//       dispatch(onePlaylist(playlist));
+//       return playlist;
+//     }
+//   };
 
 const playlistReducer = (state = {}, action) => {
   switch (action.type) {
@@ -42,9 +42,12 @@ const playlistReducer = (state = {}, action) => {
       });
       const allPlaylistsState = { ...state, ...allPlaylists };
       return allPlaylistsState;
-    case ONE_PLAYLIST:
-        const onePlaylistState = {...state, [action.playlist.id]: action.playlist};
-        return onePlaylistState;
+    // case ONE_PLAYLIST:
+    //     const onePlaylistState = Object.assign({}, state); // deeply copies state with all nested things
+    //     onePlaylistState[action.playlist.id] = action.playlist;
+    //     console.log("this is the action", action)
+    //     console.log("this is onePlaylistState", onePlaylistState)
+    //     return onePlaylistState;
     default:
       return state;
   }
