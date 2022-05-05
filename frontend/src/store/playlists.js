@@ -3,9 +3,8 @@ const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
 // const ONE_PLAYLIST = "playlists/ONE_PLAYLIST";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 // const USER_PLAYLISTS = "playlists/USER_PLAYLISTS";
-// const NEW_RELATION = "playlists/NEW_PLAYLISTS"
+const NEW_RELATION = "playlists/NEW_RELATION"
 const REMOVE_PLAYLIST = "playlist/REMOVE_PLAYLIST";
-
 
 const getPlaylists = (playlists) => ({
   type: GET_PLAYLISTS,
@@ -27,12 +26,15 @@ const createPlaylist = (playlist) => ({
 //   playlists,
 // });
 
+const newRelation = (relation) => ({
+  type: NEW_RELATION,
+  relation
+})
+
 const removePlaylist = (playlistId) => ({
   type: REMOVE_PLAYLIST,
   playlistId,
 });
-
-
 
 export const getAllPlaylists = () => async (dispatch) => {
   const response = await fetch("/api/playlists/");
@@ -91,9 +93,11 @@ export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
   );
 
   if (response.ok) {
-    const newRelation = await response.json();
+    const relation = await response.json();
     // dispatch(getPlaylists(playlists));
-    dispatch(getAllPlaylists());
+    console.log("newRelation", newRelation);
+    dispatch(newRelation(relation))
+    // dispatch(getAllPlaylists());
     return newRelation;
   }
 };
@@ -113,6 +117,7 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
 const playlistReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_PLAYLISTS:
+      console.log("action.playlists", action.playlists)
       const allPlaylists = {};
       action.playlists.forEach((playlist) => {
         allPlaylists[playlist.id] = playlist;
@@ -127,15 +132,44 @@ const playlistReducer = (state = {}, action) => {
     //     return onePlaylistState;
     case CREATE_PLAYLIST:
       const newFullList = Object.assign({}, state);
+
+      // if (newFullList[action.playlist.id]) {
+      //   console.log("song already in playlist", Object.values(newFullList));
+      // }
+      //instead of using playlist.id as key, would like to just have new unique added, so that one song can be added multiple times to one playlist
+      // console.log(Object.values(newFullList).length)
+      // const newKey = Object.values(newFullList).length + 1
+      // console.log(newKey)
+
       newFullList[action.playlist.id] = action.playlist;
       return newFullList;
+
+    case NEW_RELATION:
+      const newRelationState = Object.assign({}, state);
+      // if (newRelationState[relation.])
+      console.log("newRelationState", newRelationState)
+      console.log("playlist I want to add to", newRelationState[action.relation.playlistId])
+
+      const songsArr = newRelationState[action.relation.playlistId].Songs
+      console.log("songs array in playlist", songsArr)
+      // console.log(action.relation.songId)
+      // console.log("is song included in playlist already?", newRelationState[action.relation.playlistId].Songs.find((songArr) => songArr.id === action.relation.songId))
+      // console.log("is song included in playlist already?", songsArr.find((song) => song.id === action.relation.songId))
+
+      let oldSong;
+      if (songsArr.find((song) => song.id === action.relation.songId)) {
+        oldSong = songsArr.find((song) => song.id === action.relation.songId)
+        newRelationState[action.relation.playlistId].Songs.push(oldSong)
+      }
+      console.log(newRelationState)
+      return newRelationState
     case REMOVE_PLAYLIST:
-        const newRemovePlaylistState = Object.assign({}, state)
-        // console.log("state deleting from", newRemovePlaylistState)
-        // console.log("playlistId", action.playlistId)
-        // console.log("deleting ====>", newRemovePlaylistState[action.playlistId])
-        delete newRemovePlaylistState[action.playlistId]
-        return newRemovePlaylistState;
+      const newRemovePlaylistState = Object.assign({}, state);
+      // console.log("state deleting from", newRemovePlaylistState)
+      // console.log("playlistId", action.playlistId)
+      // console.log("deleting ====>", newRemovePlaylistState[action.playlistId])
+      delete newRemovePlaylistState[action.playlistId];
+      return newRemovePlaylistState;
 
     default:
       return state;

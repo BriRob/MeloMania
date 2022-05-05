@@ -15,7 +15,23 @@ router.get(
       // include: [User, Song],
       include: [User, { model: Song, include: User }],
       order: [["createdAt", "DESC"]],
+      // raw: true,
+      // nested: true
     });
+
+    // const playlist18 = await Playlist.findByPk(18, {
+    //   include: { model: Song },
+    //   raw: true,
+    //   nested: true,
+    // });
+
+    // const songs = await Song.findAll({
+    //   include: [{ model: Playlist, where: { playlistId: 18 }}],
+    //   raw: true,
+    //   nested: true,
+    // });
+
+    // console.log("\n\n", songs, "\n\n");
     return res.json(playlists);
   })
 );
@@ -59,34 +75,48 @@ router.post(
 );
 
 // route to get user playlists
-router.get("/user-playlists/:id(\\d+)", requireAuth, asyncHandler(async (req, res) => {
+router.get(
+  "/user-playlists/:id(\\d+)",
+  requireAuth,
+  asyncHandler(async (req, res) => {
     // const userId = req.user.id;
-    const { id } = req.params
-    const playlists = await Playlist.findAll({where: {userId: id}, order: [["createdAt"]]})
+    const { id } = req.params;
+    const playlists = await Playlist.findAll({
+      where: { userId: id },
+      order: [["createdAt"]],
+    });
 
-    return res.json(playlists)
+    return res.json(playlists);
     // res.send("hello")
-}))
+  })
+);
 
 // make new association between playlist and song
-router.post("/new-playlist-song-relation", asyncHandler(async (req, res) => {
-    const {songId, playlistId} = req.body
-    const newRelation = await SongsPlaylist.create({ songId, playlistId})
-    return res.json(newRelation)
-}))
+router.post(
+  "/new-playlist-song-relation",
+  asyncHandler(async (req, res) => {
+    const { songId, playlistId } = req.body;
+    const newRelation = await SongsPlaylist.create({ songId, playlistId });
+    return res.json(newRelation);
+  })
+);
 
 router.delete(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-      const playlist = await Playlist.findByPk(req.params.id)
-      const playlistId = playlist.id
+    const playlist = await Playlist.findByPk(req.params.id);
+    const playlistId = playlist.id;
 
-      const songsPlaylistRelation = await SongsPlaylist.findOne({where: {playlistId}})
-      // console.log("songsPlaylistRelation", songsPlaylistRelation)
-      if (songsPlaylistRelation) await SongsPlaylist.destroy({where: {playlistId}})
-      await Playlist.destroy({where: {id: playlist.id}})
+    const songsPlaylistRelation = await SongsPlaylist.findOne({
+      where: { playlistId },
+    });
+    // console.log("songsPlaylistRelation", songsPlaylistRelation)
+    if (songsPlaylistRelation)
+      await SongsPlaylist.destroy({ where: { playlistId } });
+    await Playlist.destroy({ where: { id: playlist.id } });
 
-      return res.json({playlistId})
-  }));
+    return res.json({ playlistId });
+  })
+);
 
 module.exports = router;
