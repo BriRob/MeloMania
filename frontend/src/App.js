@@ -10,7 +10,6 @@ import UploadSong from "./components/Song/UploadSong";
 import SongDetailPage from "./components/Song/SongDetailPage";
 import Playlists from "./components/Playlist";
 import "./App.css";
-import CreatePlaylist from "./components/Playlist/CreatePlaylist";
 
 function App() {
   const dispatch = useDispatch();
