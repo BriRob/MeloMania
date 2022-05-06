@@ -3,8 +3,9 @@ const asyncHandler = require("express-async-handler");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const playlistsRouter = require("./playlists.js");
+const commentsRouter = require("./comments.js")
 
-const { User, Song, SongsPlaylist, Playlist } = require("../../db/models");
+const { User, Song, SongsPlaylist, Playlist, Comment } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
@@ -16,6 +17,7 @@ const {
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use("/playlists", playlistsRouter);
+router.use("/comments", commentsRouter);
 
 // getting all songs
 router.get(
@@ -38,9 +40,10 @@ router.get(
   asyncHandler(async (req, res) => {
     const songId = parseInt(req.params.id, 10);
     const song = await Song.findByPk(songId, {
-      include: { model: User },
+      include: [Comment, { model: User }],
     });
 
+    // console.log()
     return res.json(song);
   })
 );

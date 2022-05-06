@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "songId",
       otherKey: "playlistId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
     };
 
     Song.belongsTo(models.User, { foreignKey: "userId" });
     Song.belongsToMany(models.Playlist, columnMapping);
+    Song.hasMany(models.Comment, { foreignKey: "songId" });
   };
   return Song;
 };
