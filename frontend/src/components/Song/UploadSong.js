@@ -11,7 +11,8 @@ const UploadSong = () => {
   const history = useHistory();
 
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(null);
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -22,6 +23,7 @@ const UploadSong = () => {
 
     let newSong;
     try {
+      // newSong = await dispatch(createNewSong({ title, url, description }));
       newSong = await dispatch(createNewSong({ title, url, description }));
     } catch (res) {
       const data = await res.json();
@@ -35,6 +37,11 @@ const UploadSong = () => {
       setErrors([]);
       history.push(`/songs/${newSong.id}`);
     }
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setUrl(file);
   };
 
   const handleCancelClick = (e) => {
@@ -59,18 +66,21 @@ const UploadSong = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            accept=".mp3, .wav"
             // required
-          />
+            />
         </label>
-        <label>
+        {/* <label>
           Song Url
           <input
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
+            // accept=".mp3, .wav"
             // required
           />
+        </label> */}
+        <label>
+          <input type="file" onChange={updateFile} />
         </label>
         <label>
           Description

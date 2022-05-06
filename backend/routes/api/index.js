@@ -8,6 +8,7 @@ const { User, Song } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
+const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3.js");
 
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
@@ -50,18 +51,21 @@ const songFormValidation = [
     .withMessage("Title must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
     .withMessage("Title must contain characters"),
-  check("url")
-    .notEmpty()
-    .withMessage("URL cannot be empty")
-    .custom((value) => /(\.wav$|\.mp3$)/.test(value))
-    .withMessage("Url end in .mp3 or .wav")
-    .isURL()
-    .withMessage("Must be valid url"),
+  // check("url")
+  //   .notEmpty()
+  //   .withMessage("URL cannot be empty")
+  //   .custom((value) => /(\.wav$|\.mp3$)/.test(value))
+  //   .withMessage("Url end in .mp3 or .wav")
+  //   .isURL()
+  //   .withMessage("Must be valid url"),
   handleValidationErrors,
 ];
 
+
+
 router.post(
   "/new-song",
+  singleMulterUpload("url"),    // was "image"
   requireAuth,
   songFormValidation,
   asyncHandler(async (req, res) => {
@@ -69,10 +73,11 @@ router.post(
     // console.log("REQ BODY", req.body)
     const userId = req.user.id;
     const { title, url, description } = req.body;
+    const songUrl = await singlePublicFileUpload(req.file)  // was profileImageUrl
     const newSong = await Song.create({
       userId,
       title,
-      url,
+      url: songUrl,
       description,
     });
     // console.log("NEW SONG", newSong)
