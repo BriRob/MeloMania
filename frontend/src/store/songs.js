@@ -46,21 +46,21 @@ export const getOneSong = (id) => async (dispatch) => {
   }
 };
 
-export const createNewSong1 = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/new-song`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+// export const createNewSong1 = (payload) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/new-song`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(payload),
+//   });
 
-  if (response.ok) {
-    const newSong = await response.json();
-    dispatch(createSong(newSong));
-    return newSong;
-  } else {
-    return undefined;
-  }
-};
+//   if (response.ok) {
+//     const newSong = await response.json();
+//     dispatch(createSong(newSong));
+//     return newSong;
+//   } else {
+//     return undefined;
+//   }
+// };
 
 export const createNewSong = (payload) => async (dispatch) => {
 

@@ -5,6 +5,8 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
 
+const { User, Song, Playlist, SongsPlaylist, Comment } = require("../../db/models");
+
 const commentFormValidation = [];
 // post
 router.post(
@@ -13,14 +15,12 @@ router.post(
   commentFormValidation,
   asyncHandler(async (req, res) => {
     const userId = req.user.id;
-    // const { title } = req.body;
-    // const newPlaylist = await Playlist.create({ userId, title });
+    const { comment, songId } = req.body;
+    const newComment = await Comment.create({ userId, comment, songId });
 
-    // making this returning playlist so that updated playlists state has the same eagerloading keys the other playlists in main state
-    // const returningPlaylist = await Playlist.findByPk(newPlaylist.id, {
-    //   include: [User, { model: Song, include: User }],
-    // });
-    // return res.json(returningPlaylist);
+    // return comment to add to comment state
+    const returningComment = await Comment.findByPk(newComment.id);
+    return res.json(returningComment);
   })
 );
 

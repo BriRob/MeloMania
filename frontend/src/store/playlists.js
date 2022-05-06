@@ -3,7 +3,7 @@ const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
 // const ONE_PLAYLIST = "playlists/ONE_PLAYLIST";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 // const USER_PLAYLISTS = "playlists/USER_PLAYLISTS";
-const NEW_RELATION = "playlists/NEW_RELATION";
+// const NEW_RELATION = "playlists/NEW_RELATION";
 const REMOVE_PLAYLIST = "playlist/REMOVE_PLAYLIST";
 
 const getPlaylists = (playlists) => ({
@@ -26,10 +26,10 @@ const createPlaylist = (playlist) => ({
 //   playlists,
 // });
 
-const newRelation = (relation) => ({
-  type: NEW_RELATION,
-  relation,
-});
+// const newRelation = (relation) => ({
+//   type: NEW_RELATION,
+//   relation,
+// });
 
 const removePlaylist = (playlistId) => ({
   type: REMOVE_PLAYLIST,
@@ -84,7 +84,7 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
 
 export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
 
-  console.log("payload", payload)
+  // console.log("payload", payload)
   const response = await csrfFetch(
     `/api/playlists/new-playlist-song-relation`,
     {
@@ -114,15 +114,15 @@ export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
   // }
 
   const data = await response.json();
-  console.log("data", data)
+  // console.log("data", data)
   if (!data.message) {
     let relation = data
-    console.log("relation", relation)
+    // console.log("relation", relation)
     dispatch(getAllPlaylists());
     return relation;
     // return undefined
   } else {
-    console.log("relation message", data.message);
+    // console.log("relation message", data.message);
     throw new Error(data.message)
     // return data;
   }

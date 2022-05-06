@@ -13,7 +13,7 @@ const CommentsPage = ({ song }) => {
 
   let addComment = null;
   if (sessionUser && showAddComment) {
-      addComment = <AddComment />
+      addComment = <AddComment songId={song.id} hideForm={() => setShowAddComment(false)}/>
   }
 
   return (

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { editOneSong } from "../../store/songs";
 import "./EditSong.css";
 
 const EditSong = ({ song, hideForm }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const [title, setTitle] = useState(song.title);
   const [url, setUrl] = useState(song.url);
   const [description, setDescription] = useState(song.description);
@@ -29,9 +29,7 @@ const EditSong = ({ song, hideForm }) => {
       const data = await res.json();
       if (data && data.errors) {
         setErrors(data.errors);
-      } else if (data && data.message) {
-        setErrors([data.message])
-      }
+      } 
     }
 
     if (editedSong) {
