@@ -143,7 +143,7 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
 const playlistReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_PLAYLISTS:
-      console.log("action.playlists", action.playlists);
+      // console.log("action.playlists", action.playlists);
       const allPlaylists = {};
       action.playlists.forEach((playlist) => {
         allPlaylists[playlist.id] = playlist;

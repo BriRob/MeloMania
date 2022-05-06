@@ -3,9 +3,15 @@ const asyncHandler = require("express-async-handler");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const playlistsRouter = require("./playlists.js");
-const commentsRouter = require("./comments.js")
+const commentsRouter = require("./comments.js");
 
-const { User, Song, SongsPlaylist, Playlist, Comment } = require("../../db/models");
+const {
+  User,
+  Song,
+  SongsPlaylist,
+  Playlist,
+  Comment,
+} = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
@@ -39,8 +45,15 @@ router.get(
   "/songs/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const songId = parseInt(req.params.id, 10);
+    // const song = await Song.findByPk(songId, {
+    //   include: [{ model: Comment, include: User }, { model: User }],
+    // });
+
     const song = await Song.findByPk(songId, {
-      include: [Comment, { model: User }],
+      include: [
+        { model: Comment, include: User, order: [["createdAt", "DESC"]] },
+        { model: User },
+      ],
     });
 
     // console.log()
@@ -98,19 +111,18 @@ router.post(
         // console.log("BASEURL", req.baseUrl)
         return res.redirect(`${req.baseUrl}/songs/${newSong.id}`);
       } else {
-        const err = new Error("file must be .mp3")
-        next(err)
+        const err = new Error("file must be .mp3");
+        next(err);
       }
     } else {
-      const noFileErr = new Error("Cannot submit post without file")
-      next(noFileErr)
+      const noFileErr = new Error("Cannot submit post without file");
+      next(noFileErr);
     }
 
     // console.log("req file \n\n", req.file);
     // console.log("songUrl \n\n", songUrl);
 
     // console.log("songURL index of \n\n", songUrl.indexOf(".mp3") == songUrl.length - 4)
-
   })
 );
 
