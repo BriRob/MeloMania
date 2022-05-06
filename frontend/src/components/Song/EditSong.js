@@ -28,8 +28,9 @@ const EditSong = ({ song, hideForm }) => {
     } catch (res) {
       const data = await res.json();
       if (data && data.errors) {
-        // console.log(data.errors)
         setErrors(data.errors);
+      } else if (data && data.message) {
+        setErrors([data.message])
       }
     }
 
@@ -65,14 +66,6 @@ const EditSong = ({ song, hideForm }) => {
           />
         </label>
         <label>
-          Song Url
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-        </label>
-        <label>
           Description
           <textarea
             className="upload-textarea edit-textarea"
@@ -81,11 +74,16 @@ const EditSong = ({ song, hideForm }) => {
           ></textarea>
         </label>
         <div className="upload-button-div">
-        <button type="submit" className="form-btn">Submit</button>
-        <button type="button" onClick={handleCancelClick} className="cancel-btn">
-          Cancel
-        </button>
-
+          <button type="submit" className="form-btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={handleCancelClick}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

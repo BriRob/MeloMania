@@ -27,9 +27,14 @@ const UploadSong = () => {
       newSong = await dispatch(createNewSong({ title, url, description }));
     } catch (res) {
       const data = await res.json();
+      // console.log(data)
       if (data && data.errors) {
         // console.log(data.errors)
         setErrors(data.errors);
+      } else if (data && data.message) {
+        // console.log(data)
+        // console.log("data message", data.message)
+        setErrors([data.message])
       }
     }
 
@@ -80,7 +85,7 @@ const UploadSong = () => {
           />
         </label> */}
         <label>
-          <input type="file" onChange={updateFile} />
+          <input type="file" onChange={updateFile} accept=".mp3" />
         </label>
         <label>
           Description
