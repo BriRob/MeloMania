@@ -4,7 +4,7 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const playlistsRouter = require("./playlists.js")
 
-const { User, Song } = require("../../db/models");
+const { User, Song, SongsPlaylist, Playlist } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
@@ -115,6 +115,14 @@ router.delete(
   asyncHandler(async (req, res) => {
     const song = await Song.findByPk(req.params.id);
     const songId = song.id
+
+    const songsPlaylistRelation = await SongsPlaylist.findOne({
+      where: { songId },
+    });
+    // console.log("songsPlaylistRelation", songsPlaylistRelation)
+    if (songsPlaylistRelation)
+      await SongsPlaylist.destroy({ where: { songId } });
+
     // console.log("SONG ID", songId)
     await Song.destroy({where: {id: song.id}});
     // res.redirect(`/`)

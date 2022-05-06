@@ -31,6 +31,7 @@ export const getAllSongs = () => async (dispatch) => {
   if (response.ok) {
     const songs = await response.json();
     dispatch(getSongs(songs));
+    // console.log("songs looking for order \n\n", songs)
     return songs;
   }
 };
@@ -121,6 +122,7 @@ const songReducer = (state = initialState, action) => {
       action.songs.forEach((song) => {
         allSongs[song.id] = song;
       });
+      // console.log("songs in reducer looking for order \n\n", allSongs)
       const newState = { ...state, songs: { ...state.songs, ...allSongs } };
       return newState;
     case ONE_SONG:

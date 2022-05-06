@@ -17,6 +17,8 @@ function HomePage() {
   });
   // const [showPlaylistsList, setShowPlaylistsList] = useState(false);
 
+  const songsArr = Object.values(songs).reverse()
+  console.log("songsArr in homepage component \n\n", songsArr)
   useEffect(() => {
     dispatch(getAllSongs());
   }, [dispatch]);
@@ -28,7 +30,7 @@ function HomePage() {
       <p>The perfect place to upload and share your music with the world</p>
       <div>
         <ul className="songsContainer">
-          {Object.values(songs).map((song) => (
+          {Object.values(songs).reverse().map((song) => (
             <div key={song.id} className="each-song-div">
               <Link to={`/songs/${song.id}`} className="songTitle">
                 {song.title}
