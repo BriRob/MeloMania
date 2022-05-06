@@ -17,7 +17,7 @@ const SongDetailPage = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
-  const playlists = useSelector((state) => state.playlistState)
+  const playlists = useSelector((state) => state.playlistState);
   // console.log("playlists on song detail page", playlists)
   const history = useHistory();
 
@@ -29,9 +29,7 @@ const SongDetailPage = () => {
     dispatch(getAllPlaylists());
   }, [dispatch, id]);
 
-
   // console.log(Object.values(playlists).length === 0)
-
 
   let form = null;
   if (sessionUser && showEditSong) {
@@ -47,23 +45,34 @@ const SongDetailPage = () => {
             <ReactAudioPlayer src={song.url} controls />
             {!showEditSong && (
               <div className="song-details">
-                {sessionUser !== undefined && sessionUser !== null && !showPlaylistsList && (
-                  <button
-                    onClick={() => setShowPlaylistsList(true)}
-                    className="form-btn"
-                  >
-                    Add to Playlist
-                  </button>
+                {sessionUser !== undefined &&
+                  sessionUser !== null &&
+                  !showPlaylistsList && (
+                    <div>
+                      <button
+                        onClick={() => setShowPlaylistsList(true)}
+                        className="form-btn"
+                      >
+                        Add to Playlist
+                      </button>
+                    </div>
+                  )}
+                {showPlaylistsList && (
+                  <AddToPlaylist
+                    hidePlaylist={() => setShowPlaylistsList(false)}
+                    song={song}
+                  />
                 )}
-                {showPlaylistsList && <AddToPlaylist hidePlaylist={() => setShowPlaylistsList(false)} song={song}/>}
                 <div>User: {song.User.username}</div>
                 <div>
                   Added: {moment(song.createdAt).format("ddd MMM D YYYY")}
                 </div>
-                <div>
-                  <div>Description:</div>
-                  <div>{song.description}</div>
-                </div>
+                {song.description && (
+                  <div>
+                    <div>Description:</div>
+                    <div>{song.description}</div>
+                  </div>
+                )}
               </div>
             )}
             {/* {!sessionUser && (
