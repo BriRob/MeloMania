@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createSongsPlaylistRelation, getAllUserPlaylists } from "../../store/playlists";
+import {
+  createSongsPlaylistRelation,
+  getAllUserPlaylists,
+} from "../../store/playlists";
 
 function AddToPlaylist({ hidePlaylist, song }) {
   const dispatch = useDispatch();
@@ -9,11 +12,14 @@ function AddToPlaylist({ hidePlaylist, song }) {
   const playlists = useSelector((state) => {
     return state.playlistState;
   });
-  const [selectPlaylistId, setSelectPlaylistId] = useState()
-  const playlistArr = Object.values(playlists).filter((playlist) => playlist.userId === sessionUser.id)
-  console.log("playlistArr", playlistArr)
+  const [selectPlaylistId, setSelectPlaylistId] = useState(1);
+  const [errors, setErrors] = useState([]);
+  const playlistArr = Object.values(playlists).filter(
+    (playlist) => playlist.userId === sessionUser.id
+  );
+  console.log("playlistArr", playlistArr);
 
-//   console.log("AddToPlaylist", playlists)
+  //   console.log("AddToPlaylist", playlists)
   // useEffect(() => {
   //   dispatch(getAllUserPlaylists(sessionUser.id));
   // }, [dispatch, sessionUser]);
@@ -25,18 +31,32 @@ function AddToPlaylist({ hidePlaylist, song }) {
     // console.log(selectPlaylistId)
     // console.log(song.id)
 
-    let songId = song.id
-    let playlistId = selectPlaylistId
-    // let newPlaylist;
-    // try {
-      const newRelation = await dispatch(createSongsPlaylistRelation({ songId, playlistId }));
-    // } catch (res) {
-    //   const data = await res.json();
-    //   if (data && data.errors) {
-    //     // console.log(data.errors)
-    //     setErrors(data.errors);
-    //   }
-    // }
+    console.log("selectPlaylistId", selectPlaylistId)
+
+    const payload = {
+      songId: song.id,
+      playlistId: selectPlaylistId
+    }
+
+    // console.log("playlistId", payload.playlistId)
+    // let songId = song.id;
+    // const playlistId = selectPlaylistId;
+    let errors = []
+    let newRelation;
+
+    try {
+      newRelation = await dispatch(
+        createSongsPlaylistRelation(payload)
+      );
+    } catch (err) {
+      // console.log("Hello")
+      console.log("err.message", err.message)
+      if (err) {
+        errors.push(err.message)
+        setErrors(errors);
+      }
+
+    }
 
     if (newRelation) {
       hidePlaylist();
@@ -52,14 +72,26 @@ function AddToPlaylist({ hidePlaylist, song }) {
     <div>
       {/* HELLO?!?! */}
       <form onSubmit={handleSubmit}>
+        {errors && (
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
         <select
-        value={selectPlaylistId}
-        onChange={(e) => setSelectPlaylistId(e.target.value)}>
+          value={selectPlaylistId}
+          onChange={(e) => {
+            console.log("e.target.value", e.target.value)
+            return setSelectPlaylistId(e.target.value)}}
+        >
           <option disabled placeholder="choose playlist">
             choose a playlist
           </option>
           {playlistArr.map((playlist) => (
-            <option key={playlist.id} value={playlist.id}>{playlist.title}</option>
+            <option key={playlist.id} value={playlist.id}>
+              {playlist.title}
+            </option>
           ))}
         </select>
         <button type="submit" className="form-btn">
