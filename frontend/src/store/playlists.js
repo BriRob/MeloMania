@@ -3,7 +3,7 @@ const GET_PLAYLISTS = "playlists/GET_PLAYLISTS";
 // const ONE_PLAYLIST = "playlists/ONE_PLAYLIST";
 const CREATE_PLAYLIST = "playlists/CREATE_PLAYLIST";
 // const USER_PLAYLISTS = "playlists/USER_PLAYLISTS";
-const NEW_RELATION = "playlists/NEW_RELATION"
+const NEW_RELATION = "playlists/NEW_RELATION";
 const REMOVE_PLAYLIST = "playlist/REMOVE_PLAYLIST";
 
 const getPlaylists = (playlists) => ({
@@ -28,8 +28,8 @@ const createPlaylist = (playlist) => ({
 
 const newRelation = (relation) => ({
   type: NEW_RELATION,
-  relation
-})
+  relation,
+});
 
 const removePlaylist = (playlistId) => ({
   type: REMOVE_PLAYLIST,
@@ -83,6 +83,8 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
 // };
 
 export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
+
+  console.log("payload", payload)
   const response = await csrfFetch(
     `/api/playlists/new-playlist-song-relation`,
     {
@@ -92,13 +94,37 @@ export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
     }
   );
 
-  if (response.ok) {
-    const relation = await response.json();
-    // dispatch(getPlaylists(playlists));
-    console.log("newRelation", newRelation);
-    dispatch(newRelation(relation))
-    // dispatch(getAllPlaylists());
-    return newRelation;
+  // if (response.ok) {
+  //   const relation = await response.json();
+  //   // dispatch(getPlaylists(playlists));
+  //   console.log("newRelation", newRelation);
+  //   dispatch(newRelation(relation))
+  //   // dispatch(getAllPlaylists());
+  //   return newRelation;
+  // }
+  // const relation = await response.json();
+
+  // if (relation.message) {
+  //   console.log(relation.message)
+  //   return relation
+  //   // return undefined
+  // } else {
+  //   dispatch(newRelation(relation))
+  //   return newRelation
+  // }
+
+  const data = await response.json();
+  console.log("data", data)
+  if (!data.message) {
+    let relation = data
+    console.log("relation", relation)
+    dispatch(getAllPlaylists());
+    return relation;
+    // return undefined
+  } else {
+    console.log("relation message", data.message);
+    throw new Error(data.message)
+    // return data;
   }
 };
 
@@ -117,7 +143,7 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
 const playlistReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_PLAYLISTS:
-      console.log("action.playlists", action.playlists)
+      console.log("action.playlists", action.playlists);
       const allPlaylists = {};
       action.playlists.forEach((playlist) => {
         allPlaylists[playlist.id] = playlist;
@@ -144,25 +170,29 @@ const playlistReducer = (state = {}, action) => {
       newFullList[action.playlist.id] = action.playlist;
       return newFullList;
 
-    case NEW_RELATION:
-      const newRelationState = Object.assign({}, state);
-      // if (newRelationState[relation.])
-      console.log("newRelationState", newRelationState)
-      console.log("playlist I want to add to", newRelationState[action.relation.playlistId])
+    // case NEW_RELATION:
+    //   const newRelationState = Object.assign({}, state);
+    //   // if (newRelationState[relation.])
+    //   console.log("newRelationState", newRelationState);
+    //   console.log(
+    //     "playlist I want to add to",
+    //     newRelationState[action.relation.playlistId]
+    //   );
 
-      const songsArr = newRelationState[action.relation.playlistId].Songs
-      console.log("songs array in playlist", songsArr)
-      // console.log(action.relation.songId)
-      // console.log("is song included in playlist already?", newRelationState[action.relation.playlistId].Songs.find((songArr) => songArr.id === action.relation.songId))
-      // console.log("is song included in playlist already?", songsArr.find((song) => song.id === action.relation.songId))
+    //   // const songsArr = newRelationState[action.relation.playlistId].Songs;
+    //   // console.log("songs array in playlist", songsArr);
+    //   // console.log(action.relation.songId)
+    //   // console.log("is song included in playlist already?", newRelationState[action.relation.playlistId].Songs.find((songArr) => songArr.id === action.relation.songId))
+    //   // console.log("is song included in playlist already?", songsArr.find((song) => song.id === action.relation.songId))
 
-      let oldSong;
-      if (songsArr.find((song) => song.id === action.relation.songId)) {
-        oldSong = songsArr.find((song) => song.id === action.relation.songId)
-        newRelationState[action.relation.playlistId].Songs.push(oldSong)
-      }
-      console.log(newRelationState)
-      return newRelationState
+    //   // let oldSong;
+    //   // if (songsArr.find((song) => song.id === action.relation.songId)) {
+    //   //   oldSong = songsArr.find((song) => song.id === action.relation.songId);
+    //   //   newRelationState[action.relation.playlistId].Songs.push(oldSong);
+    //   // }
+
+    //   console.log(newRelationState);
+    //   return newRelationState;
     case REMOVE_PLAYLIST:
       const newRemovePlaylistState = Object.assign({}, state);
       // console.log("state deleting from", newRemovePlaylistState)

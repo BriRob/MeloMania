@@ -91,13 +91,31 @@ router.get(
   })
 );
 
+// const relationValidation = [
+//   check("")
+// ]
 // make new association between playlist and song
 router.post(
   "/new-playlist-song-relation",
   asyncHandler(async (req, res) => {
     const { songId, playlistId } = req.body;
-    const newRelation = await SongsPlaylist.create({ songId, playlistId });
-    return res.json(newRelation);
+    // console.log("req.body", req.body)
+
+
+    const newRelation = await SongsPlaylist.build({ songId, playlistId });
+
+    // console.log("new relation", newRelation)
+    // console.log("playlistId", playlistId)
+    const prevRel = await SongsPlaylist?.findOne({where: {songId, playlistId}})
+    // console.log("prevRel.playlistId", prevRel.playlistId)
+    if (!prevRel) {
+      await newRelation.save();
+      return res.json(newRelation);
+    } else {
+      return res.json({
+        message: "Song already exists on playlist. Please choose a different playlist"
+      })
+    }
   })
 );
 
