@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createSongsPlaylistRelation, getAllUserPlaylists } from "../../store/playlists";
+import {
+  createSongsPlaylistRelation,
+  getAllUserPlaylists,
+} from "../../store/playlists";
 
 function AddToPlaylist({ hidePlaylist, song }) {
   const dispatch = useDispatch();
@@ -9,11 +12,13 @@ function AddToPlaylist({ hidePlaylist, song }) {
   const playlists = useSelector((state) => {
     return state.playlistState;
   });
-  const [selectPlaylistId, setSelectPlaylistId] = useState()
-  const playlistArr = Object.values(playlists).filter((playlist) => playlist.userId === sessionUser.id)
-  console.log("playlistArr", playlistArr)
+  const [selectPlaylistId, setSelectPlaylistId] = useState();
+  const playlistArr = Object.values(playlists).filter(
+    (playlist) => playlist.userId === sessionUser.id
+  );
+  console.log("playlistArr", playlistArr);
 
-//   console.log("AddToPlaylist", playlists)
+  //   console.log("AddToPlaylist", playlists)
   // useEffect(() => {
   //   dispatch(getAllUserPlaylists(sessionUser.id));
   // }, [dispatch, sessionUser]);
@@ -25,11 +30,13 @@ function AddToPlaylist({ hidePlaylist, song }) {
     // console.log(selectPlaylistId)
     // console.log(song.id)
 
-    let songId = song.id
-    let playlistId = selectPlaylistId
+    let songId = song.id;
+    let playlistId = selectPlaylistId;
     // let newPlaylist;
     // try {
-      const newRelation = await dispatch(createSongsPlaylistRelation({ songId, playlistId }));
+    const newRelation = await dispatch(
+      createSongsPlaylistRelation({ songId, playlistId })
+    );
     // } catch (res) {
     //   const data = await res.json();
     //   if (data && data.errors) {
@@ -53,13 +60,16 @@ function AddToPlaylist({ hidePlaylist, song }) {
       {/* HELLO?!?! */}
       <form onSubmit={handleSubmit}>
         <select
-        value={selectPlaylistId}
-        onChange={(e) => setSelectPlaylistId(e.target.value)}>
+          value={selectPlaylistId}
+          onChange={(e) => setSelectPlaylistId(e.target.value)}
+        >
           <option disabled placeholder="choose playlist">
             choose a playlist
           </option>
           {playlistArr.map((playlist) => (
-            <option key={playlist.id} value={playlist.id}>{playlist.title}</option>
+            <option key={playlist.id} value={playlist.id}>
+              {playlist.title}
+            </option>
           ))}
         </select>
         <button type="submit" className="form-btn">
