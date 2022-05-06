@@ -49,7 +49,7 @@ function Playlists() {
           {/* <br></br> want break line*/}
           <div className="playlists-and-details">
             <div className="playlistContainer">
-              {Object.values(playlists)?.map((playlist) => (
+              {Object.values(playlists)?.reverse().map((playlist) => (
                 <div key={playlist.id} className="each-playlist-div">
                   <Link
                     to={`/playlists/${playlist.id}`}
