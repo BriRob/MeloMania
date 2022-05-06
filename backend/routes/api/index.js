@@ -2,13 +2,16 @@ const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-const playlistsRouter = require("./playlists.js")
+const playlistsRouter = require("./playlists.js");
 
 const { User, Song, SongsPlaylist, Playlist } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
-const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3.js");
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+} = require("../../awsS3.js");
 
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
@@ -51,6 +54,9 @@ const songFormValidation = [
     .withMessage("Title must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
     .withMessage("Title must contain characters"),
+  // check("songUrl")
+  //   .notEmpty()
+  //   .withMessage("Cannot submit post without file"),
   // check("url")
   //   .notEmpty()
   //   .withMessage("URL cannot be empty")
@@ -61,28 +67,47 @@ const songFormValidation = [
   handleValidationErrors,
 ];
 
-
-
 router.post(
   "/new-song",
-  singleMulterUpload("url"),    // was "image"
+  singleMulterUpload("url"), // was "image"
   requireAuth,
   songFormValidation,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     // console.log("REQ USER ID", req.user.id)
     // console.log("REQ BODY", req.body)
     const userId = req.user.id;
+    // console.log(req)
     const { title, url, description } = req.body;
-    const songUrl = await singlePublicFileUpload(req.file)  // was profileImageUrl
-    const newSong = await Song.create({
-      userId,
-      title,
-      url: songUrl,
-      description,
-    });
-    // console.log("NEW SONG", newSong)
-    // console.log("BASEURL", req.baseUrl)
-    return res.redirect(`${req.baseUrl}/songs/${newSong.id}`);
+    // console.log("url \n\n", url);
+
+    if (req.file) {
+      const songUrl = await singlePublicFileUpload(req.file); // was profileImageUrl
+
+      if (songUrl.indexOf(".mp3") == songUrl.length - 4) {
+        // console.log("hello ")
+        const newSong = await Song.create({
+          userId,
+          title,
+          url: songUrl,
+          description,
+        });
+        // console.log("NEW SONG", newSong)
+        // console.log("BASEURL", req.baseUrl)
+        return res.redirect(`${req.baseUrl}/songs/${newSong.id}`);
+      } else {
+        const err = new Error("file must be .mp3")
+        next(err)
+      }
+    } else {
+      const noFileErr = new Error("Cannot submit post without file")
+      next(noFileErr)
+    }
+
+    // console.log("req file \n\n", req.file);
+    // console.log("songUrl \n\n", songUrl);
+
+    // console.log("songURL index of \n\n", songUrl.indexOf(".mp3") == songUrl.length - 4)
+
   })
 );
 
@@ -114,7 +139,7 @@ router.delete(
   "/songs/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const song = await Song.findByPk(req.params.id);
-    const songId = song.id
+    const songId = song.id;
 
     const songsPlaylistRelation = await SongsPlaylist.findOne({
       where: { songId },
@@ -124,9 +149,9 @@ router.delete(
       await SongsPlaylist.destroy({ where: { songId } });
 
     // console.log("SONG ID", songId)
-    await Song.destroy({where: {id: song.id}});
+    await Song.destroy({ where: { id: song.id } });
     // res.redirect(`/`)
-    return res.json({ songId })
+    return res.json({ songId });
   })
 );
 
