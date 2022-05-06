@@ -45,7 +45,7 @@ export const getOneSong = (id) => async (dispatch) => {
   }
 };
 
-export const createNewSong = (payload) => async (dispatch) => {
+export const createNewSong1 = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/new-song`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -61,15 +61,15 @@ export const createNewSong = (payload) => async (dispatch) => {
   }
 };
 
-export const createNewSong1 = (payload) => async (dispatch) => {
+export const createNewSong = (payload) => async (dispatch) => {
 
-  const {title, song, description } = payload;
+  const {title, url, description } = payload;
   const formData = new FormData();
   formData.append("title", title)
   formData.append("description", description)
 
   //single song
-  if (song) formData.append("song", song)
+  if (url) formData.append("url", url)
 
   const response = await csrfFetch(`/api/new-song`, {
     method: "POST",

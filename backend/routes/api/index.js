@@ -51,13 +51,13 @@ const songFormValidation = [
     .withMessage("Title must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
     .withMessage("Title must contain characters"),
-  check("url")
-    .notEmpty()
-    .withMessage("URL cannot be empty")
-    .custom((value) => /(\.wav$|\.mp3$)/.test(value))
-    .withMessage("Url end in .mp3 or .wav")
-    .isURL()
-    .withMessage("Must be valid url"),
+  // check("url")
+  //   .notEmpty()
+  //   .withMessage("URL cannot be empty")
+  //   .custom((value) => /(\.wav$|\.mp3$)/.test(value))
+  //   .withMessage("Url end in .mp3 or .wav")
+  //   .isURL()
+  //   .withMessage("Must be valid url"),
   handleValidationErrors,
 ];
 
@@ -65,7 +65,7 @@ const songFormValidation = [
 
 router.post(
   "/new-song",
-  singleMulterUpload("song"),    // was "image"
+  singleMulterUpload("url"),    // was "image"
   requireAuth,
   songFormValidation,
   asyncHandler(async (req, res) => {

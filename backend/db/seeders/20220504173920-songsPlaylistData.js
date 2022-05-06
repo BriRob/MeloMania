@@ -24,6 +24,12 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          songId: 1,
+          playlistId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           songId: 2,
           playlistId: 2,
           createdAt: new Date(),
@@ -32,6 +38,12 @@ module.exports = {
         {
           songId: 2,
           playlistId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          songId: 2,
+          playlistId: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -56,6 +68,18 @@ module.exports = {
         {
           songId: 4,
           playlistId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          songId: 4,
+          playlistId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          songId: 4,
+          playlistId: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

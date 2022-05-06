@@ -12,7 +12,7 @@ const UploadSong = () => {
 
   const [title, setTitle] = useState("");
   // const [url, setUrl] = useState("");
-  const [song, setSong] = useState(null);
+  const [url, setUrl] = useState(null);
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -24,7 +24,7 @@ const UploadSong = () => {
     let newSong;
     try {
       // newSong = await dispatch(createNewSong({ title, url, description }));
-      newSong = await dispatch(createNewSong({ title, song, description }));
+      newSong = await dispatch(createNewSong({ title, url, description }));
     } catch (res) {
       const data = await res.json();
       if (data && data.errors) {
@@ -41,7 +41,7 @@ const UploadSong = () => {
 
   const updateFile = (e) => {
     const file = e.target.files[0];
-    if (file) setSong(file);
+    if (file) setUrl(file);
   };
 
   const handleCancelClick = (e) => {
