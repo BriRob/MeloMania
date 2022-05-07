@@ -38,7 +38,7 @@ function Playlists() {
             {!showCreatePlaylist && (
               <button
                 onClick={() => setShowCreatePlaylist(true)}
-                className="form-btn"
+                className="playlist-btn"
               >
                 Create a Playlist
               </button>
@@ -49,22 +49,24 @@ function Playlists() {
           {/* <br></br> want break line*/}
           <div className="playlists-and-details">
             <div className="playlistContainer">
-              {Object.values(playlists)?.reverse().map((playlist) => (
-                <div key={playlist.id} className="each-playlist-div">
-                  <Link
-                    to={`/playlists/${playlist.id}`}
-                    className="playlistTitle"
-                  >
-                    {playlist.title}
-                  </Link>
-                  <div>
-                    <div>{playlist.User.username}</div>
+              {Object.values(playlists)
+                ?.reverse()
+                .map((playlist) => (
+                  <div key={playlist.id} className="each-playlist-div">
+                    <Link
+                      to={`/playlists/${playlist.id}`}
+                      className="playlistTitle"
+                    >
+                      {playlist.title}
+                    </Link>
                     <div>
-                      {moment(playlist.createdAt).format("ddd MMM D YYYY")}
+                      <div>{playlist.User.username}</div>
+                      <div>
+                        {moment(playlist.createdAt).format("ddd MMM D YYYY")}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
             <Route path="/playlists/:id">
               <PlaylistDetail />

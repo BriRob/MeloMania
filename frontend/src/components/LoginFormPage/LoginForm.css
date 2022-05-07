@@ -19,12 +19,17 @@
     /* width: 100%; */
     width: 70%;
     padding: 12px 0;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .login-form label input, .signup-form label input {
     color: #2D2D34;
     width: 70%;
-    /* border: none; */
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+    border: 1px solid #2D2D34;
 }
 
 /* .form-btn {
