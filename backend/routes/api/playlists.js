@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 
-const { User, Song, Playlist, SongsPlaylist } = require("../../db/models");
+const { User, Song, Playlist, SongsPlaylist, Comment } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation.js");
 const { requireAuth } = require("../../utils/auth.js");
