@@ -184,9 +184,9 @@ router.delete(
       where: { songId },
     });
     // console.log("songsPlaylistRelation", songsPlaylistRelation)
-    if (songsPlaylistRelation)
-      await SongsPlaylist.destroy({ where: { songId } });
+    if (songsPlaylistRelation) await SongsPlaylist.destroy({ where: { songId } });
 
+    await Comment.destroy({where: {songId: song.id}})
     // console.log("SONG ID", songId)
     await Song.destroy({ where: { id: song.id } });
     // res.redirect(`/`)
