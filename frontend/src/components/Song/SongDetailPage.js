@@ -10,6 +10,7 @@ import EditSong from "./EditSong";
 import CommentsPage from "../CommentsPage";
 import "./SongDetailPage.css";
 import { getAllComments } from "../../store/comments";
+import AddComment from "../CommentsPage/AddComment";
 // import { getAllUserPlaylists } from "../../store/playlists";
 
 const SongDetailPage = () => {
@@ -20,20 +21,21 @@ const SongDetailPage = () => {
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
   const playlists = useSelector((state) => state.playlistState);
-  const comments = useSelector((state) => state.commentState);
+  // const comments = useSelector((state) => state.commentState);
 
   // console.log("playlists on song detail page", playlists)
   const history = useHistory();
 
   const [showEditSong, setShowEditSong] = useState(false);
   const [showPlaylistsList, setShowPlaylistsList] = useState(false);
+  const [showAddComment, setShowAddComment] = useState(false);
 
   // console.log("song comments \n\n", song.Comments)
 
   useEffect(() => {
     dispatch(getOneSong(id));
     dispatch(getAllPlaylists());
-    dispatch(getAllComments(id));
+    // dispatch(getAllComments(id));
   }, [dispatch, id]);
 
   // console.log(Object.values(playlists).length === 0)
@@ -41,6 +43,13 @@ const SongDetailPage = () => {
   let form = null;
   if (sessionUser && showEditSong) {
     form = <EditSong song={song} hideForm={() => setShowEditSong(false)} />;
+  }
+
+  let addComment = null;
+  if (sessionUser && showAddComment) {
+    addComment = (
+      <AddComment songId={song.id} hideForm={() => setShowAddComment(false)} />
+    );
   }
 
   return (
@@ -114,13 +123,18 @@ const SongDetailPage = () => {
                 )}
             </div>
             <div>
-              {comments && <CommentsPage song={song} comments={comments}/>}
-              {/* <div>Comments</div>
-              <div>
-                {song.Comments.map(comment => {
-                  <div>Ho</div>
-                })}
-              </div> */}
+              {sessionUser !== undefined &&
+                sessionUser !== null &&
+                !showAddComment && (
+                  <button
+                    className="form-btn"
+                    onClick={() => setShowAddComment(true)}
+                  >
+                    Add a comment
+                  </button>
+                )}
+                {addComment}
+              <CommentsPage song={song} />
             </div>
           </div>
         </div>

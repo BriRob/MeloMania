@@ -1,39 +1,45 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment } from "../../store/comments";
+import { deleteComment, getAllComments } from "../../store/comments";
 import AddComment from "./AddComment";
 
-const CommentsPage = ({ song, comments }) => {
+const CommentsPage = ({ song}) => {
   // console.log(song)
   const dispatch = useDispatch();
 
 
   const sessionUser = useSelector((state) => state.session.user);
-  const [showAddComment, setShowAddComment] = useState(false);
-  //   const comments = song.Comments;
-  // console.log(comments)
+  const comments = useSelector((state) => state.commentState);
 
-  let addComment = null;
-  if (sessionUser && showAddComment) {
-    addComment = (
-      <AddComment songId={song.id} hideForm={() => setShowAddComment(false)} />
-    );
-  }
+  const commentsArr = Object.values(comments).reverse().filter(comment => comment.songId === song.id)
+//   const [showAddComment, setShowAddComment] = useState(false);
+  //   const comments = song.Comments;
+  console.log("commentsArr \n\n", commentsArr)
+
+  useEffect(() => {
+    dispatch(getAllComments(song.id));
+  }, [dispatch, song.id]);
+
+//   let addComment = null;
+//   if (sessionUser && showAddComment) {
+//     addComment = (
+//       <AddComment songId={song.id} hideForm={() => setShowAddComment(false)} />
+//     );
+//   }
 
   return (
     <>
       {/* HELLO?!?! */}
-      {sessionUser !== undefined && sessionUser !== null && !showAddComment && (
+      {/* {sessionUser !== undefined && sessionUser !== null && !showAddComment && (
         <button className="form-btn" onClick={() => setShowAddComment(true)}>
           Add a comment
         </button>
-      )}
-      {addComment}
+      )} */}
+      {/* {addComment} */}
       <h3 id="comments-title">Comments</h3>
       <div className="all-comments">
-        {Object.values(comments)
-          .reverse()
+        {commentsArr
           .map((el) => (
             <div key={el.id}>
               <div className="main-comment">{el.comment}</div>

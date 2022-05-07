@@ -67,9 +67,7 @@ router.get(
   "/songs/:id(\\d+)/comments",
   asyncHandler(async (req, res) => {
     const songId = parseInt(req.params.id, 10);
-    // const song = await Song.findByPk(songId, {
-    //   include: [{ model: Comment, include: User }, { model: User }],
-    // });
+    console.log("songId", songId)
 
     const allComments = await Comment.findAll({where: {songId}, include: {model: User}})
     // const song = await Song.findByPk(songId, {
