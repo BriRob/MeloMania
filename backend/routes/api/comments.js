@@ -63,6 +63,7 @@ router.delete(
     // console.log("returning commentId\n\n", commentId)
 
     return res.json({ commentId });
+    console.log("just trying to get this back on to main")
   })
 );
 

@@ -10,6 +10,8 @@ const AddComment = ({ songId, hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // console.log("in handle submit")
+
     const payload = {comment, songId };
 
     let newComment;
@@ -19,13 +21,13 @@ const AddComment = ({ songId, hideForm }) => {
       const data = await res.json();
       if (data && data.errors) {
         setErrors(data.errors);
-      } else if (data && data.message) {
-        setErrors([data.message]);
+        // console.log("there are errors")
       }
     }
 
     if (newComment) {
       setErrors([]);
+      // console.log("successful submit")
       hideForm();
     }
   };
@@ -39,6 +41,13 @@ const AddComment = ({ songId, hideForm }) => {
     <div>
       {/* ADD COMMENT FORM HERE */}
       <form onSubmit={handleSubmit}>
+      {errors && (
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
         <label>
           Add your comment:
           <textarea
