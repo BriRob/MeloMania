@@ -17,8 +17,8 @@ function HomePage() {
   });
   // const [showPlaylistsList, setShowPlaylistsList] = useState(false);
 
-  const songsArr = Object.values(songs).reverse()
-  console.log("songsArr in homepage component \n\n", songsArr)
+  // const songsArr = Object.values(songs).reverse()
+  // console.log("songsArr in homepage component \n\n", songsArr)
   useEffect(() => {
     dispatch(getAllSongs());
   }, [dispatch]);

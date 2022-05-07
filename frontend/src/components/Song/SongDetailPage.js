@@ -9,6 +9,7 @@ import { getAllPlaylists } from "../../store/playlists";
 import EditSong from "./EditSong";
 import CommentsPage from "../CommentsPage";
 import "./SongDetailPage.css";
+import { getAllComments } from "../../store/comments";
 // import { getAllUserPlaylists } from "../../store/playlists";
 
 const SongDetailPage = () => {
@@ -19,6 +20,8 @@ const SongDetailPage = () => {
   const song = useSelector((state) => state.songState.songs[id]);
   // console.log("song", song)
   const playlists = useSelector((state) => state.playlistState);
+  const comments = useSelector((state) => state.commentState);
+
   // console.log("playlists on song detail page", playlists)
   const history = useHistory();
 
@@ -30,6 +33,7 @@ const SongDetailPage = () => {
   useEffect(() => {
     dispatch(getOneSong(id));
     dispatch(getAllPlaylists());
+    dispatch(getAllComments(id));
   }, [dispatch, id]);
 
   // console.log(Object.values(playlists).length === 0)
@@ -110,7 +114,7 @@ const SongDetailPage = () => {
                 )}
             </div>
             <div>
-              {song.Comments && <CommentsPage song={song}/>}
+              {comments && <CommentsPage song={song} comments={comments}/>}
               {/* <div>Comments</div>
               <div>
                 {song.Comments.map(comment => {
