@@ -51,7 +51,7 @@ router.get(
 
     const song = await Song.findByPk(songId, {
       include: [
-        { model: Comment, include: User, order: [["createdAt", "DESC"]] },
+        // { model: Comment, include: User, order: [["createdAt", "DESC"]] },
         { model: User },
       ],
     });
@@ -60,6 +60,32 @@ router.get(
     return res.json(song);
   })
 );
+
+
+// getting all comments of one song
+router.get(
+  "/songs/:id(\\d+)/comments",
+  asyncHandler(async (req, res) => {
+    const songId = parseInt(req.params.id, 10);
+    // const song = await Song.findByPk(songId, {
+    //   include: [{ model: Comment, include: User }, { model: User }],
+    // });
+
+    const allComments = await Comment.findAll({where: {songId}, include: {model: User}})
+    // const song = await Song.findByPk(songId, {
+    //   include: [
+    //     // { model: Comment, include: User, order: [["createdAt", "DESC"]] },
+    //     { model: User },
+    //   ],
+    // });
+
+    // console.log()
+    return res.json(allComments);
+  })
+);
+
+
+
 
 const songFormValidation = [
   //^(\w).*\.wav|.mp3$

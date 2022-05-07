@@ -17,11 +17,11 @@ const commentFormValidation = [
   //^(\w).*\.wav|.mp3$
   check("comment")
     .notEmpty()
-    .withMessage("Title cannot be empty")
+    .withMessage("comment cannot be empty")
     .isLength({ max: 100 })
-    .withMessage("Title must be less than 100 characters")
+    .withMessage("comment must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
-    .withMessage("Title must contain characters"),
+    .withMessage("comment must contain characters"),
   // check("songUrl")
   //   .notEmpty()
   //   .withMessage("Cannot submit post without file"),
@@ -45,7 +45,8 @@ router.post(
     const newComment = await Comment.create({ userId, comment, songId });
 
     // return comment to add to comment state
-    const returningComment = await Comment.findByPk(newComment.id);
+    const returningComment = await Comment.findByPk(newComment.id, {include: {model: User}});
+    // console.log("returning comment\n\n", returningComment)
     return res.json(returningComment);
   })
 );
@@ -53,16 +54,15 @@ router.post(
 router.delete(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-    // const playlist = await Playlist.findByPk(req.params.id);
-    // const playlistId = playlist.id;
-    // const songsPlaylistRelation = await SongsPlaylist.findOne({
-    //   where: { playlistId },
-    // });
-    // // console.log("songsPlaylistRelation", songsPlaylistRelation)
-    // if (songsPlaylistRelation)
-    //   await SongsPlaylist.destroy({ where: { playlistId } });
-    // await Playlist.destroy({ where: { id: playlist.id } });
-    // return res.json({ playlistId });
+    // console.log("in delete API \n\n")
+
+    const comment = await Comment.findByPk(req.params.id);
+    const commentId = comment.id;
+
+    await Comment.destroy({ where: { id: comment.id } });
+    // console.log("returning commentId\n\n", commentId)
+
+    return res.json({ commentId });
   })
 );
 

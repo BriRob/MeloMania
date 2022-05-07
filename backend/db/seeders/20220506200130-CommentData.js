@@ -50,8 +50,8 @@ module.exports = {
           userId: 3,
           songId: 6,
           comment: `🔥🔥🔥🔥🔥`,
-          createdAt: new Date(2022, 3, 17),
-          updatedAt: new Date(2022, 3, 17),
+          createdAt: new Date(2022, 3, 27),
+          updatedAt: new Date(2022, 3, 27),
         },
         {
           userId: 4,
