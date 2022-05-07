@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteComment, getAllComments } from "../../store/comments";
 import AddComment from "./AddComment";
+import "./CommentsPage.css"
 
 const CommentsPage = ({ song}) => {
   // console.log(song)

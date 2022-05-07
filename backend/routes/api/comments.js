@@ -18,8 +18,8 @@ const commentFormValidation = [
   check("comment")
     .notEmpty()
     .withMessage("comment cannot be empty")
-    .isLength({ max: 100 })
-    .withMessage("comment must be less than 100 characters")
+    // .isLength({ max: 100 })
+    // .withMessage("comment must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
     .withMessage("comment must contain characters"),
   // check("songUrl")

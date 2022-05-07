@@ -119,7 +119,8 @@ const SongDetailPage = () => {
                   </button>
                 )}
             </div>
-            <div>
+            <div className="full-comment-section">
+              <div className="add-comment-div">
               {sessionUser !== undefined &&
                 sessionUser !== null &&
                 !showAddComment && (
@@ -131,6 +132,8 @@ const SongDetailPage = () => {
                   </button>
                 )}
                 {addComment}
+
+              </div>
               <CommentsPage song={song} />
             </div>
           </div>

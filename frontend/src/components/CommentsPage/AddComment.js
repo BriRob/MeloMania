@@ -12,11 +12,11 @@ const AddComment = ({ songId, hideForm }) => {
 
     // console.log("in handle submit")
 
-    const payload = {comment, songId };
+    const payload = { comment, songId };
 
     let newComment;
     try {
-        newComment = await dispatch(createNewComment(payload));
+      newComment = await dispatch(createNewComment(payload));
     } catch (res) {
       const data = await res.json();
       if (data && data.errors) {
@@ -38,10 +38,10 @@ const AddComment = ({ songId, hideForm }) => {
   };
 
   return (
-    <div>
+    <div className="addCommentFormDiv">
       {/* ADD COMMENT FORM HERE */}
       <form onSubmit={handleSubmit}>
-      {errors && (
+        {errors && (
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -49,23 +49,24 @@ const AddComment = ({ songId, hideForm }) => {
           </ul>
         )}
         <label>
-          Add your comment:
+          Your comment:
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </label>
-
-        <button type="submit" className="form-btn">
-          Submit
-        </button>
-        <button
-          type="button"
-          onClick={handleCancelClick}
-          className="cancel-btn"
-        >
-          Cancel
-        </button>
+        <div>
+          <button type="submit" className="form-btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={handleCancelClick}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
