@@ -90,29 +90,30 @@ Logged in users can:
 - Delete their own comment on a song's page
 
 
-### Home Page
+### Home Page / Songs Page
 
-![image](https://user-images.githubusercontent.com/95883222/163737543-051ee342-f2f7-4d63-8a10-a820ca4a5f59.png)
+![image]()
 
 ### User Sign Up Page
 
-![image](https://user-images.githubusercontent.com/95883222/163737581-632827b6-aae9-4e2f-9718-0a912bc0d35f.png)
+![image]()
 
-### Add Question Page
+### Song Detail Page
+![image]()
 
-![image](https://user-images.githubusercontent.com/95883222/163737606-f8fd437c-87f5-45cc-ab3b-6e971fd97ff7.png)
+### Playlist Page
+
+![image]()
 
 
-### Question Detail Page
-![image](https://user-images.githubusercontent.com/95883222/163737976-1a12534b-8c50-42e5-ace9-1ddb2f6ea5e7.png)
 
 
-### Search Results Page
+<!-- ### Search Results Page
 
-![image](https://user-images.githubusercontent.com/95883222/163737653-481b15fe-6315-4f85-8bab-b489340b9fbc.png)
-
+![image](https://user-images.githubusercontent.com/95883222/163737653-481b15fe-6315-4f85-8bab-b489340b9fbc.png) -->
 
 # Future Features
+- Delete Confirmation for songs, comments, playlists
 - Allow songs to play continuously from song to song and while navigating to different pages
 - Edit playlists with deleting songs and changing title
 - Add votes to songs and playlists
@@ -123,7 +124,7 @@ Logged in users can:
 
 # Technical Implementation
 
-- One of our first challenges was search bar functionality: how to process an input and search for related information in the database. Our solution is to segment the input string into a list of words and query the question.content column for data containing any of the words.
+<!-- - One of our first challenges was search bar functionality: how to process an input and search for related information in the database. Our solution is to segment the input string into a list of words and query the question.content column for data containing any of the words.
 
 ```javascript
 router.post(
@@ -262,4 +263,31 @@ submitBtn.addEventListener("click", async (submitEvent) => {
       }
     }
 });
-```
+``` -->
+
+
+# Deploy to Heroku
+
+1. Add a new application in your Heroku dashboard named whatever you want.
+
+2. Under the "Resources" tab in your new application, click "Find more add-ons" and add the "Heroku Postgres" add-on with the free Hobby Dev setting.
+
+3. install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+
+4. Login into heroku through terminal using
+    `heroku login`
+
+5. Add Heroku as a remote to your project's git repository in the following command and replace <name-of-Heroku-app> with the name of the application you created in the Heroku dashboard.
+
+    `heroku git:remote -a <name-of-Heroku-app>`
+
+6. Navigate to your application's Heroku dashboard. Under "Settings" there is a section for "Config Vars". Click the "Reveal Config Vars" button to see all your production environment variables. You should have a DATABASE_URL environment variable already from the Heroku Postgres add-on.
+
+    Add all environmental variables and their values into "Reveal Config Vars"
+
+7. Push your project to Heroku
+    `git push heroku main`
+
+8. Migrate your production database
+    `heroku run npm run sequelize db:migrate`
+    `heroku run npm run sequelize db:seed:all`
