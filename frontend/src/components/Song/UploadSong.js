@@ -84,9 +84,9 @@ const UploadSong = () => {
             // required
           />
         </label> */}
-        <label>
-          <input type="file" onChange={updateFile} accept=".mp3" />
-        </label>
+        {/* <label className="file-label"> */}
+          <input type="file" onChange={updateFile} accept=".mp3" id="file-upload"/>
+        {/* </label> */}
         <label>
           Description
           <textarea

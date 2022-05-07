@@ -10,7 +10,8 @@
     border: 2px solid white */
 
     margin: 0px auto;
-    background-color: #B97375;
+    /* background-color: #B97375; */
+    background-color: #7c95ae;
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -27,11 +28,34 @@
     align-items: center;
     width: 70%;
     padding: 12px 0;
+    font-size: 24px;
+    font-weight: 600;
 }
+
+#file-upload {
+    width: 41%;
+    font-size: 15px;
+    margin: 5px 5px;
+}
+
+
 
 .create-song-form label input, .create-song-form label textarea {
     color: #2D2D34;
-    width: 80%;
+    width: 90%;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+    /* border: 1px solid #2D2D34; */
+    border: none
+
+}
+
+.create-song-form label input:focus, .create-song-form label textarea:focus {
+    outline:#2D2D34;
+    /* box-shadow: #2D2D34; */
+    /* box-shadow: white; */
+
 }
 
 .upload-textarea {

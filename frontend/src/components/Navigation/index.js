@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
     const password = "password";
     return dispatch(sessionActions.login({ credential, password }));
   };
-  
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <ProfileButton user={sessionUser} />;
@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
           Sign Up
         </NavLink>
         <form onSubmit={handleDemo}>
-          <button type="submit" className="form-btn">
+          <button type="submit" className="demo-btn">
             Demo User
           </button>
         </form>

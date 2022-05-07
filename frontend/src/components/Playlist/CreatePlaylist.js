@@ -6,7 +6,7 @@ import { createNewPlaylist } from "../../store/playlists";
 function CreatePlaylist({ hidePlaylist }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-//   const history = useHistory();
+  //   const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState([]);
@@ -39,7 +39,7 @@ function CreatePlaylist({ hidePlaylist }) {
   };
 
   return (
-    <div>
+    <div className="newPlaylist">
       {/* HELLO?!?! */}
       <form onSubmit={handleSubmit} className="create-playlist-form">
         {errors && (
@@ -57,14 +57,16 @@ function CreatePlaylist({ hidePlaylist }) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-        <button className="form-btn">Submit</button>
-        <button
-          type="button"
-          onClick={handleCancelClick}
-          className="cancel-btn"
-        >
-          Cancel
-        </button>
+        <div className="upload-button-div">
+          <button className="form-btn">Submit</button>
+          <button
+            type="button"
+            onClick={handleCancelClick}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

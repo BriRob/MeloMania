@@ -60,3 +60,47 @@ margin: 15px 0;
 .playlist-songs {
     width: 100%;
 }
+
+.playlist-btn {
+    color: #E2DCDE;
+    /* color: #2D2D34; */
+    /* margin: 0; */
+    /* background-color: lavenderblush; */
+    background-color: #b26586;
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 7%;
+}
+
+
+.create-playlist-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-playlist-form label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+.create-playlist-form label input {
+    color: #2D2D34;
+    width: 70%;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+
+}
+
+.newPlaylist {
+    width: 50%;
+    max-width: 400px;
+    /* margin: none; */
+    /* background-color: blue; */
+    /* box-shadow: 5px 10px 6px #b26586; */
+}

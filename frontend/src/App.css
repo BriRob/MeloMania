@@ -36,12 +36,27 @@ body {
 }
 
 .form-btn {
-    color: #2D2D34;
+    color: #E2DCDE;
+    /* color: #2D2D34; */
+    margin: 0;
+    /* background-color: lavenderblush; */
+    background-color: #a6456f;
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 7%;
 }
 
 .cancel-btn {
     color: #2D2D34;
-    /* color: blue; */
+    margin: 0;
+    background-color: thistle;
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 7%;
 }
 
 .form-links {
@@ -58,4 +73,23 @@ body {
 
 .subTitle {
     text-align: center;
+}
+
+input:focus {
+    outline: none
+}
+
+.delete-btn {
+    color: #2D2D34;
+    /* color: #E2DCDE; */
+    /* color: #2D2D34; */
+    /* margin: 0; */
+    /* background-color: lavenderblush; */
+    /* background-color: #7c95ae; */
+    background-color: #8fa6c8;
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 7%;
 }
