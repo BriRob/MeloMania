@@ -1,0 +1,21 @@
+.full-comment-section {
+    width: 80%;
+}
+.add-comment-div {
+    width: 70%;
+}
+.addCommentFormDiv form {
+    display: flex;
+    justify-content: center;
+}
+
+.addCommentFormDiv form label {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.addCommentFormDiv form label textarea {
+    height: 100px;
+    resize: none;
+}
