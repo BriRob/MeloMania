@@ -91,9 +91,6 @@ const SongDetailPage = () => {
                 )}
               </div>
             )}
-            {/* {!sessionUser && (
-              <div>HELLO</div>
-            )} */}
             <div>
               {sessionUser !== undefined &&
                 sessionUser !== null &&
