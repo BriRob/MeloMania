@@ -35,6 +35,8 @@ body {
     margin-bottom: 20px;
 }
 
+
+
 .form-btn {
     color: #E2DCDE;
     /* color: #2D2D34; */
@@ -75,7 +77,7 @@ body {
     text-align: center;
 }
 
-input:focus {
+input:focus, textarea:focus, select:focus {
     outline: none
 }
 

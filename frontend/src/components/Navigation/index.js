@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import ProfileButton from "./ProfileButton";
+// import melomanialogo from "../../images/"
+
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -43,7 +45,7 @@ function Navigation({ isLoaded }) {
   return (
     <ul className="navigation">
       <li>
-        <NavLink exact to="/" className="navLink">
+        <NavLink exact to="/" className="navLink" id="logo">
           MeloMania
         </NavLink>
         <NavLink to="/playlists" className="navLink">
