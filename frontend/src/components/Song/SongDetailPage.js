@@ -56,15 +56,45 @@ const SongDetailPage = () => {
     <>
       {song && (
         <div className="song-detail-page">
-          <h2 className="title">{song.title}</h2>
+          <div className="titleEditDiv">
+            <h2 className="title">{song.title}</h2>
+            <div className="editDelBtn">
+              {sessionUser !== undefined &&
+                sessionUser !== null &&
+                !showEditSong &&
+                sessionUser.id === song.userId && (
+                  <button
+                    className="editSongBtn"
+                    onClick={() => setShowEditSong(true)}
+                  >
+                    Edit Song
+                  </button>
+                )}
+              {sessionUser !== undefined &&
+                sessionUser !== null &&
+                !showEditSong &&
+                sessionUser.id === song.userId && (
+                  <button
+                    className="delSongBtn"
+                    onClick={() => {
+                      dispatch(deleteSong(song.id));
+                      return history.push("/");
+                    }}
+                  >
+                    Delete Song
+                  </button>
+                )}
+            </div>
+          </div>
           <div className="song-detail-container">
             <ReactAudioPlayer src={song.url} controls />
+            {form}
             {!showEditSong && (
               <div className="song-details">
                 {sessionUser !== undefined &&
                   sessionUser !== null &&
                   !showPlaylistsList && (
-                    <div>
+                    <div className="songAddPlayBtn">
                       <button
                         onClick={() => setShowPlaylistsList(true)}
                         className="form-btn"
@@ -79,60 +109,40 @@ const SongDetailPage = () => {
                     song={song}
                   />
                 )}
-                <div>User: {song.User.username}</div>
-                <div>
-                  Added: {moment(song.createdAt).format("ddd MMM D YYYY")}
-                </div>
-                {song.description && (
+                <hr></hr>
+                <div className="textDetails">
                   <div>
-                    <div>Description:</div>
-                    <div>{song.description}</div>
+                  <span className="textDetLabels">Uploaded By: </span><span className="textDetVals">{song.User.username}</span>
                   </div>
-                )}
+                  <div>
+                  <span className="textDetLabels">Added: </span>
+                    <span className="textDetDate">
+                      {moment(song.createdAt).format("ddd MMM D YYYY")}
+                    </span>
+                  </div>
+                  {song.description && (
+                    <div>
+                      <div className="textDetLabels">Description:</div>
+                      <div className="description">{song.description}</div>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
-            <div>
-              {sessionUser !== undefined &&
-                sessionUser !== null &&
-                !showEditSong &&
-                sessionUser.id === song.userId && (
-                  <button
-                    className="form-btn"
-                    onClick={() => setShowEditSong(true)}
-                  >
-                    Edit
-                  </button>
-                )}
-              {form}
-              {sessionUser !== undefined &&
-                sessionUser !== null &&
-                !showEditSong &&
-                sessionUser.id === song.userId && (
-                  <button
-                    className="delete-btn"
-                    onClick={() => {
-                      dispatch(deleteSong(song.id));
-                      return history.push("/");
-                    }}
-                  >
-                    Delete
-                  </button>
-                )}
-            </div>
+            <hr></hr>
             <div className="full-comment-section">
               <div className="add-comment-div">
-              {sessionUser !== undefined &&
-                sessionUser !== null &&
-                !showAddComment && (
-                  <button
-                    className="form-btn"
-                    onClick={() => setShowAddComment(true)}
-                  >
-                    Add a comment
-                  </button>
-                )}
+                {sessionUser !== undefined &&
+                  sessionUser !== null &&
+                  !showAddComment && (
+                    <button
+                      className="form-btn"
+                      onClick={() => setShowAddComment(true)}
+                    >
+                      Add a comment
+                    </button>
+                  )}
                 {addComment}
-
               </div>
               <CommentsPage song={song} />
             </div>

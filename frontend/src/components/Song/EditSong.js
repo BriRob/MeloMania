@@ -29,7 +29,7 @@ const EditSong = ({ song, hideForm }) => {
       const data = await res.json();
       if (data && data.errors) {
         setErrors(data.errors);
-      } 
+      }
     }
 
     if (editedSong) {
@@ -73,7 +73,7 @@ const EditSong = ({ song, hideForm }) => {
         </label>
         <div className="upload-button-div">
           <button type="submit" className="form-btn">
-            Submit
+            Submit Edit
           </button>
           <button
             type="button"

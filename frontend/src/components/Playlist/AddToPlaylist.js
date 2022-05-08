@@ -31,31 +31,28 @@ function AddToPlaylist({ hidePlaylist, song }) {
     // console.log(selectPlaylistId)
     // console.log(song.id)
 
-    console.log("selectPlaylistId", selectPlaylistId)
+    console.log("selectPlaylistId", selectPlaylistId);
 
     const payload = {
       songId: song.id,
-      playlistId: selectPlaylistId
-    }
+      playlistId: selectPlaylistId,
+    };
 
     // console.log("playlistId", payload.playlistId)
     // let songId = song.id;
     // const playlistId = selectPlaylistId;
-    let errors = []
+    let errors = [];
     let newRelation;
 
     try {
-      newRelation = await dispatch(
-        createSongsPlaylistRelation(payload)
-      );
+      newRelation = await dispatch(createSongsPlaylistRelation(payload));
     } catch (err) {
       // console.log("Hello")
-      console.log("err.message", err.message)
+      console.log("err.message", err.message);
       if (err) {
-        errors.push(err.message)
+        errors.push(err.message);
         setErrors(errors);
       }
-
     }
 
     if (newRelation) {
@@ -69,9 +66,9 @@ function AddToPlaylist({ hidePlaylist, song }) {
   };
 
   return (
-    <div>
+    <div className="addPlayCompDiv">
       {/* HELLO?!?! */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="addPlaylistForm">
         {errors && (
           <ul>
             {errors.map((error, idx) => (
@@ -80,10 +77,12 @@ function AddToPlaylist({ hidePlaylist, song }) {
           </ul>
         )}
         <select
+        className="selectPlaylist"
           value={selectPlaylistId}
           onChange={(e) => {
-            console.log("e.target.value", e.target.value)
-            return setSelectPlaylistId(e.target.value)}}
+            console.log("e.target.value", e.target.value);
+            return setSelectPlaylistId(e.target.value);
+          }}
         >
           <option disabled placeholder="choose playlist">
             choose a playlist
@@ -94,16 +93,18 @@ function AddToPlaylist({ hidePlaylist, song }) {
             </option>
           ))}
         </select>
-        <button type="submit" className="form-btn">
-          Add to Playlist
-        </button>
-        <button
-          type="button"
-          onClick={handleCancelClick}
-          className="cancel-btn"
-        >
-          Cancel
-        </button>
+        <div className="addToPlaylistDiv">
+          <button type="submit" className="form-btn">
+            Add to Playlist
+          </button>
+          <button
+            type="button"
+            onClick={handleCancelClick}
+            className="cancel-btn"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

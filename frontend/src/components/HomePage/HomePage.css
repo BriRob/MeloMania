@@ -5,6 +5,7 @@
 
 .home-page p {
   text-align: center;
+  font-size: 25px;
 }
 
 .songsContainer {
@@ -25,7 +26,20 @@
   flex-direction: column;
 }
 
+.artist-date-div {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
 .songTitle {
     font-size: 2em;
     text-decoration: none;
+}
+
+.uploadedUser {
+  font-size: 23px;
+}
+
+.detail-date {
+  font-size: 18px;
 }

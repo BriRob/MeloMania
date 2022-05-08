@@ -104,3 +104,26 @@ margin: 15px 0;
     /* background-color: blue; */
     /* box-shadow: 5px 10px 6px #b26586; */
 }
+
+.addPlayCompDiv {
+    margin-top: 2%;
+}
+
+.addPlaylistForm {
+    width: 60%;
+}
+
+.addToPlaylistDiv {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.selectPlaylist {
+    color: #2D2D34;
+    width: 65%;
+    border-radius: 5px;
+    font-size: 19px;
+}
