@@ -3,11 +3,21 @@
     margin-top: 2%;
 }
 .add-comment-div {
-    width: 70%;
+    width: 90%;
+}
+
+.addCommentFormDiv {
+    margin: 0;
 }
 .addCommentFormDiv form {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.commentTextAndBtns {
+    display: flex;
+    gap: 23px;
 }
 
 .addCommentFormDiv form label {
@@ -17,6 +27,18 @@
 }
 
 .addCommentFormDiv form label textarea {
+    color: #2D2D34;
     height: 100px;
     resize: none;
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 5px;
+}
+
+.submitCancelBtnDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
 }

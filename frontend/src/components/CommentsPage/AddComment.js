@@ -41,6 +41,7 @@ const AddComment = ({ songId, hideForm }) => {
     <div className="addCommentFormDiv">
       {/* ADD COMMENT FORM HERE */}
       <form onSubmit={handleSubmit}>
+      <div>
         {errors && (
           <ul>
             {errors.map((error, idx) => (
@@ -48,14 +49,16 @@ const AddComment = ({ songId, hideForm }) => {
             ))}
           </ul>
         )}
-        <label>
+      </div>
+      <div className="commentTextAndBtns">
+        <label className="addCommentlabel">
           Your comment:
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </label>
-        <div>
+        <div className="submitCancelBtnDiv">
           <button type="submit" className="form-btn">
             Submit
           </button>
@@ -66,6 +69,7 @@ const AddComment = ({ songId, hideForm }) => {
           >
             Cancel
           </button>
+      </div>
         </div>
       </form>
     </div>

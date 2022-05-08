@@ -10,6 +10,7 @@ html {
     height: 100%;
     width: 100%;
 }
+
 body {
     background-color: #2D2D34;
     font-family: 'Nunito', sans-serif;
@@ -28,6 +29,7 @@ body {
     font-weight: bold;
     color: #E2DCDE;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .title {
@@ -39,7 +41,7 @@ body {
 
 
 
-.form-btn {
+.form-btn, .cancel-btn, .delete-btn {
     color: #E2DCDE;
     /* color: #2D2D34; */
     margin: 0;
@@ -50,17 +52,33 @@ body {
     font-size: 19px;
     font-family: 'Nunito', sans-serif;
     padding: 0 7%;
+    transition: 0.3s;
 }
 
 .cancel-btn {
     color: #2D2D34;
-    margin: 0;
+    /* margin: 0; */
     background-color: thistle;
-    border: none;
+    /* border: none; */
+    /* border-radius: 7px; */
+    /* font-size: 19px; */
+    /* font-family: 'Nunito', sans-serif; */
+    /* padding: 0 7%; */
+}
+
+.delete-btn {
+    color: #2D2D34;
+    /* color: #E2DCDE; */
+    /* color: #2D2D34; */
+    /* margin: 0; */
+    /* background-color: lavenderblush; */
+    /* background-color: #7c95ae; */
+    background-color: #8fa6c8;
+    /* border: none;
     border-radius: 7px;
     font-size: 19px;
     font-family: 'Nunito', sans-serif;
-    padding: 0 7%;
+    padding: 0 7%; */
 }
 
 .form-links {
@@ -83,17 +101,13 @@ input:focus, textarea:focus, select:focus {
     outline: none
 }
 
-.delete-btn {
-    color: #2D2D34;
-    /* color: #E2DCDE; */
-    /* color: #2D2D34; */
-    /* margin: 0; */
-    /* background-color: lavenderblush; */
-    /* background-color: #7c95ae; */
-    background-color: #8fa6c8;
-    border: none;
-    border-radius: 7px;
-    font-size: 19px;
-    font-family: 'Nunito', sans-serif;
-    padding: 0 7%;
+
+
+.navLink:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.navLink:active, .form-btn:active, .cancel-btn:active, .delete-btn:active {
+    transform: scale(0.9);
 }

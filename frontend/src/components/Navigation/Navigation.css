@@ -44,6 +44,7 @@ width: 18%;
     font-family: 'Nunito', sans-serif;
     padding: 0 7%;
     margin-bottom: 5px;
+    transition: 0.3s;
 
 }
 
@@ -53,6 +54,7 @@ width: 18%;
     font-size: 22px;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .profile-nav-div > div {
@@ -67,4 +69,13 @@ width: 18%;
     padding-right: 2px;
     /* background-color: #682f48; */
 
+}
+
+.profile-nav-div > button:hover, .demo-btn:hover, .logout-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.profile-nav-div > button:active, .demo-btn:active, .logout-btn:active {
+    transform: scale(0.9);
 }

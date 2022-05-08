@@ -13,7 +13,7 @@ hr {
     margin-bottom: 2%;
 }
 
-.editSongBtn {
+.editSongBtn, .delSongBtn {
     color: #E2DCDE;
     /* color: #2D2D34; */
     margin: 0;
@@ -24,6 +24,7 @@ hr {
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
     /* padding: 0 7%; */
+    transition: 0.3s;
 }
 
 .delSongBtn {
@@ -34,12 +35,14 @@ hr {
     /* background-color: lavenderblush; */
     /* background-color: #7c95ae; */
     background-color: #8fa6c8;
-    border: none;
+    /* border: none;
     border-radius: 7px;
     font-size: 16px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif; */
     /* padding: 0 7%; */
-    margin: 0;
+    /* margin: 0; */
+    /* transition: 0.3s; */
+
 }
 
 .song-detail-container {
@@ -88,6 +91,10 @@ hr {
     color: #2f0d0e;
 }
 
+.descLabelAndContent{
+margin-top: 5%;
+}
+
 .textDetVals, .description {
     font-size: 20px;
 
@@ -100,4 +107,15 @@ hr {
 .add-comment-div {
     display: flex;
     justify-content: center;
+}
+
+
+.editSongBtn:hover, .delSongBtn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.editSongBtn:active, .delSongBtn:active {
+    transform: scale(0.8);
+    /* cursor: pointer; */
 }

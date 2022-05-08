@@ -32,8 +32,9 @@
   justify-content: space-between;
 }
 .songTitle {
-    font-size: 2em;
-    text-decoration: none;
+  font-size: 2em;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .uploadedUser {
@@ -42,4 +43,13 @@
 
 .detail-date {
   font-size: 18px;
+}
+
+.songTitle:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.songTitle:active {
+  transform: scale(0.9);
 }

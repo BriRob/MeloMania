@@ -119,6 +119,7 @@ margin: 15px 0;
     width: 70%;
     margin-top: 2%;
     margin-bottom: 2%;
+    flex-wrap: wrap;
 }
 
 .selectPlaylist {
