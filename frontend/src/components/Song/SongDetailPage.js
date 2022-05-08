@@ -121,7 +121,7 @@ const SongDetailPage = () => {
                     </span>
                   </div>
                   {song.description && (
-                    <div>
+                    <div className="descLabelAndContent">
                       <div className="textDetLabels">Description:</div>
                       <div className="description">{song.description}</div>
                     </div>
