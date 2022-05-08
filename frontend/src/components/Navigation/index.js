@@ -43,10 +43,11 @@ function Navigation({ isLoaded }) {
 
 
   return (
-    <ul className="navigation">
+    <div className="navigation">
       <li>
-        <NavLink exact to="/" className="navLink" id="logo">
+        <NavLink exact to="/" className="navLink" >
           MeloMania
+          {/* <img src="/images/melomania-logo.png" id="logo"/> */}
         </NavLink>
         <NavLink to="/playlists" className="navLink">
           Playlists
@@ -56,7 +57,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
         {isLoaded && sessionLinks}
       </li>
-    </ul>
+    </div>
   );
 }
 

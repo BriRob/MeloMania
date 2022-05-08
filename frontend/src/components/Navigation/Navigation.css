@@ -1,26 +1,29 @@
 .navigation {
-    padding: 20px 7px;
+    /* padding: 20px 7px; */
     /* margin: 0 7%; */
     position: fixed;
     width: 100%;
     background-color: #682f48;
     z-index: 1;
     height: 75px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    padding-top: 2%;
 }
 
 .navigation > li {
     display: flex;
     justify-content: space-between;
     font-size: 22px;
+    /* width: 100%; */
 }
 
-/* #logo {
-    background-image: url("../../images/melomania-logo.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 46px;
-    height: 46px;
-} */
+#logo {
+    color: #2D2D34;
+    /* background-color: blue; */
+width: 18%;
+}
 
 .profile-nav-div {
     display: flex;
