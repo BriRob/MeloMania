@@ -124,146 +124,158 @@ Logged in users can:
 
 # Technical Implementation
 
-<!-- - One of our first challenges was search bar functionality: how to process an input and search for related information in the database. Our solution is to segment the input string into a list of words and query the question.content column for data containing any of the words.
+- There was a significant challenge with implementing redux for the playlist feature. In the end, I started understanding when it's truly necessary to make a call to the redux store to acquire data verses when it's best to just use the redux state that was already given. At first, I thought I would need to call the redux store for getting all playlists, getting one playlist, creating playlists, getting playlists for a specific user, creating a new many to many relation between a song and a playlist, and deleting a playlist. When I completed the feature, I only made calls to the redux store for getting all playlists, creating playlists, removing playlists, and creating a new playlist to song relation.
+
+
+```javascript
+
+export const getAllPlaylists = () => async (dispatch) => {
+  const response = await fetch("/api/playlists/");
+
+  if (response.ok) {
+    const playlists = await response.json();
+    dispatch(getPlaylists(playlists));
+    return playlists;
+  }
+};
+
+export const createNewPlaylist = (payload) => async (dispatch) => {
+  const response = await csrfFetch("/api/playlists/new-playlist", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (response.ok) {
+    const newPlaylist = await response.json();
+    dispatch(createPlaylist(newPlaylist));
+    return newPlaylist;
+  }
+};
+
+export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
+
+  // console.log("payload", payload)
+  const response = await csrfFetch(
+    `/api/playlists/new-playlist-song-relation`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  // if (response.ok) {
+  //   const relation = await response.json();
+  //   // dispatch(getPlaylists(playlists));
+  //   console.log("newRelation", newRelation);
+  //   dispatch(newRelation(relation))
+  //   // dispatch(getAllPlaylists());
+  //   return newRelation;
+  // }
+  // const relation = await response.json();
+
+  // if (relation.message) {
+  //   console.log(relation.message)
+  //   return relation
+  //   // return undefined
+  // } else {
+  //   dispatch(newRelation(relation))
+  //   return newRelation
+  // }
+
+  const data = await response.json();
+  // console.log("data", data)
+  if (!data.message) {
+    let relation = data
+    // console.log("relation", relation)
+    dispatch(getAllPlaylists());
+    return relation;
+    // return undefined
+  } else {
+    // console.log("relation message", data.message);
+    throw new Error(data.message)
+    // return data;
+  }
+};
+
+export const deletePlaylist = (playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`, {
+    method: "delete",
+  });
+  //   console.log("RESPONSE", response);
+  if (response.ok) {
+    const { playlistId } = await response.json();
+    dispatch(removePlaylist(playlistId));
+    // dispatch(getAllPlaylists());
+  }
+};
+
+
+const playlistReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_PLAYLISTS:
+      const allPlaylists = {};
+      action.playlists.forEach((playlist) => {
+        allPlaylists[playlist.id] = playlist;
+      });
+      const allPlaylistsState = { ...state, ...allPlaylists };
+      return allPlaylistsState;
+
+    case CREATE_PLAYLIST:
+      const newFullList = Object.assign({}, state);
+      newFullList[action.playlist.id] = action.playlist;
+      return newFullList;
+
+    case REMOVE_PLAYLIST:
+      const newRemovePlaylistState = Object.assign({}, state);
+      delete newRemovePlaylistState[action.playlistId];
+      return newRemovePlaylistState;
+
+    default:
+      return state;
+  }
+};
+```
+
+- another challenge was implementing error handling to ensure the user only uploads mp3 files with AWS without express-validator
 
 ```javascript
 router.post(
-  "/results",
-  inputValidators,
-  asyncHandler(async (req, res) => {
-    let words = req.body.searchText.trim().split(/\s+/);
+  "/new-song",
+  singleMulterUpload("url"), // was "image"
+  requireAuth,
+  songFormValidation,
+  asyncHandler(async (req, res, next) => {
 
-    const validatorErrors = validationResult(req);
+    const userId = req.user.id;
+    const { title, url, description } = req.body;
 
-    if (!validatorErrors.isEmpty()) {
-      backURL = req.header("Referer") || "/";
-      return res.redirect(backURL);
-    }
+    if (req.file) {
+      const songUrl = await singlePublicFileUpload(req.file); // was profileImageUrl
 
-    words = words.map((word) => `%${word}%`);
-    const questions = await db.Question.findAll({
-      where: {
-        content: {
-          [Op.iLike]: {
-            [Op.any]: words,
-          },
-        },
-      },
-      include: [{ model: db.User }, { model: db.Tag }],
-      order: [["createdAt", "DESC"]],
-    });
+      if (songUrl.indexOf(".mp3") == songUrl.length - 4) {
+        const newSong = await Song.create({
+          userId,
+          title,
+          url: songUrl,
+          description,
+        });
 
-    res.render("search-results", {
-      title: "Search Results",
-      questions,
-      search: req.body.searchText,
-    });
-  })
-);
-```
-
-- The other challenge was how to display a question and a list of answers on the question which are sorted by createdAt date. Our solution is to perform an eager loading to query of several different models, including Question, Answer and User, at once. Then we sort the answers of a question by createdAt and display the sorted answer on the page.
-
-```javascript
-router.get(
-  "/:id(\\d+)",
-  asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id, 10);
-    const question = await db.Question.findByPk(questionId, {
-      include: [
-        db.User,
-        {
-          model: db.Answer,
-          include: db.User,
-        },
-        db.Tag,
-      ],
-    });
-
-    const answers = question.Answers;
-    answers.sort((a, b) => {
-      const keyA = new Date(a.createdAt);
-      const keyB = new Date(b.createdAt);
-      return keyA < keyB ? -1 : 1;
-    });
-
-    answers.forEach((answer) => {
-      answer.date = answer.createdAt.toDateString();
-    });
-
-    res.render("question-detail", {
-      title: question.content,
-      question,
-      answers,
-    });
-  })
-);
-```
-
-- custom validations on sign up input
-
-```javascript
-const userValidators = [
-  check("username")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a value for Username")
-    .isLength({ max: 20 })
-    .withMessage("Username must not be more than 20 characters long")
-    .custom((value) => {
-      return db.User.findOne({ where: { username: value } }).then((user) => {
-        if (user) {
-          return Promise.reject(
-            "The provided Username is already in use by another account"
-          );
-        }
-      });
-    })
-    .custom((value) => !/^ *$/.test(value))
-    .withMessage("Username cannot be empty"),
-];
-```
-
-- Dynamically update answers without redirection
-
-```javascript
-submitBtn.addEventListener("click", async (submitEvent) => {
-    submitEvent.preventDefault();
-    const contentValue = document.getElementById(
-      `${answerId}-edit-content`
-    ).value;
-
-    const questionId = parseInt(
-      submitEvent.target.classList[0].split("-")[1],
-      10
-    );
-
-    const res = await fetch(`/questions/${questionId}/answers/${answerId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        content: contentValue,
-      }),
-    });
-
-    const data = await res.json();
-    if (data.message === "Success") {
-      let contentEle = document.getElementById(`answer-content-${answerId}`);
-      let lines = data.answer.content.split("\n");
-      lines = lines.map((line) => `<div>${line}</div>`);
-      contentEle.innerHTML = lines.join("");
-
-      form.classList.add("hidden");
-      answerContent.classList.remove("hidden");
-      editAnswerButton.classList.remove("hidden");
-      deleteAnswerButton.classList.remove("hidden");
-    } else {
-      if (data.message === "Failure") {
-        const errorDiv = document.getElementById(`edit-errors-${answerId}`);
-        errorDiv.innerHTML = data.errors[0];
+        return res.redirect(`${req.baseUrl}/songs/${newSong.id}`);
+        
+      } else {
+        const err = new Error("file must be .mp3");
+        next(err);
       }
+    } else {
+      const noFileErr = new Error("Cannot submit post without file");
+      next(noFileErr);
     }
-});
-``` -->
+  })
+);
+```
+
+
 
 
 # Deploy to Heroku
