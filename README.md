@@ -253,8 +253,6 @@ router.post(
 ```
 
 
-
-<!-- 
 # Deploy to Heroku
 
 1. Add a new application in your Heroku dashboard named whatever you want.
@@ -280,4 +278,4 @@ router.post(
 8. Migrate your production database
     `heroku run npm run sequelize db:migrate`
     `heroku run npm run sequelize db:seed:all`
- -->
+
