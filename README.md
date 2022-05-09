@@ -154,7 +154,6 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
 
 export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
 
-  // console.log("payload", payload)
   const response = await csrfFetch(
     `/api/playlists/new-playlist-song-relation`,
     {
@@ -164,37 +163,15 @@ export const createSongsPlaylistRelation = (payload) => async (dispatch) => {
     }
   );
 
-  // if (response.ok) {
-  //   const relation = await response.json();
-  //   // dispatch(getPlaylists(playlists));
-  //   console.log("newRelation", newRelation);
-  //   dispatch(newRelation(relation))
-  //   // dispatch(getAllPlaylists());
-  //   return newRelation;
-  // }
-  // const relation = await response.json();
-
-  // if (relation.message) {
-  //   console.log(relation.message)
-  //   return relation
-  //   // return undefined
-  // } else {
-  //   dispatch(newRelation(relation))
-  //   return newRelation
-  // }
-
   const data = await response.json();
-  // console.log("data", data)
+
   if (!data.message) {
     let relation = data
-    // console.log("relation", relation)
     dispatch(getAllPlaylists());
     return relation;
-    // return undefined
+
   } else {
-    // console.log("relation message", data.message);
     throw new Error(data.message)
-    // return data;
   }
 };
 
@@ -202,11 +179,11 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
   const response = await csrfFetch(`/api/playlists/${playlistId}`, {
     method: "delete",
   });
-  //   console.log("RESPONSE", response);
+
   if (response.ok) {
     const { playlistId } = await response.json();
     dispatch(removePlaylist(playlistId));
-    // dispatch(getAllPlaylists());
+
   }
 };
 
