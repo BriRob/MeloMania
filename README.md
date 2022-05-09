@@ -121,6 +121,7 @@ Logged in users can:
 - Edit comments on songs and playlists
 - User can view collections of their uploaded songs and created playlists
 - User can view other user's collections of songs and playlists
+- Search Feature
 
 # Technical Implementation
 
