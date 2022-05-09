@@ -17,7 +17,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
   const playlistArr = Object.values(playlists).filter(
     (playlist) => playlist.userId === sessionUser.id
   );
-  console.log("playlistArr", playlistArr);
+  // console.log("playlistArr", playlistArr);
 
   //   console.log("AddToPlaylist", playlists)
   // useEffect(() => {
@@ -31,7 +31,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
     // console.log(selectPlaylistId)
     // console.log(song.id)
 
-    console.log("selectPlaylistId", selectPlaylistId);
+    // console.log("selectPlaylistId", selectPlaylistId);
 
     const payload = {
       songId: song.id,
@@ -48,7 +48,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
       newRelation = await dispatch(createSongsPlaylistRelation(payload));
     } catch (err) {
       // console.log("Hello")
-      console.log("err.message", err.message);
+      // console.log("err.message", err.message);
       if (err) {
         errors.push(err.message);
         setErrors(errors);
@@ -80,7 +80,7 @@ function AddToPlaylist({ hidePlaylist, song }) {
         className="selectPlaylist"
           value={selectPlaylistId}
           onChange={(e) => {
-            console.log("e.target.value", e.target.value);
+            // console.log("e.target.value", e.target.value);
             return setSelectPlaylistId(e.target.value);
           }}
         >

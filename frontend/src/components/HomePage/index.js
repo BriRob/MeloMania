@@ -33,20 +33,23 @@ function HomePage() {
       <p>The perfect place to upload and share your music with the world</p>
       <div>
         <ul className="songsContainer">
-          {Object.values(songs)
-            .reverse()
-            .map((song) => (
-              <div key={song.id} className="each-song-div">
-                <Link to={`/songs/${song.id}`} className="songTitle">
-                  {song.title}
-                </Link>
-                <div className="artist-date-div">
-                  <div className="uploadedUser">{song.User.username}</div>
-                  <div className="detail-date">
-                    {moment(song.createdAt).format("ddd MMM D YYYY")}
+          <h2 className="discoverSongs">Discover Songs</h2>
+          <hr></hr>
+          <div className="smallerContainer">
+            {Object.values(songs)
+              .reverse()
+              .map((song) => (
+                <div key={song.id} className="each-song-div">
+                  <Link to={`/songs/${song.id}`} className="songTitle">
+                    {song.title}
+                  </Link>
+                  <div className="artist-date-div">
+                    <div className="uploadedUser">{song.User.username}</div>
+                    <div className="detail-date">
+                      {moment(song.createdAt).format("ddd MMM D YYYY")}
+                    </div>
                   </div>
-                </div>
-                {/* {!showPlaylistsList && (
+                  {/* {!showPlaylistsList && (
                 <button
                   onClick={() => setShowPlaylistsList(true)}
                   className="form-btn"
@@ -54,10 +57,11 @@ function HomePage() {
                   Add to Playlist
                 </button>
               )} */}
-                {/* {showPlaylistsList && <AddToPlaylist />} */}
-                <ReactAudioPlayer src={song.url} controls className="" />
-              </div>
-            ))}
+                  {/* {showPlaylistsList && <AddToPlaylist />} */}
+                  <ReactAudioPlayer src={song.url} controls className="" />
+                </div>
+              ))}
+          </div>
         </ul>
       </div>
     </div>

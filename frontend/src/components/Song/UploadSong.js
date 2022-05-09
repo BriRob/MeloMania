@@ -95,6 +95,7 @@ const UploadSong = () => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </label>
+          <div className="afterClick">After clicking "submit", please allow a few seconds for the song to upload</div>
         <div className="upload-button-div">
           <button type="submit" className="form-btn">
             Submit
