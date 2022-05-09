@@ -43,7 +43,6 @@
   overflow-wrap: break-word;
   text-align: center;
   /* color: #682f48; */
-
 }
 
 .uploadedUser {
@@ -61,4 +60,15 @@
 
 .songTitle:active {
   transform: scale(0.9);
+}
+
+.logoDiv {
+  display: flex;
+  margin-bottom: 2%;
+}
+
+#logo {
+  /* color: #2D2D34; */
+  /* background-color: blue; */
+  width: 26%;
 }

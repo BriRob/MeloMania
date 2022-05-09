@@ -10,6 +10,7 @@ import UploadSong from "./components/Song/UploadSong";
 import SongDetailPage from "./components/Song/SongDetailPage";
 import Playlists from "./components/Playlist";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
           </Switch>
         </div>
       )}
+      <Footer />
     </>
   );
 }

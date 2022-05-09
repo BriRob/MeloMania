@@ -4,7 +4,12 @@
     color:#E2DCDE;
 }
 
-
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 
 html {
     height: 100%;
@@ -22,9 +27,33 @@ body {
 }
 
 
+footer {
+    display: flex;
+    padding-top: 5px;
+    background-color: #ceb1be78;
+    margin: 0;
+}
+
+footer > div {
+    /* display: flex; */
+    margin: 0;
+    width: 100%
+}
+
+.builtWith {
+    display: flex;
+    width: 75%;
+}
+
+.me {
+    display: flex;
+    margin-bottom: 5px;
+}
 
 .underNav {
     padding-top: 100px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .navLink {
