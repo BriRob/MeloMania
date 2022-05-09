@@ -36,6 +36,7 @@
     width: 41%;
     font-size: 15px;
     margin: 5px 5px;
+    background-color: transparent;
 }
 
 
@@ -59,7 +60,7 @@
 }
 
 .upload-textarea {
-   height: 100px;
+   height: 133px;
    resize: none;
 }
 

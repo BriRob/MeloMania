@@ -33,6 +33,11 @@ function Playlists() {
           <h2 className="title">Playlists by Melomaniacs</h2>
           <div className="playlist-div-submain">
             <div className="subTitle">
+              Only the BEST playlists are made by melomaniacs!
+              {/* Discover and create your favorite playlists! */}
+            </div>
+            <div className="subTitle">
+              {/* Only the BEST playlists are made by melomaniacs! */}
               Discover and create your favorite playlists!
             </div>
             {!showCreatePlaylist && (

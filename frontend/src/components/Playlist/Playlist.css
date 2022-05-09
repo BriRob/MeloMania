@@ -13,7 +13,8 @@
   font-size: 25px;
 }
 .playlist-div-submain button {
-  margin-top: 10px;
+  margin-top: 20px;
+  /* margin-bottom: 10px; */
 }
 
 .each-playlist-div {
@@ -124,6 +125,7 @@
 .create-playlist-form {
   display: flex;
   flex-direction: column;
+  /* margin-top: 2%; */
 }
 
 .create-playlist-form label {
@@ -144,6 +146,7 @@
 .newPlaylist {
   width: 50%;
   max-width: 400px;
+  margin-top: 2%;
   /* margin: none; */
   /* background-color: blue; */
   /* box-shadow: 5px 10px 6px #b26586; */
@@ -177,4 +180,8 @@
   width: fit-content;
   /* margin: 0 auto; */
   margin: 0 auto 2%;
+}
+
+.addPlayErr {
+    font-size: 18px;
 }

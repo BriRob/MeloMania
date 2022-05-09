@@ -88,6 +88,9 @@ body {
 
 .subTitle {
     text-align: center;
+    /* margin-bottom: 2%; */
+    width: 70%;
+    max-width: 715px;
 }
 
 input:focus, textarea:focus, select:focus {
@@ -116,4 +119,8 @@ ul {
 }
 li {
     list-style: none;
+}
+
+textarea, input {
+    background-color: #E2DCDE;
 }

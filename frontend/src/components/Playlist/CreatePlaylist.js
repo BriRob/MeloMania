@@ -45,7 +45,7 @@ function CreatePlaylist({ hidePlaylist }) {
         {errors && (
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li key={idx} className="addPlayErr">{error}</li>
             ))}
           </ul>
         )}
