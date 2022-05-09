@@ -1,6 +1,6 @@
 # MeloMania
 
-MeloMania is a soft clone of [SoundCloud](https://soundcloud.com/discover) Users can upload their music, listen to music uploaded by other users, make their own playlists of songs, and comment on each song.
+MeloMania is a soft clone of [SoundCloud](https://soundcloud.com/discover). Users can upload their music, listen to music uploaded by other users, make their own playlists of songs, and comment on each song.
 
 MeloMania live site: [MeloMania](https://melomaniamusic.herokuapp.com)
 
@@ -254,7 +254,7 @@ router.post(
 
 
 
-
+<!-- 
 # Deploy to Heroku
 
 1. Add a new application in your Heroku dashboard named whatever you want.
@@ -280,3 +280,4 @@ router.post(
 8. Migrate your production database
     `heroku run npm run sequelize db:migrate`
     `heroku run npm run sequelize db:seed:all`
+ -->
