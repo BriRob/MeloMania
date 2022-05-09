@@ -19,6 +19,16 @@
   /* background-color: #7c95ae; */
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(0, 0, 0, 0.5);
+  /* height: 735px;
+  overflow: auto; */
+}
+
+.discoverSongs{
+  text-align: center;
+  font-size: 30px;
+}
+
+.smallerContainer{
   height: 735px;
   overflow: auto;
 }
@@ -33,9 +43,12 @@
 }
 
 .artist-date-div {
-  width: 90%;
+  /* width: 90%; */
   display: flex;
   justify-content: space-between;
+  width: 59%;
+  margin-bottom: 1%;
+  gap: 3px;
 }
 
 .songTitle {
@@ -46,14 +59,19 @@
   overflow-wrap: break-word;
   text-align: center;
   /* color: #682f48; */
+  margin-bottom: 2px;
 }
 
 .uploadedUser {
   font-size: 23px;
+  color: #24242d;
+  margin: 0;
 }
 
 .detail-date {
   font-size: 18px;
+  color: #24242d;
+  margin: 0;
 }
 
 .songTitle:hover {

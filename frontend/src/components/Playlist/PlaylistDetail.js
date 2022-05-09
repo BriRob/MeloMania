@@ -13,6 +13,9 @@ function PlaylistDetail() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // console.log("playlist.Songs reversed ===>", playlist?.Songs?.reverse())
+  const newList = playlist?.Songs?.reverse()
+
   //   useEffect(() => {
   //     dispatch(getOnePlaylist(id));
   //   }, [dispatch, id]);
@@ -38,7 +41,7 @@ function PlaylistDetail() {
             )}
             <hr></hr>
             <div className="playlist-songs">
-              {playlist.Songs?.map((song) => (
+              {newList.map((song) => (
                 <div key={song.id} className="each-playlist-song-div">
                   <Link
                     to={`/songs/${song.id}`}

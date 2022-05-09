@@ -1,9 +1,10 @@
 .playlistContainer {
   margin: 0;
   padding-left: 15px;
-  overflow-y: hidden;
+  overflow-y: scroll;
   /* overflow-x: visible; */
-  width: 159px;
+  width: 198px;
+  height: 650px;
 }
 
 .playlist-positioning {
@@ -68,6 +69,8 @@
   width: 700px;
   padding-top: 2%;
   box-shadow: 5px 5px 10px rgb(0 0 0 / 50%), -5px -5px 10px rgb(0 0 0 / 50%);
+  height: 600px;
+  overflow: auto;
 }
 
 .playlist-detail h2 {
