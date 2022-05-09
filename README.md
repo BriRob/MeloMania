@@ -97,21 +97,19 @@ Logged in users can:
 
 ### User Sign Up Page
 
-![image]()
+![melomania-signup-page](https://user-images.githubusercontent.com/95938897/167427158-0b7f1a36-51ba-41b1-8da7-1d8d7c8395b0.png)
+
 
 ### Song Detail Page
-![image]()
+
+![melomania-songDetail-page](https://user-images.githubusercontent.com/95938897/167427619-5d221f6e-c1ad-4733-83f5-74cf7da6448c.png)
+
 
 ### Playlist Page
 
-![image]()
 
+![melomania-playlists-page](https://user-images.githubusercontent.com/95938897/167427899-2e730ff6-d384-4d0e-bcc0-8fcbfd2f3544.png)
 
-
-
-<!-- ### Search Results Page
-
-![image](https://user-images.githubusercontent.com/95883222/163737653-481b15fe-6315-4f85-8bab-b489340b9fbc.png) -->
 
 # Future Features
 - Delete Confirmation for comments and playlists
