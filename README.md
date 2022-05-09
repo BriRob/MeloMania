@@ -92,7 +92,8 @@ Logged in users can:
 
 ### Home Page / Songs Page
 
-![image]()
+![melomania-splash-page](https://user-images.githubusercontent.com/95938897/167426677-202ae7b4-092e-467b-9a33-d149369e5139.png)
+
 
 ### User Sign Up Page
 
