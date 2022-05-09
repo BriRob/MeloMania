@@ -57,14 +57,14 @@ function Playlists() {
                       to={`/playlists/${playlist.id}`}
                       className="playlistTitle"
                     >
-                      {playlist.title}
-                    </Link>
-                    <div>
-                      <div>{playlist.User.username}</div>
+                      <div className="pTitle">{playlist.title}</div>
                       <div>
-                        {moment(playlist.createdAt).format("ddd MMM D YYYY")}
+                        <div>{playlist.User.username}</div>
+                        <div>
+                          {moment(playlist.createdAt).format("ddd MMM D YYYY")}
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
             </div>

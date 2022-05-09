@@ -30,6 +30,8 @@ const SongDetailPage = () => {
   const [showPlaylistsList, setShowPlaylistsList] = useState(false);
   const [showAddComment, setShowAddComment] = useState(false);
 
+  const [showDeleteQ, setShowDeleteQ] = useState(false);
+
   // console.log("song comments \n\n", song.Comments)
 
   useEffect(() => {
@@ -52,6 +54,29 @@ const SongDetailPage = () => {
     );
   }
 
+  let deleteQ = null;
+  if (sessionUser && showDeleteQ) {
+    deleteQ = (
+      <div className="youSureDelSong">
+        <div>Are you sure you want to delete this song?</div>
+        <div className="yesNoBtnSong">
+          <button
+            className="yesDel"
+            onClick={() => {
+              dispatch(deleteSong(song.id));
+              return history.push("/");
+            }}
+          >
+            Yes
+          </button>
+          <button onClick={() => setShowDeleteQ(false)} className="noDel">
+            No
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {song && (
@@ -63,27 +88,34 @@ const SongDetailPage = () => {
                 sessionUser !== null &&
                 !showEditSong &&
                 sessionUser.id === song.userId && (
-                  <button
-                    className="editSongBtn"
-                    onClick={() => setShowEditSong(true)}
-                  >
-                    Edit Song
-                  </button>
+                  <div>
+                    <button
+                      className="editSongBtn"
+                      onClick={() => setShowEditSong(true)}
+                    >
+                      Edit Song
+                    </button>
+                  </div>
                 )}
               {sessionUser !== undefined &&
                 sessionUser !== null &&
                 !showEditSong &&
-                sessionUser.id === song.userId && (
-                  <button
-                    className="delSongBtn"
-                    onClick={() => {
-                      dispatch(deleteSong(song.id));
-                      return history.push("/");
-                    }}
-                  >
-                    Delete Song
-                  </button>
+                sessionUser.id === song.userId &&
+                !showDeleteQ && (
+                  <div>
+                    <button
+                      className="delSongBtn"
+                      onClick={() => setShowDeleteQ(true)}
+                      // onClick={() => {
+                      //   dispatch(deleteSong(song.id));
+                      //   return history.push("/");
+                      // }}
+                    >
+                      Delete Song
+                    </button>
+                  </div>
                 )}
+              {deleteQ}
             </div>
           </div>
           <div className="song-detail-container">
@@ -112,10 +144,11 @@ const SongDetailPage = () => {
                 <hr></hr>
                 <div className="textDetails">
                   <div>
-                  <span className="textDetLabels">Uploaded By: </span><span className="textDetVals">{song.User.username}</span>
+                    <span className="textDetLabels">Uploaded By: </span>
+                    <span className="textDetVals">{song.User.username}</span>
                   </div>
                   <div>
-                  <span className="textDetLabels">Added: </span>
+                    <span className="textDetLabels">Added: </span>
                     <span className="textDetDate">
                       {moment(song.createdAt).format("ddd MMM D YYYY")}
                     </span>
@@ -135,12 +168,15 @@ const SongDetailPage = () => {
                 {sessionUser !== undefined &&
                   sessionUser !== null &&
                   !showAddComment && (
-                    <button
-                      className="form-btn"
-                      onClick={() => setShowAddComment(true)}
-                    >
-                      Add a comment
-                    </button>
+                    <div className="divForAddCommentBtn">
+                      <button
+                        id="addCommentButton"
+                        className="form-btn"
+                        onClick={() => setShowAddComment(true)}
+                      >
+                        Add a comment
+                      </button>
+                    </div>
                   )}
                 {addComment}
               </div>

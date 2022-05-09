@@ -24,6 +24,7 @@ function SignupFormPage() {
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
+        // console.log(data)
       });
     }
     return setErrors([
@@ -35,7 +36,7 @@ function SignupFormPage() {
     <div>
       <h2 className="title">Sign Up</h2>
       {errors && (
-        <ul>
+        <ul className="loginUl">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -48,7 +49,7 @@ function SignupFormPage() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -57,7 +58,7 @@ function SignupFormPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -66,7 +67,7 @@ function SignupFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -75,7 +76,7 @@ function SignupFormPage() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+            // required
           />
         </label>
         <button type="submit" className="form-btn">Sign Up</button>

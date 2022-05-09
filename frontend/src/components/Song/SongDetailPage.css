@@ -1,121 +1,139 @@
 hr {
-    width: 75%;
-    border: 1px solid rgb(67, 21, 21);
-    margin-top: 2%;
-    margin-bottom: 1%;
+  width: 75%;
+  border: 1px solid rgb(67, 21, 21);
+  margin-top: 2%;
+  margin-bottom: 1%;
 }
 
 .editDelBtn {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    /* margin-top: 2%; */
-    margin-bottom: 2%;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  /* margin-top: 2%; */
+  margin-bottom: 2%;
 }
 
-.editSongBtn, .delSongBtn {
-    color: #E2DCDE;
-    /* color: #2D2D34; */
-    margin: 0;
-    /* background-color: lavenderblush; */
-    background-color: #a6456f;
-    border: none;
-    border-radius: 7px;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-    /* padding: 0 7%; */
-    transition: 0.3s;
+.youSureDelSong {
+  margin: 0;
+  width: 46%;
+  text-align: center;
+}
+
+.yesNoBtnSong {
+  display: flex;
+}
+
+.yesDel {
+    color: #2D2D34;
+    background-color: #8fa6c8;
+}
+
+.noDel {
+    background-color: #615c5c;
+    width: 100%;
+}
+
+.editSongBtn,
+.delSongBtn {
+  color: #e2dcde;
+  /* color: #2D2D34; */
+  margin: 0;
+  /* background-color: lavenderblush; */
+  background-color: #a6456f;
+  border: none;
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  transition: 0.3s;
 }
 
 .delSongBtn {
-    color: #2D2D34;
-    /* color: #E2DCDE; */
-    /* color: #2D2D34; */
-    /* margin: 0; */
-    /* background-color: lavenderblush; */
-    /* background-color: #7c95ae; */
-    background-color: #8fa6c8;
-    /* border: none;
-    border-radius: 7px;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif; */
-    /* padding: 0 7%; */
-    /* margin: 0; */
-    /* transition: 0.3s; */
-
+  color: #2d2d34;
+  background-color: #8fa6c8;
 }
 
 .song-detail-container {
-    margin: 0 auto;
-    padding: 20px 0;
-    width: 70%;
-    max-width: 700px;
-    /* background-color: #545491; */
-    background-color: #682f48;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 70%;
+  max-width: 700px;
+  min-width: 400px;
+  /* background-color: #545491; */
+  background-color: #682f48;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .song-details > div {
-    padding: 10px;
-    text-align: center;
+  padding: 10px;
+  text-align: center;
 }
 
 .song-details {
-    width: 100%;
-    /* font-size: 18px; */
+  width: 100%;
+  /* font-size: 18px; */
 }
 
 .songAddPlayBtn {
-    margin-top: 2%;
-    width: 56%;
+  margin-top: 2%;
+  width: 56%;
 }
 
 .textDetails {
-    margin-bottom: 2%;
-    width: 67%;
-    /* border: 1px solid black; */
+  margin-bottom: 2%;
+  width: 67%;
+  /* border: 1px solid black; */
 }
 
 .textDetails div {
-    padding: 3px 0;
-    overflow-wrap: break-word;
+  padding: 3px 0;
+  overflow-wrap: break-word;
 }
-
 
 .textDetLabels {
-    font-size: 16px;
-    color: #2f0d0e;
+  font-size: 16px;
+  color: #2f0d0e;
+  font-weight: 700;
 }
 
-.descLabelAndContent{
-margin-top: 5%;
+.descLabelAndContent {
+  margin-top: 5%;
 }
 
-.textDetVals, .description {
-    font-size: 20px;
-
+.textDetVals,
+.description {
+  font-size: 20px;
 }
 .description {
-    text-align: start;
-    width: 95%;
+  text-align: start;
+  width: 95%;
 }
 
 .add-comment-div {
+  /* display: flex; */
+  /* justify-content: center; */
+  margin-bottom: 4%;
+  /* margin: 0; */
+}
+
+.editSongBtn:hover,
+.delSongBtn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.editSongBtn:active,
+.delSongBtn:active {
+  transform: scale(0.8);
+  /* cursor: pointer; */
+}
+
+.divForAddCommentBtn {
     display: flex;
-    justify-content: center;
 }
 
-
-.editSongBtn:hover, .delSongBtn:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.editSongBtn:active, .delSongBtn:active {
-    transform: scale(0.8);
-    /* cursor: pointer; */
+#addCommentButton {
+    margin: 0 auto;
 }

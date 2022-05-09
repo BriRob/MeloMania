@@ -41,7 +41,7 @@ function LoginFormPage() {
     <div>
       <h2 className="title">Log In</h2>
       {errors && (
-        <ul>
+        <ul className="loginUl">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -54,7 +54,7 @@ function LoginFormPage() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            required
+            // required
           />
         </label>
         <label>
@@ -63,7 +63,7 @@ function LoginFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
           />
         </label>
         <button type="submit" className="form-btn">Log In</button>

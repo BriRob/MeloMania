@@ -21,6 +21,8 @@ body {
     /* padding-top: 50px; */
 }
 
+
+
 .underNav {
     padding-top: 100px;
 }
@@ -37,6 +39,11 @@ body {
     color: #E2DCDE;
     font-size: 35px;
     margin-bottom: 20px;
+    width: 77%;
+    overflow-wrap: break-word;
+    max-width: 700px;
+    border-bottom: #8fa6c8 solid 1px;
+    padding-bottom: 20px;
 }
 
 
@@ -47,8 +54,8 @@ body {
     margin: 0;
     /* background-color: lavenderblush; */
     background-color: #a6456f;
-    border: none;
-    border-radius: 7px;
+    /* border: none; */
+    /* border-radius: 7px; */
     font-size: 19px;
     font-family: 'Nunito', sans-serif;
     padding: 0 7%;
@@ -57,32 +64,18 @@ body {
 
 .cancel-btn {
     color: #2D2D34;
-    /* margin: 0; */
     background-color: thistle;
-    /* border: none; */
-    /* border-radius: 7px; */
-    /* font-size: 19px; */
-    /* font-family: 'Nunito', sans-serif; */
-    /* padding: 0 7%; */
+
 }
 
 .delete-btn {
     color: #2D2D34;
-    /* color: #E2DCDE; */
-    /* color: #2D2D34; */
-    /* margin: 0; */
-    /* background-color: lavenderblush; */
-    /* background-color: #7c95ae; */
     background-color: #8fa6c8;
-    /* border: none;
-    border-radius: 7px;
-    font-size: 19px;
-    font-family: 'Nunito', sans-serif;
-    padding: 0 7%; */
 }
 
 .form-links {
     color:#6e2123;
+    transition: 0.3s;
 }
 
 .fa-user-circle:before {
@@ -103,11 +96,24 @@ input:focus, textarea:focus, select:focus {
 
 
 
-.navLink:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover {
+button:hover, .navLink:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover, .form-links:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-.navLink:active, .form-btn:active, .cancel-btn:active, .delete-btn:active {
+button:active, .navLink:active, .form-btn:active, .cancel-btn:active, .delete-btn:active, .form-links:active {
     transform: scale(0.9);
+}
+
+button {
+    border-radius: 7px;
+    transition: 0.3s;
+    border: none;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+li {
+    list-style: none;
 }

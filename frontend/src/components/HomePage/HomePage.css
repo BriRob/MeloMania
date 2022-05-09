@@ -6,6 +6,8 @@
 .home-page p {
   text-align: center;
   font-size: 25px;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 .songsContainer {
@@ -14,13 +16,14 @@
   width: 70%;
   max-width: 700px;
   background-color: #545491;
+  /* background-color: #7c95ae; */
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .each-song-div {
   margin: 20px auto;
-  padding: 15px;
+  padding: 23px 15px;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -31,10 +34,16 @@
   display: flex;
   justify-content: space-between;
 }
+
 .songTitle {
   font-size: 2em;
   text-decoration: none;
   transition: 0.3s;
+  width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+  /* color: #682f48; */
+
 }
 
 .uploadedUser {

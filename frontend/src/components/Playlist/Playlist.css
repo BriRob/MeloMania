@@ -1,130 +1,180 @@
 .playlistContainer {
-    position: absolute;
-    left: 50px;
+  margin: 0 3%;
 }
 .playlist-positioning {
-    position: relative;
-    right: 0;
+  position: relative;
+  right: 0;
 }
 
 .playlist-div-submain {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    font-size: 25px
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  font-size: 25px;
 }
 .playlist-div-submain button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .each-playlist-div {
-margin: 15px 0;
+  margin: 15px 0;
+  transition: 0.3s;
 }
 
 .playlistTitle {
-    text-decoration: none;
-    font-size: 20px;
+  text-decoration: none;
+  /* font-size: 20px; */
+  transition: 0.3s;
+}
+
+.pTitle {
+  font-size: 23px;
+}
+.playlistTitle:hover,
+.each-playlist-div:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.playlistTitle:active,
+.each-playlist-div:active {
+  transform: scale(0.9);
 }
 
 .playlists-and-details {
-        /* bottom: 0; */
-    display: flex;
-    /* left: 0; */
-    position: absolute;
-    /* right: 0; */
-    /* top: 0; */
-    width: 90%;
-    margin-top: 15px;
+  /* bottom: 0; */
+  display: flex;
+  /* left: 0; */
+  position: absolute;
+  /* right: 0; */
+  /* top: 0; */
+  width: 90%;
+  margin-top: 15px;
 }
 
 .playlist-detail {
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    padding-left: 10%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 10%; */
+  background-color: #b265869c;
+  border-radius: 7px;
+  width: 700px;
+  padding-top: 2%;
+  box-shadow: 5px 5px 10px rgb(0 0 0 / 50%), -5px -5px 10px rgb(0 0 0 / 50%);
 }
 
-.playlist-detail h2{
-    font-size: 40px;
+.playlist-detail h2 {
+  font-size: 40px;
+  color: #24242d;
 }
 
 .each-playlist-song-div {
-    margin: 10px auto;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 0;
+  width: 67%;
+  /* min-width: 350px; */
 }
 
 .playlist-song-title {
-    text-decoration: none;
-    font-size: 25px;
+  text-decoration: none;
+  font-size: 25px;
+  overflow-wrap: break-word;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  transition: 0.3s;
+}
+
+.playlist-song-title:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.playlist-song-title:active {
+  transform: scale(0.9);
+}
+
+.playlistUser {
+    color: #24242d;
+    font-weight: 500;
+    font-size: 19px;
 }
 
 .playlist-songs {
-    width: 100%;
+  width: 100%;
+  max-width: 700px;
 }
 
 .playlist-btn {
-    color: #E2DCDE;
-    /* color: #2D2D34; */
-    /* margin: 0; */
-    /* background-color: lavenderblush; */
-    background-color: #b26586;
-    border: none;
-    border-radius: 7px;
-    font-size: 19px;
-    font-family: 'Nunito', sans-serif;
-    padding: 0 7%;
+  color: #e2dcde;
+  /* color: #2D2D34; */
+  /* margin: 0; */
+  /* background-color: lavenderblush; */
+  background-color: #b26586;
+  border: none;
+  border-radius: 7px;
+  font-size: 19px;
+  font-family: "Nunito", sans-serif;
+  padding: 0 7%;
 }
 
-
 .create-playlist-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .create-playlist-form label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .create-playlist-form label input {
-    color: #2D2D34;
-    width: 70%;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-    border-radius: 5px;
-
+  color: #2d2d34;
+  width: 70%;
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  border-radius: 5px;
 }
 
 .newPlaylist {
-    width: 50%;
-    max-width: 400px;
-    /* margin: none; */
-    /* background-color: blue; */
-    /* box-shadow: 5px 10px 6px #b26586; */
+  width: 50%;
+  max-width: 400px;
+  /* margin: none; */
+  /* background-color: blue; */
+  /* box-shadow: 5px 10px 6px #b26586; */
 }
 
 .addPlayCompDiv {
-    margin-top: 2%;
+  margin-top: 2%;
 }
 
 .addPlaylistForm {
-    width: 60%;
+  width: 60%;
 }
 
 .addToPlaylistDiv {
-    display: flex;
-    justify-content: space-around;
-    width: 70%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  flex-wrap: wrap;
 }
 
 .selectPlaylist {
-    color: #2D2D34;
-    width: 65%;
-    border-radius: 5px;
-    font-size: 19px;
+  color: #2d2d34;
+  width: 65%;
+  border-radius: 5px;
+  font-size: 19px;
+}
+
+#playlist-delete {
+  width: fit-content;
+  /* margin: 0 auto; */
+  margin: 0 auto 2%;
 }

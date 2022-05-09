@@ -27,7 +27,7 @@ function PlaylistDetail() {
             <h2>{playlist.title}</h2>
             {sessionUser !== undefined && sessionUser !== null && sessionUser.id === playlist.userId &&(
               <button
-                className="delete-btn"
+                className="delete-btn" id="playlist-delete"
                 onClick={() => {
                   dispatch(deletePlaylist(playlist.id));
                   return history.push("/playlists");
@@ -36,6 +36,7 @@ function PlaylistDetail() {
                 Delete
               </button>
             )}
+            <hr></hr>
             <div className="playlist-songs">
               {playlist.Songs?.map((song) => (
                 <div key={song.id} className="each-playlist-song-div">
@@ -45,7 +46,7 @@ function PlaylistDetail() {
                   >
                     {song.title}
                   </Link>
-                  <div>User: {song.User.username}</div>
+                  <div className="playlistUser">User: {song.User.username}</div>
                   <ReactAudioPlayer src={song.url} controls />
                 </div>
               ))}

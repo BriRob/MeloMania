@@ -17,11 +17,11 @@ const commentFormValidation = [
   //^(\w).*\.wav|.mp3$
   check("comment")
     .notEmpty()
-    .withMessage("comment cannot be empty")
+    .withMessage("Comment cannot be empty")
     // .isLength({ max: 100 })
     // .withMessage("comment must be less than 100 characters")
     .custom((value) => !/^ *$/.test(value))
-    .withMessage("comment must contain characters"),
+    .withMessage("Comment must contain characters"),
   // check("songUrl")
   //   .notEmpty()
   //   .withMessage("Cannot submit post without file"),
