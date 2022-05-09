@@ -122,6 +122,7 @@ Logged in users can:
 - User can view collections of their uploaded songs and created playlists
 - User can view other user's collections of songs and playlists
 - Search Feature
+- Splash Page styling
 
 # Technical Implementation
 
