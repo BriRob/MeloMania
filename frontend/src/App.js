@@ -46,6 +46,9 @@ function App() {
             <Route path="/new-song">
               <UploadSong />
             </Route>
+            <Route>
+              <h1>Page Not Found</h1>
+            </Route>
 
           </Switch>
         </div>

@@ -113,9 +113,10 @@ Logged in users can:
 ![image](https://user-images.githubusercontent.com/95883222/163737653-481b15fe-6315-4f85-8bab-b489340b9fbc.png) -->
 
 # Future Features
-- Delete Confirmation for songs, comments, playlists
+- Delete Confirmation for comments and playlists
 - Allow songs to play continuously from song to song and while navigating to different pages
 - Edit playlists with deleting songs and changing title
+- Add genre tags for songs
 - Add votes to songs and playlists
 - Add comments to playlists
 - Edit comments on songs and playlists
