@@ -15,11 +15,11 @@ function Playlists() {
   });
   //   console.log(playlists)
 
-  const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
+  // const [showCreatePlaylist, setShowCreatePlaylist] = useState(false);
 
-  let createPlaylist = (
-    <CreatePlaylist hidePlaylist={() => setShowCreatePlaylist(false)} />
-  );
+  // let createPlaylist = (
+  //   <CreatePlaylist hidePlaylist={() => setShowCreatePlaylist(false)} />
+  // );
 
   useEffect(() => {
     dispatch(getAllPlaylists());
@@ -40,7 +40,7 @@ function Playlists() {
               {/* Only the BEST playlists are made by melomaniacs! */}
               Discover and create your favorite playlists!
             </div>
-            {!showCreatePlaylist && (
+            {/* {!showCreatePlaylist && (
               <button
                 onClick={() => setShowCreatePlaylist(true)}
                 className="playlist-btn"
@@ -49,7 +49,7 @@ function Playlists() {
               </button>
             )}
 
-            {showCreatePlaylist && createPlaylist}
+            {showCreatePlaylist && createPlaylist} */}
           </div>
           {/* <br></br> want break line*/}
           <div className="playlists-and-details">

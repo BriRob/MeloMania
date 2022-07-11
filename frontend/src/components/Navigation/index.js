@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 // import melomanialogo from "../../images/"
 
 import "./Navigation.css";
+import NewPlaylistModal from "../Playlist/NewPlaylistModal";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -52,6 +53,8 @@ function Navigation({ isLoaded }) {
         <NavLink to="/playlists" className="navLink">
           Playlists
         </NavLink>
+        {sessionUser && <NewPlaylistModal />}
+
         <NavLink to="/new-song" className="navLink">
           Upload
         </NavLink>
