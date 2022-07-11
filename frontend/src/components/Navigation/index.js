@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 // import melomanialogo from "../../images/"
 
 import "./Navigation.css";
+import NewPlaylistModal from "../Playlist/NewPlaylistModal";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -40,23 +41,25 @@ function Navigation({ isLoaded }) {
     );
   }
 
-
-
   return (
     <div className="navigation">
-      <li>
-        <NavLink exact to="/" className="navLink" >
+      <div className="innerNav">
+        <NavLink exact to="/" className="navLink">
           MeloMania
           {/* <img src="/images/melomania-logo.png" id="logo"/> */}
         </NavLink>
-        <NavLink to="/playlists" className="navLink">
-          Playlists
-        </NavLink>
+        <div className="playlistNav">
+          <NavLink to="/playlists" className="navLink plLink">
+            Playlists
+          </NavLink>
+          {sessionUser && <NewPlaylistModal />}
+        </div>
+
         <NavLink to="/new-song" className="navLink">
           Upload
         </NavLink>
         {isLoaded && sessionLinks}
-      </li>
+      </div>
     </div>
   );
 }

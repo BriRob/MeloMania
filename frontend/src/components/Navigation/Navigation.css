@@ -3,16 +3,18 @@
     /* margin: 0 7%; */
     position: fixed;
     width: 100%;
+    min-width: 560px;
     background-color: #682f48;
     z-index: 1;
     height: 75px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    padding-top: 2%;
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* padding-top: 2%; */
 }
 
-.navigation > li {
+.navigation > div {
     display: flex;
     justify-content: space-between;
     font-size: 22px;
@@ -65,6 +67,13 @@
 
 }
 
+.playlistNav {
+    display: flex;
+    /* width: 120px; */
+    min-width: 120px;
+    width: 11%;
+}
+
 .profile-nav-div > button:hover, .demo-btn:hover, .logout-btn:hover {
     transform: scale(1.1);
     cursor: pointer;
@@ -72,4 +81,8 @@
 
 .profile-nav-div > button:active, .demo-btn:active, .logout-btn:active {
     transform: scale(0.9);
+}
+
+.innerNav {
+    width: 100%;
 }

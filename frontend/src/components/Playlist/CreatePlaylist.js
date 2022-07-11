@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { createNewPlaylist } from "../../store/playlists";
+import './Playlist.css'
 
 function CreatePlaylist({ hidePlaylist }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  //   const history = useHistory();
+    const history = useHistory();
 
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState([]);
@@ -30,6 +31,7 @@ function CreatePlaylist({ hidePlaylist }) {
     if (newPlaylist) {
       setErrors([]);
       hidePlaylist();
+      history.push("/playlists")
     }
   };
 
