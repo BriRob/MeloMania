@@ -130,16 +130,21 @@ footer > div {
     margin-right: 7px;
 }
 
+.logo-btn {
+    transition: 0.3s;
+}
+
+
 input:focus, textarea:focus, select:focus {
     outline: none
 }
 
-button:hover, .navLink:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover, .form-links:hover {
+button:hover, .navLink:hover, .logo-btn:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover, .form-links:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-button:active, .navLink:active, .form-btn:active, .cancel-btn:active, .delete-btn:active, .form-links:active {
+button:active, .navLink:active, .logo-btn:active, .form-btn:active, .cancel-btn:active, .delete-btn:active, .form-links:active {
     transform: scale(0.9);
 }
 
