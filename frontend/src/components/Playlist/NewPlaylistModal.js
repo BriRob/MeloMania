@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import CreatePlaylist from "./CreatePlaylist";
+import "./Playlist.css"
 
 function NewPlaylistModal() {
 //   const sessionUser = useSelector((state) => state.session.user);
@@ -13,7 +14,7 @@ function NewPlaylistModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Create Playlist</button>
+      <button className="createPlBtn" onClick={() => setShowModal(true)}><i className="fa-solid fa-plus createPlBtnI"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           {/* <NewWb setShowModal={setShowModal}/> */}

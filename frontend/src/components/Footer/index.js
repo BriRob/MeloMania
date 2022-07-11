@@ -10,7 +10,7 @@ function Footer() {
           <span>Javascript</span>
           <span>HTML5</span>
           <span>CSS</span>
-          <span>React</span>
+          {/* <span>React</span> */}
           <span>PostgresSQL</span>
         </div>
         <hr></hr>
