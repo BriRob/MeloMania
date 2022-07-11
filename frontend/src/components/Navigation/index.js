@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import ProfileButton from "./ProfileButton";
 // import melomanialogo from "../../images/"
+import melologo from "../../images/melomania_logo2.png"
 
 import "./Navigation.css";
 import NewPlaylistModal from "../Playlist/NewPlaylistModal";
@@ -45,7 +46,10 @@ function Navigation({ isLoaded }) {
     <div className="navigation">
       <div className="innerNav">
         <NavLink exact to="/" className="navLink">
-          MeloMania
+
+          <img src={melologo} className="logo-btn"></img>
+
+          {/* MeloMania */}
           {/* <img src="/images/melomania-logo.png" id="logo"/> */}
         </NavLink>
         <div className="playlistNav">

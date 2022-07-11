@@ -26,9 +26,9 @@ function HomePage() {
   // console.log()
   return (
     <div className="home-page">
-      <div className="logoDiv">
+      {/* <div className="logoDiv">
         <img src="/images/Logo_Gry_1_Lrg.png" id="logo" />
-      </div>
+      </div> */}
       <h2 className="title">Welcome to MeloMania!</h2>
       <p>The perfect place to upload and share your music with the world</p>
       <div>
