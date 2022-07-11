@@ -37,13 +37,10 @@
     color: #2D2D34;
     margin: 0;
     background-color: lavenderblush;
-    border: none;
-    border-radius: 7px;
     font-size: 19px;
     font-family: 'Nunito', sans-serif;
     padding: 0 7%;
     margin-bottom: 5px;
-    transition: 0.3s;
 
 }
 
@@ -104,4 +101,15 @@
     /* position: fixed;
     top: 0px; */
     margin-top: 6px;
+}
+
+.profBtn {
+    color: #2D2D34;
+    margin: 0;
+    background-color: #a2bbd5;
+    font-size: 19px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 7%;
+    margin-bottom: 5px;
+
 }

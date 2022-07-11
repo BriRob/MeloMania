@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import UploadSong from "./components/Song/UploadSong";
 import SongDetailPage from "./components/Song/SongDetailPage";
 import Playlists from "./components/Playlist";
+import Profile from "./components/Profile";
 import "./App.css";
 import Footer from "./components/Footer";
 
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route path="/new-song">
               <UploadSong />
+            </Route>
+            <Route path="/users/:userId">
+              <Profile />
             </Route>
             <Route>
               <h1>Page Not Found</h1>
