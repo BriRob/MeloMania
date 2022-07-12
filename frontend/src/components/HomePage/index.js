@@ -44,7 +44,8 @@ function HomePage() {
                     {song.title}
                   </Link>
                   <div className="artist-date-div">
-                    <div className="uploadedUser">{song.User.username}</div>
+                    {/* <div className="uploadedUser">{song.User.username}</div> */}
+                    <Link to={`/users/${song.User.id}`} className="uploadedUser">{song.User.username}</Link>
                     <div className="detail-date">
                       {moment(song.createdAt).format("ddd MMM D YYYY")}
                     </div>

@@ -26,7 +26,10 @@ function PlaylistDetail() {
         <div className="playlist-detail">
           {/* HELLO?!?! {id} */}
           {/* <div className="playlist-positioning"> */}
-            <h3>Playlist by {playlist.User.username}</h3>
+            <h3>Playlist by {}
+            <Link to={`/users/${playlist.User.id}`}>{playlist.User.username}</Link>
+
+            </h3>
             <h2>{playlist.title}</h2>
             {sessionUser !== undefined && sessionUser !== null && sessionUser.id === playlist.userId &&(
               <button

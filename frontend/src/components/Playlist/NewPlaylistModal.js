@@ -14,7 +14,7 @@ function NewPlaylistModal() {
 
   return (
     <>
-      <button className="createPlBtn" onClick={() => setShowModal(true)}><i className="fa-solid fa-plus createPlBtnI"></i></button>
+      <button className="createPlBtn tooltip" onClick={() => setShowModal(true)}><i className="fa-solid fa-plus createPlBtnI"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           {/* <NewWb setShowModal={setShowModal}/> */}

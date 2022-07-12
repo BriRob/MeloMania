@@ -5,6 +5,7 @@ import { getAllUserPlaylists, getOneUser } from "../../store/users";
 import ReactAudioPlayer from "react-audio-player";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import './Profile.css'
 
 function Profile() {
   const { userId } = useParams();
@@ -20,7 +21,6 @@ function Profile() {
   useEffect(() => {
     // if (!profUser) {
         (async () => {
-
             await dispatch(getOneUser(userId));
             await dispatch(getAllUserPlaylists(userId));
         })()
@@ -30,34 +30,39 @@ function Profile() {
 //   useEffect(() => {
 //   }, [dispatch]);
 
-  if (!profUser) {
+  if (!profUser || !userPls) {
     return <>Loading...</>;
   } else {
     return (
-      <div>
+      <div className="profileBig">
         {/* {profUser && ( */}
             <h1>{profUser.user.username}'s Profile</h1>
-          <div>
+          <div className="profSongsBigDiv">
             <h2>Songs</h2>
-            {profUser.songs.length === 0 && <div>No Songs Yet!</div>}
+            {profUser.songs.length === 0 && <div className="noSongs">No Songs Yet!</div>}
             {profUser.songs.length >= 1 && (
-              <div>
-                {profUser.songs.map((song, idx) => (
+              <div className="profSongsDiv">
+                {profUser?.songs.map((song, idx) => (
                   <div key={idx} className="eachSongDiv">
-                    <Link to={`/songs/${song.id}`}>{song.title}</Link>
-                    <AudioPlayer src={song.url} controls />
+                    <Link to={`/songs/${song.id}`} className="songLink">{song.title}</Link>
+                    <AudioPlayer src={song.url} controls autoPlay={false} />
                   </div>
                 ))}
               </div>
             )}
           </div>
-          <div>
+          <div className="profPlBigDiv">
             <h2>Playlists</h2>
-            {userPls.map((pl, idx) => (
-                <div key={idx}>
-                    <Link to={`/playlists/${pl.id}`}>{pl.title}</Link>
+            {userPls.length === 0 && <div className="noPl">No Playlists Yet!</div>}
+            {userPls.length >= 1 && (
+                <div className="profPlDiv">
+                    {userPls.map((pl, idx) => (
+                        <div key={idx} >
+                            <Link to={`/playlists/${pl.id}`} className="eachPlDiv">{pl.title}</Link>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
           </div>
         {/* )} */}
       </div>

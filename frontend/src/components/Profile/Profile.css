@@ -1,0 +1,76 @@
+.profileBig {
+}
+
+.profileBig h1,
+.profileBig h2 {
+  text-align: center;
+  margin: 15px 0;
+}
+
+/* .profileBig h1 {
+    margin: 15px 0;
+} */
+
+.profileBig h2 {
+  margin: 15px 0;
+  color: rgb(67, 21, 21);
+}
+
+.profSongsBigDiv,
+.profPlBigDiv {
+  width: 80%;
+  min-width: 700px;
+  max-width: 850px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.profSongsBigDiv {
+  /* background-color: rgb(67, 21, 21); */
+  background-color: #a6456f;
+  /* padding-top: 5px;
+    padding-bottom: 15px;
+    border-radius: 5px; */
+}
+
+.profPlBigDiv {
+  /* background-color: #a2bbd5; */
+  background-color: #7c95ae;
+}
+
+.profPlBigDiv h2,
+.eachPlDiv {
+  color: #2d2d34;
+}
+
+.profSongsDiv,
+.profPlDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.noSongs,
+.noPl {
+  text-align: center;
+}
+
+.eachSongDiv {
+  text-align: center;
+
+}
+
+.songLink {
+  /* padding-bottom: 10px; */
+  /* color: #7c95ae; */
+  color: rgb(67, 21, 21);
+
+}
+/* .eachPlDiv {
+    color: #2D2D34;
+} */
+.rhap_container {
+  margin-top: 10px;
+  border-radius: 5px;
+}

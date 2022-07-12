@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { deleteSong, getOneSong } from "../../store/songs";
 import ReactAudioPlayer from "react-audio-player";
 import moment from "moment";
@@ -145,7 +145,10 @@ const SongDetailPage = () => {
                 <div className="textDetails">
                   <div>
                     <span className="textDetLabels">Uploaded By: </span>
+                    <Link to={`/users/${song.User.id}`}>
+
                     <span className="textDetVals">{song.User.username}</span>
+                    </Link>
                   </div>
                   <div>
                     <span className="textDetLabels">Added: </span>
