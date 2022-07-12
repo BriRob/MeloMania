@@ -34,15 +34,16 @@ function Profile() {
     return <>Loading...</>;
   } else {
     return (
-      <>
+      <div>
         {/* {profUser && ( */}
+            <h1>{profUser.user.username}'s Profile</h1>
           <div>
-            {profUser.user.username}'s Songs
+            <h2>Songs</h2>
             {profUser.songs.length === 0 && <div>No Songs Yet!</div>}
             {profUser.songs.length >= 1 && (
               <div>
                 {profUser.songs.map((song, idx) => (
-                  <div key={idx}>
+                  <div key={idx} className="eachSongDiv">
                     <Link to={`/songs/${song.id}`}>{song.title}</Link>
                     <AudioPlayer src={song.url} controls />
                   </div>
@@ -50,8 +51,16 @@ function Profile() {
               </div>
             )}
           </div>
+          <div>
+            <h2>Playlists</h2>
+            {userPls.map((pl, idx) => (
+                <div key={idx}>
+                    <Link to={`/playlists/${pl.id}`}>{pl.title}</Link>
+                </div>
+            ))}
+          </div>
         {/* )} */}
-      </>
+      </div>
     );
   }
 }
