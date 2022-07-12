@@ -70,7 +70,7 @@ export const createNewPlaylist = (payload) => async (dispatch) => {
   }
 };
 
-// for playlist select dropdown on songDetailPage
+// // for all playlists of one user
 // export const getAllUserPlaylists = (userId) => async (dispatch) => {
 //   const response = await fetch(`/api/playlists/user-playlists/${userId}`);
 

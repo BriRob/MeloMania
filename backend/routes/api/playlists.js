@@ -46,6 +46,41 @@ router.get(
 //     return res.json(playlist);
 // }));
 
+// // getting all playlists for one user
+// router.get("/:userId(\\d+)", asyncHandler(async (req, res) => {
+//   const userId = parseInt(req.params.userId, 10);
+//   console.log(userId)
+
+//   // // const song = await Song.findByPk(songId, {
+//   // //   include: [{ model: Comment, include: User }, { model: User }],
+//   // // });
+//   const user = await User.findByPk(userId, {
+//     // include: Song
+//   })
+
+//   const songs = await Song.findAll({
+//     where: {
+//       userId
+//     },
+//     order: [['createdAt', 'DESC']]
+//   })
+
+//   console.log("here are one user's songs \n\n", songs)
+
+//   return res.json({user, songs})
+
+//   // const song = await Song.findByPk(songId, {
+//   //   include: [
+//   //     // { model: Comment, include: User, order: [["createdAt", "DESC"]] },
+//   //     { model: User },
+//   //   ],
+//   // });
+
+//   // // console.log()
+//   // return res.json(song);
+// }))
+
+
 const playlistFormValidation = [
   check("title")
     .notEmpty()
@@ -77,13 +112,13 @@ router.post(
 // route to get user playlists
 router.get(
   "/user-playlists/:id(\\d+)",
-  requireAuth,
+  // requireAuth,
   asyncHandler(async (req, res) => {
     // const userId = req.user.id;
     const { id } = req.params;
     const playlists = await Playlist.findAll({
       where: { userId: id },
-      order: [["createdAt"]],
+      order: [["createdAt", "DESC"]],
     });
 
     return res.json(playlists);
