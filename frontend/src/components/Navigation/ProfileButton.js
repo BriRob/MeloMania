@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import { getAllUserPlaylists, getOneUser } from "../../store/users";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const goToProfile = () => {
+  const goToProfile = async () => {
+    await dispatch(getOneUser(user.id))
+    await dispatch(getAllUserPlaylists(user.id))
     history.push(`/users/${user.id}`)
   }
 

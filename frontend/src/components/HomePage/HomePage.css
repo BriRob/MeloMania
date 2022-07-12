@@ -47,13 +47,14 @@
   /* width: 90%; */
   display: flex;
   justify-content: space-between;
-  width: 59%;
+  width: 77%;
   margin-bottom: 1%;
   gap: 3px;
 }
 
 .songTitle {
-  font-size: 2em;
+  font-size: 27px;
+  font-weight: bold;
   text-decoration: none;
   transition: 0.3s;
   width: 100%;
@@ -63,17 +64,18 @@
   margin-bottom: 2px;
 }
 
-.uploadedUser {
-  font-size: 23px;
+.uploadedUser, .detail-date {
+  /* font-size: 23px; */
   color: #24242d;
   margin: 0;
+  font-size: 18px;
 }
 
-.detail-date {
+/* .detail-date {
   font-size: 18px;
   color: #24242d;
   margin: 0;
-}
+} */
 
 .songTitle:hover {
   transform: scale(1.1);
