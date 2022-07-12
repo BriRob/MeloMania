@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Song } = require("../../db/models");
 
 const router = express.Router();
 
@@ -39,5 +39,38 @@ router.post(
     });
   })
 );
+
+router.get("/:userId(\\d+)", asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  console.log(userId)
+
+  // // const song = await Song.findByPk(songId, {
+  // //   include: [{ model: Comment, include: User }, { model: User }],
+  // // });
+  const user = await User.findByPk(userId, {
+    // include: Song
+  })
+
+  const songs = await Song.findAll({
+    where: {
+      userId
+    },
+    order: [['createdAt', 'DESC']]
+  })
+
+  console.log("here are one user's songs \n\n", songs)
+
+  return res.json({user, songs})
+
+  // const song = await Song.findByPk(songId, {
+  //   include: [
+  //     // { model: Comment, include: User, order: [["createdAt", "DESC"]] },
+  //     { model: User },
+  //   ],
+  // });
+
+  // // console.log()
+  // return res.json(song);
+}))
 
 module.exports = router;

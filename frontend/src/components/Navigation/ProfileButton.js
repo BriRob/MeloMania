@@ -31,6 +31,10 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
+  const goToProfile = () => {
+    history.push(`/users/${user.id}`)
+  }
+
   return (
     <div className="profile-nav-div">
       <button onClick={openMenu}>
@@ -42,6 +46,7 @@ function ProfileButton({ user }) {
         <div className="profile-dropdown">
           {/* <li>{user.username}</li> */}
           <div>{user.email}</div>
+          <button className="profBtn" onClick={goToProfile}>Profile</button>
           {/* <div> */}
             <button onClick={logout} className="logout-btn">Log Out</button>
           {/* </div> */}
