@@ -11,7 +11,7 @@ export const getOneUser = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const user = await response.json();
-        console.log(user)
+        // console.log(user)
         dispatch(oneUser(user))
         return user
     }

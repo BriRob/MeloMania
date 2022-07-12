@@ -54,7 +54,8 @@ router.get("/:userId(\\d+)", asyncHandler(async (req, res) => {
   const songs = await Song.findAll({
     where: {
       userId
-    }
+    },
+    order: [['createdAt', 'DESC']]
   })
 
   console.log("here are one user's songs \n\n", songs)
