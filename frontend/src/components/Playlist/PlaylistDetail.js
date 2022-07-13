@@ -52,7 +52,9 @@ function PlaylistDetail() {
                   >
                     {song.title}
                   </Link>
-                  <div className="playlistUser">User: {song.User.username}</div>
+
+                  {/* <div className="playlistUser">User: {song.User.username}</div> */}
+                  <div className="playlistUser">User: <Link className="playlistUser" to={`/users/${song.User.id}`}> {song.User.username}</Link></div>
                   <ReactAudioPlayer src={song.url} controls />
                 </div>
               ))}

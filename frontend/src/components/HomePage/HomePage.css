@@ -1,6 +1,7 @@
 .home-page {
-  /* margin: 0px auto;
-    background-color: blue; */
+    width: 74%;
+    min-width: 530px;
+    max-width: 850px;
 }
 
 .home-page p {
