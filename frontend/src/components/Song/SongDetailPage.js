@@ -11,6 +11,7 @@ import CommentsPage from "../CommentsPage";
 import "./SongDetailPage.css";
 import { getAllComments } from "../../store/comments";
 import AddComment from "../CommentsPage/AddComment";
+import DeleteSongModal from "./DeleteSongModal";
 // import { getAllUserPlaylists } from "../../store/playlists";
 
 const SongDetailPage = () => {
@@ -54,28 +55,28 @@ const SongDetailPage = () => {
     );
   }
 
-  let deleteQ = null;
-  if (sessionUser && showDeleteQ) {
-    deleteQ = (
-      <div className="youSureDelSong">
-        <div>Are you sure you want to delete this song?</div>
-        <div className="yesNoBtnSong">
-          <button
-            className="yesDel"
-            onClick={() => {
-              dispatch(deleteSong(song.id));
-              return history.push("/");
-            }}
-          >
-            Yes
-          </button>
-          <button onClick={() => setShowDeleteQ(false)} className="noDel">
-            No
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // let deleteQ = null;
+  // if (sessionUser && showDeleteQ) {
+  //   deleteQ = (
+  //     <div className="youSureDelSong">
+  //       <div>Are you sure you want to delete this song?</div>
+  //       <div className="yesNoBtnSong">
+  //         <button
+  //           className="yesDel"
+  //           onClick={() => {
+  //             dispatch(deleteSong(song.id));
+  //             return history.push("/");
+  //           }}
+  //         >
+  //           Yes
+  //         </button>
+  //         <button onClick={() => setShowDeleteQ(false)} className="noDel">
+  //           No
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -83,27 +84,34 @@ const SongDetailPage = () => {
         <div className="song-detail-page">
           <div className="titleEditDiv">
             <h2 className="title">{song.title}</h2>
-            <div className="editDelBtn">
-              {sessionUser !== undefined &&
-                sessionUser !== null &&
-                !showEditSong &&
-                sessionUser.id === song.userId && (
-                  <div>
+            {/* <div className="editDelBtn"> */}
+            {sessionUser !== undefined &&
+              sessionUser !== null &&
+              !showEditSong &&
+              sessionUser.id === song.userId && (
+                <div className="editDelBtn">
+                  {/* <div> */}
                     <button
                       className="editSongBtn"
                       onClick={() => setShowEditSong(true)}
                     >
-                      Edit Song
+                      {/* Edit Song */}
+                      <i className="fa-solid fa-pen-to-square"></i>
                     </button>
-                  </div>
-                )}
-              {sessionUser !== undefined &&
+                    <DeleteSongModal song={song} />
+                  {/* </div> */}
+                </div>
+              )}
+            {/* {sessionUser !== undefined &&
                 sessionUser !== null &&
                 !showEditSong &&
                 sessionUser.id === song.userId &&
-                !showDeleteQ && (
+                !showDeleteQ &&
+                (
+
                   <div>
-                    <button
+                    <DeleteSongModal song={song}/>
+                     <button
                       className="delSongBtn"
                       onClick={() => setShowDeleteQ(true)}
                       // onClick={() => {
@@ -115,8 +123,8 @@ const SongDetailPage = () => {
                     </button>
                   </div>
                 )}
-              {deleteQ}
-            </div>
+              {deleteQ} */}
+            {/* </div> */}
           </div>
           <div className="song-detail-container">
             <ReactAudioPlayer src={song.url} controls />
@@ -146,8 +154,7 @@ const SongDetailPage = () => {
                   <div>
                     <span className="textDetLabels">Uploaded By: </span>
                     <Link to={`/users/${song.User.id}`}>
-
-                    <span className="textDetVals">{song.User.username}</span>
+                      <span className="textDetVals">{song.User.username}</span>
                     </Link>
                   </div>
                   <div>

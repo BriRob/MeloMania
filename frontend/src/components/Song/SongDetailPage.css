@@ -7,30 +7,43 @@ hr {
 
 .editDelBtn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+    gap: 14px;
   width: 50%;
   /* margin-top: 2%; */
   margin-bottom: 2%;
 }
 
 .youSureDelSong {
-  margin: 0;
-  width: 46%;
+  /* margin: 0; */
+  width: 84%;
+  padding: 15px 0px;
   text-align: center;
+  background-color: #CEB1BE;
+  border-radius: 5px;
+}
+
+.delQ {
+  color: #2d2d34;
+  font-size: 23px;
+  padding: 0 7px;
 }
 
 .yesNoBtnSong {
   display: flex;
+  margin-top: 10px;
 }
 
 .yesDel {
     color: #2D2D34;
     background-color: #8fa6c8;
+    font-size: 20px;
 }
 
 .noDel {
     background-color: #615c5c;
     /* width: 100%; */
+    font-size: 20px;
 }
 
 .editSongBtn,
@@ -136,4 +149,8 @@ hr {
 
 #addCommentButton {
     margin: 0 auto;
+}
+
+.fa-trash-can {
+  color: #2d2d34;
 }

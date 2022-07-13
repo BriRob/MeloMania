@@ -46,6 +46,7 @@ const EditSong = ({ song, hideForm }) => {
   return (
     <div className="edit-big-div">
       {/* HELLO?!?!? */}
+      {/* <h2>Edit Your Song</h2> */}
       <form onSubmit={handleSubmit} className="edit-song-form">
         {errors && (
           <ul>
