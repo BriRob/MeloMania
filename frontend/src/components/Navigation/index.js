@@ -8,6 +8,7 @@ import melologo from "../../images/melomania_logo2.png"
 
 import "./Navigation.css";
 import NewPlaylistModal from "../Playlist/NewPlaylistModal";
+import Search from "../Search";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -58,6 +59,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
           {sessionUser && <NewPlaylistModal />}
         </div>
+          <Search />
 
         <NavLink to="/new-song" className="navLink">
           Upload
