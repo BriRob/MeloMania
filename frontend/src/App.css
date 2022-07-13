@@ -47,8 +47,24 @@ footer > div {
 }
 
 .me {
+text-align: center;
+    margin-bottom: 3px;
+}
+
+.hrForFooter {
+    margin-top: 7px;
+}
+
+.iconContainer {
+    width: 100px;
     display: flex;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    /* margin: 5px 0; */
+}
+
+.footerIcons {
+    width: 30px;
+    transition: 0.3s;
 }
 
 .underNav {
@@ -109,6 +125,7 @@ footer > div {
 .form-links {
     color:#6e2123;
     transition: 0.3s;
+    margin-top: 25px;
 }
 
 .fa-user-circle:before {
@@ -141,12 +158,12 @@ input:focus, textarea:focus, select:focus {
     outline: none
 }
 
-button:hover, .navLink:hover, .logo-btn:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover, .form-links:hover, .eachDynRes:hover {
+button:hover, .footerIcons:hover, .navLink:hover, .logo-btn:hover, .form-btn:hover, .cancel-btn:hover, .delete-btn:hover, .form-links:hover, .eachDynRes:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-button:active, .navLink:active, .logo-btn:active, .form-btn:active, .cancel-btn:active, .delete-btn:active, .form-links:active, .eachDynRes:active {
+button:active, .footerIcons:active, .navLink:active, .logo-btn:active, .form-btn:active, .cancel-btn:active, .delete-btn:active, .form-links:active, .eachDynRes:active {
     transform: scale(0.9);
 }
 
@@ -176,4 +193,12 @@ input {
     border-radius: 5px;
     /* border: 1px solid #2D2D34; */
     border: none
+}
+
+.asDemo {
+    margin-top: 10px;
+    font-size: 17px;
+    /* background-color: #8fa6c8; */
+    background-color: #545491;
+
 }

@@ -6,6 +6,7 @@ import { getAllSongs } from "../../store/songs";
 import moment from "moment";
 // import song from "../../res/tadow-fkj-masego.mp3"
 import "./HomePage.css";
+import Footer from "../Footer";
 // import AddToPlaylist from "../Playlist/AddToPlaylist";
 
 function HomePage() {
@@ -25,32 +26,38 @@ function HomePage() {
 
   // console.log()
   return (
-    <div className="home-page">
+    <div>
       {/* <div className="logoDiv">
         <img src="/images/Logo_Gry_1_Lrg.png" id="logo" />
       </div> */}
-      <h2 className="title">Welcome to MeloMania!</h2>
-      <p>The perfect place to upload and share your music with the world</p>
-      <div>
-        <ul className="songsContainer">
-          <h2 className="discoverSongs">Discover Songs</h2>
-          <hr></hr>
-          <div className="smallerContainer">
-            {Object.values(songs)
-              .reverse()
-              .map((song) => (
-                <div key={song.id} className="each-song-div">
-                  <Link to={`/songs/${song.id}`} className="songTitle">
-                    {song.title}
-                  </Link>
-                  <div className="artist-date-div">
-                    {/* <div className="uploadedUser">{song.User.username}</div> */}
-                    <Link to={`/users/${song.User.id}`} className="uploadedUser">{song.User.username}</Link>
-                    <div className="detail-date">
-                      {moment(song.createdAt).format("ddd MMM D YYYY")}
+      <div className="home-page">
+        <h2 className="title">Welcome to MeloMania!</h2>
+        <p>The perfect place to upload and share your music with the world</p>
+        <div>
+          <ul className="songsContainer">
+            <h2 className="discoverSongs">Discover Songs</h2>
+            <hr></hr>
+            <div className="smallerContainer">
+              {Object.values(songs)
+                .reverse()
+                .map((song) => (
+                  <div key={song.id} className="each-song-div">
+                    <Link to={`/songs/${song.id}`} className="songTitle">
+                      {song.title}
+                    </Link>
+                    <div className="artist-date-div">
+                      {/* <div className="uploadedUser">{song.User.username}</div> */}
+                      <Link
+                        to={`/users/${song.User.id}`}
+                        className="uploadedUser"
+                      >
+                        {song.User.username}
+                      </Link>
+                      <div className="detail-date">
+                        {moment(song.createdAt).format("ddd MMM D YYYY")}
+                      </div>
                     </div>
-                  </div>
-                  {/* {!showPlaylistsList && (
+                    {/* {!showPlaylistsList && (
                 <button
                   onClick={() => setShowPlaylistsList(true)}
                   className="form-btn"
@@ -58,13 +65,15 @@ function HomePage() {
                   Add to Playlist
                 </button>
               )} */}
-                  {/* {showPlaylistsList && <AddToPlaylist />} */}
-                  <ReactAudioPlayer src={song.url} controls className="" />
-                </div>
-              ))}
-          </div>
-        </ul>
+                    {/* {showPlaylistsList && <AddToPlaylist />} */}
+                    <ReactAudioPlayer src={song.url} controls className="" />
+                  </div>
+                ))}
+            </div>
+          </ul>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

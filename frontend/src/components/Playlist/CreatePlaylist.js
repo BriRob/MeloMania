@@ -31,7 +31,7 @@ function CreatePlaylist({ hidePlaylist }) {
     if (newPlaylist) {
       setErrors([]);
       hidePlaylist();
-      history.push("/playlists")
+      history.push(`/playlists/${newPlaylist.id}`)
     }
   };
 

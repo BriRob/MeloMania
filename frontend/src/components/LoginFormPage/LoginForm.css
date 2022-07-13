@@ -1,3 +1,14 @@
+.loginBig {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.innerLoginDiv {
+    margin: 0;
+}
+
 .loginUl {
     width: 50%;
     min-width: 350px ;
@@ -37,6 +48,6 @@
     border: 1px solid #2D2D34;
 }
 
-/* .form-btn {
-    margin-bottom: 5px;
+/* .footerLogin {
+    position: absolute;
 } */

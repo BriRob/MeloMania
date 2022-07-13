@@ -97,3 +97,7 @@
   /* background-color: blue; */
   width: 26%;
 }
+
+.detail-date {
+  min-width: 140px;
+}

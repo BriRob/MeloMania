@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import "./LoginForm.css";
+import Footer from "../Footer";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -24,21 +25,23 @@ function LoginFormPage() {
     );
   };
 
-  // const handleDemo = (e) => {
-  //   e.preventDefault();
-  //   // setErrors([]);
-  //   const credential = "Demo-Melomaniac"
-  //   const password = 'password'
-  //   return dispatch(sessionActions.login({ credential, password })).catch(
-  //     async (res) => {
-  //       const data = await res.json();
-  //       if (data && data.errors) setErrors(data.errors);
-  //     }
-  //   );
-  // };
+  const handleDemo = (e) => {
+    e.preventDefault();
+    // setErrors([]);
+    const credential = "Demo-Melomaniac"
+    const password = 'password'
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+    );
+  };
 
   return (
-    <div>
+    <div className="loginBig">
+      <div className="innerLoginDiv">
+
       <h2 className="title">Log In</h2>
       {errors && (
         <ul className="loginUl">
@@ -68,10 +71,11 @@ function LoginFormPage() {
         </label>
         <button type="submit" className="form-btn">Log In</button>
         <Link to="/signup" className="form-links">Become a melomaniac!</Link>
+        <button type="submit" className="form-btn asDemo" onClick={handleDemo}>Login as Demo User</button>
       </form>
-      {/* <form onSubmit={handleDemo}>
-        <button type="submit" className="form-btn">Demo User</button>
-      </form> */}
+      </div>
+
+      <Footer />
     </div>
   );
 }
