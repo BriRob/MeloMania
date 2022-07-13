@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteComment, getAllComments } from "../../store/comments";
 import AddComment from "./AddComment";
 import "./CommentsPage.css";
+import DeleteCommentModal from "./DeleteCommentModal";
 
 const CommentsPage = ({ song }) => {
   // console.log(song)
@@ -37,14 +38,15 @@ const CommentsPage = ({ song }) => {
             {sessionUser !== undefined &&
               sessionUser !== null &&
               sessionUser.id === el.userId && (
-                <button
-                  className="delete-btn"
-                  onClick={() => {
-                    dispatch(deleteComment(el.id));
-                  }}
-                >
-                  Delete
-                </button>
+                <DeleteCommentModal comment={el}/>
+                // <button
+                //   className="delete-btn"
+                //   onClick={() => {
+                //     dispatch(deleteComment(el.id));
+                //   }}
+                // >
+                //   <i className="fa-solid fa-trash-can"></i>
+                // </button>
               )}
             </div>
           </div>
