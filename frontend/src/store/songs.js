@@ -128,7 +128,7 @@ const songReducer = (state = initialState, action) => {
     case ONE_SONG:
       const oneSongState = {
         ...state,
-        songs: { [action.song.id]: action.song },
+        oneSong: action.song,
       };
       return oneSongState;
     case CREATE_SONG:
