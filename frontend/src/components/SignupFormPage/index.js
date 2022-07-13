@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import Footer from "../Footer";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -46,7 +47,8 @@ function SignupFormPage() {
   };
 
   return (
-    <div>
+    <div className="SignUpBig">
+    <div className="innerSignUpDiv">
       <h2 className="title">Sign Up</h2>
       {errors && (
         <ul className="loginUl">
@@ -96,6 +98,8 @@ function SignupFormPage() {
         <Link to="/login" className="form-links">Already a melomaniac?</Link>
         <button type="submit" className="form-btn asDemo" onClick={handleDemo}>Login as Demo User</button>
       </form>
+    </div>
+      <Footer />
     </div>
   );
 }
