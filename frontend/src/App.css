@@ -109,6 +109,7 @@ footer > div {
 .form-links {
     color:#6e2123;
     transition: 0.3s;
+    margin-top: 25px;
 }
 
 .fa-user-circle:before {
@@ -176,4 +177,12 @@ input {
     border-radius: 5px;
     /* border: 1px solid #2D2D34; */
     border: none
+}
+
+.asDemo {
+    margin-top: 10px;
+    font-size: 17px;
+    /* background-color: #8fa6c8; */
+    background-color: #545491;
+
 }

@@ -14,13 +14,13 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
-  const handleDemo = (e) => {
-    e.preventDefault();
-    // setErrors([]);
-    const credential = "Demo-Melomaniac";
-    const password = "password";
-    return dispatch(sessionActions.login({ credential, password }));
-  };
+  // const handleDemo = (e) => {
+  //   e.preventDefault();
+  //   // setErrors([]);
+  //   const credential = "Demo-Melomaniac";
+  //   const password = "password";
+  //   return dispatch(sessionActions.login({ credential, password }));
+  // };
 
   let sessionLinks;
   if (sessionUser) {
@@ -34,11 +34,11 @@ function Navigation({ isLoaded }) {
         <NavLink className="navLink" to="/signup">
           Sign Up
         </NavLink>
-        <form onSubmit={handleDemo}>
+        {/* <form onSubmit={handleDemo}>
           <button type="submit" className="demo-btn">
             Demo User
           </button>
-        </form>
+        </form> */}
       </>
     );
   }
