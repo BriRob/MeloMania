@@ -143,6 +143,20 @@ text-align: center;
     max-width: 715px;
 }
 
+.errorsDiv {
+    width: 80%;
+    min-width: 350px;
+}
+
+.followingErrors {
+    color: #de4d4d;
+    text-align: center;
+}
+
+.req {
+    color: #545491;
+    margin-top: 5px;
+}
 
 .plLink {
     display: inline-block;

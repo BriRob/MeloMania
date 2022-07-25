@@ -57,16 +57,21 @@ const UploadSong = () => {
   return (
     <div className="upload-song">
       <h2 className="title">Upload Your Song</h2>
-      <form onSubmit={handleSubmit} className="create-song-form">
-        {errors && (
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
+      {errors.length > 0 && (
+          <div className="errorsDiv">
+            <div className="followingErrors">
+              The following errors have occured:{" "}
+            </div>
+            <ul className="loginUl">
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          </div>
         )}
+      <form onSubmit={handleSubmit} className="create-song-form">
         <label>
-          Title
+          Title*
           <input
             type="text"
             value={title}
@@ -91,6 +96,7 @@ const UploadSong = () => {
           Description
           <textarea
             className="upload-textarea"
+            placeholder="optional"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
@@ -108,6 +114,7 @@ const UploadSong = () => {
             Cancel
           </button>
         </div>
+        <div className="req">*These areas are required</div>
       </form>
     </div>
   );

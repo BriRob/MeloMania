@@ -24,6 +24,18 @@ function HomePage() {
     dispatch(getAllSongs());
   }, [dispatch]);
 
+  const pauseOtherPlayers = (e) => {
+    let allPlayers = document.getElementsByTagName('audio')
+    // console.log(allPlayers)
+    // console.log(e.target, "is e.target")
+    for (let player of allPlayers) {
+      // console.log(player)
+      if (player != e.target) {
+        player.pause()
+      }
+    }
+  }
+
   // console.log()
   return (
     <div>
@@ -66,7 +78,7 @@ function HomePage() {
                 </button>
               )} */}
                     {/* {showPlaylistsList && <AddToPlaylist />} */}
-                    <ReactAudioPlayer src={song.url} controls className="" />
+                    <ReactAudioPlayer src={song.url} controls className="" onPlay={(e) => pauseOtherPlayers(e)} />
                   </div>
                 ))}
             </div>

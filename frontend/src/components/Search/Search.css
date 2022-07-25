@@ -39,3 +39,7 @@
     cursor: pointer;
     /* background-color: #ebebeb; */
 }
+
+.noSongsFound {
+    color: #545491
+}
