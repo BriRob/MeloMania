@@ -92,23 +92,23 @@ Logged in users can:
 
 ### Home Page / Songs Page
 
-![melomania-splash-page](https://user-images.githubusercontent.com/95938897/167426677-202ae7b4-092e-467b-9a33-d149369e5139.png)
+![melomania-splash-page](https://user-images.githubusercontent.com/95938897/180672950-de20c49f-3323-4321-9679-421a36345b74.png)
 
 
 ### User Sign Up Page
 
-![melomania-signup-page](https://user-images.githubusercontent.com/95938897/167427158-0b7f1a36-51ba-41b1-8da7-1d8d7c8395b0.png)
+![melomania-signup-page](https://user-images.githubusercontent.com/95938897/180672971-126ddc1a-2f01-43ac-884b-db2449dc6541.png)
 
 
 ### Song Detail Page
 
-![melomania-songDetail-page](https://user-images.githubusercontent.com/95938897/167427619-5d221f6e-c1ad-4733-83f5-74cf7da6448c.png)
+![melomania-songDetail-page1](https://user-images.githubusercontent.com/95938897/180672977-60100873-e465-4ac6-8b8c-e2ec35d617e1.png)
 
 
 ### Playlist Page
 
+![melomania-playlists-page](https://user-images.githubusercontent.com/95938897/180672992-5013ca9c-24a1-485a-b861-c780b8aba9f9.png)
 
-![melomania-playlists-page](https://user-images.githubusercontent.com/95938897/167427899-2e730ff6-d384-4d0e-bcc0-8fcbfd2f3544.png)
 
 
 # Future Features
