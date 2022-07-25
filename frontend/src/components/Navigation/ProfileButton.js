@@ -48,7 +48,7 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div className="profile-dropdown">
           {/* <li>{user.username}</li> */}
-          <div>{user.email}</div>
+          {/* <div>{user.email}</div> */}
           <button className="profBtn" onClick={goToProfile}>Profile</button>
           {/* <div> */}
             <button onClick={logout} className="logout-btn">Log Out</button>

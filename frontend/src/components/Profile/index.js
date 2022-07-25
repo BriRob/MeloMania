@@ -12,11 +12,11 @@ function Profile() {
   const dispatch = useDispatch();
   const profUser = useSelector((state) => state.userState.oneUser);
   const userPls = useSelector((state) => state.userState.oneUser?.playlists);
-  console.log("profile user \n\n", profUser);
+  // console.log("profile user \n\n", profUser);
   // console.log(userId)
-  console.log("songs for this user \n\n", profUser?.songs);
+  // console.log("songs for this user \n\n", profUser?.songs);
 
-    console.log("user's playlists \n\n", userPls)
+    // console.log("user's playlists \n\n", userPls)
 
   useEffect(() => {
     // if (!profUser) {
@@ -30,6 +30,18 @@ function Profile() {
 //   useEffect(() => {
 //   }, [dispatch]);
 
+const pauseOtherPlayers = (e) => {
+  let allPlayers = document.getElementsByTagName('audio')
+  // console.log(allPlayers)
+  // console.log(e.target, "is e.target")
+  for (let player of allPlayers) {
+    // console.log(player)
+    if (player != e.target) {
+      player.pause()
+    }
+  }
+}
+
   if (!profUser || !userPls) {
     return <>Loading...</>;
   } else {
@@ -38,21 +50,22 @@ function Profile() {
         {/* {profUser && ( */}
             <h1>{profUser.user.username}'s Profile</h1>
           <div className="profSongsBigDiv">
-            <h2>Songs</h2>
+            <h2>Shared Songs</h2>
             {profUser.songs.length === 0 && <div className="noSongs">No Songs Yet!</div>}
             {profUser.songs.length >= 1 && (
               <div className="profSongsDiv">
                 {profUser?.songs.map((song, idx) => (
                   <div key={idx} className="eachSongDiv">
                     <Link to={`/songs/${song.id}`} className="songLink">{song.title}</Link>
-                    <AudioPlayer src={song.url} controls autoPlay={false} />
+                    {/* <AudioPlayer src={song.url} controls autoPlay={false} /> */}
+                    <ReactAudioPlayer src={song.url} controls className="reactPlayProf" onPlay={(e) => pauseOtherPlayers(e)} />
                   </div>
                 ))}
               </div>
             )}
           </div>
           <div className="profPlBigDiv">
-            <h2>Playlists</h2>
+            <h2>Created Playlists</h2>
             {userPls.length === 0 && <div className="noPl">No Playlists Yet!</div>}
             {userPls.length >= 1 && (
                 <div className="profPlDiv">

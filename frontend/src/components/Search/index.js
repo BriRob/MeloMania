@@ -73,7 +73,7 @@ function Search() {
       </div>
       {searchInput && results.length === 0 && (
         <div className="dynRes">
-          <div className="eachDynRes">No songs found</div>
+          <div className="noSongsFound">No songs found</div>
         </div>
       )}
       {results.length !== 0 && (

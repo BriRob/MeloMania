@@ -69,12 +69,17 @@ function AddToPlaylist({ hidePlaylist, song }) {
     <div className="addPlayCompDiv">
       {/* HELLO?!?! */}
       <form onSubmit={handleSubmit} className="addPlaylistForm">
-        {errors && (
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx} className="addPlayErr">{error}</li>
-            ))}
-          </ul>
+      {errors.length > 0 && (
+          <div className="errorsDiv">
+            <div className="followingErrors">
+              The following errors have occured:{" "}
+            </div>
+            <ul className="loginUl">
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          </div>
         )}
         <select
         className="selectPlaylist"

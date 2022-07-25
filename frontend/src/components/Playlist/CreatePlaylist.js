@@ -43,16 +43,21 @@ function CreatePlaylist({ hidePlaylist }) {
   return (
     <div className="newPlaylist">
       {/* HELLO?!?! */}
-      <form onSubmit={handleSubmit} className="create-playlist-form">
-        {errors && (
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx} className="addPlayErr">{error}</li>
-            ))}
-          </ul>
+      {errors.length > 0 && (
+          <div className="errorsDiv">
+            <div className="followingErrors">
+              The following errors have occured:{" "}
+            </div>
+            <ul className="loginUl">
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          </div>
         )}
+      <form onSubmit={handleSubmit} className="create-playlist-form">
         <label>
-          Playlist Title
+          Playlist Title*
           <input
             type="text"
             value={title}
@@ -69,6 +74,7 @@ function CreatePlaylist({ hidePlaylist }) {
             Cancel
           </button>
         </div>
+        <div className="req">*This area is required</div>
       </form>
     </div>
   );
